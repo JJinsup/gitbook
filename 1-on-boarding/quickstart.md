@@ -1,5 +1,5 @@
 ---
-description: '목표: Ubuntu 22.04 LTS 설치 직후 필수 유틸리티와 개발 도구를 세팅합니다.'
+description: Ubuntu 22.04 LTS 설치 직후 필수 유틸리티와 개발 도구를 세팅합니다.
 layout:
   width: default
   title:
@@ -19,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/getting-started/quickstart
 ---
 
-# 🐧 1주 차: Linux 개발 환경 구축
+# 🐧 \[1] Linux 개발 환경 구축
 
 ### 1. Ubuntu 설치
 
