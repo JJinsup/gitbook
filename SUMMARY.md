@@ -1,6 +1,6 @@
 # Table of contents
 
-* [2025 동계 방학 VLA 로봇 특강](README.md)
+* [2025 동계 방학 VLA 특강](README.md)
 
 ## \[1주 차] 연구 개발 환경 구축 (On-Boarding)
 

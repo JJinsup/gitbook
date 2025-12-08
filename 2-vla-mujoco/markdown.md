@@ -38,7 +38,7 @@ metaLinks:
 
 MuJoCo를 Python 환경, 특히 Headless 서버나 Colab 환경에서 렌더링하기 위해서는 적절한 백엔드 설정이 필요합니다.
 
-```
+```python
 import os
 # MuJoCo를 GPU 없이 EGL 렌더링으로 사용하기 위한 필수 설정
 os.environ['MUJOCO_GL'] = 'egl'
@@ -60,7 +60,7 @@ MuJoCo는 **XML(MJCF)** 형식을 통해 물리적 속성을 정의합니다. �
 * **Geom (Floor):** 바닥 평면 (Plane)
 * **Geom (Object):** 실습 대상인 캡슐(Capsule) 객체
 
-```
+```xml
 xml = """
 <mujoco>
   <worldbody>
@@ -107,7 +107,7 @@ MuJoCo는 시뮬레이션 효율성을 위해 **정적 속성**과 **동적 상�
   * **감지 정보:** 센서 측정값(Sensor data), 충돌 지점(Contacts)
   * **역학 정보:** 작용하는 힘과 토크(`xfrc_applied`), 관절에 걸리는 부하
 
-```
+```python
 # XML 문자열 파싱 및 MjModel, MjData 인스턴스 생성
 model = mujoco.MjModel.from_xml_string(xml)
 data = mujoco.MjData(model)
@@ -133,7 +133,7 @@ plt.show()
 
 로봇 제어를 위해서는 각 링크(Body)와 조인트(Joint), 형상(Geom)의 ID를 파악하여 상태 공간(State Space)에 접근해야 합니다. MuJoCo Python 바인딩을 통해 내부 객체 정보를 조회하는 방법입니다.
 
-```
+```python
 print("--- 모델 요약 (Counts) ---")
 print(f"Geometries (geom): {model.ngeom}")        # 기하학적 객체 수
 print(f"Bodies (body): {model.nbody}")            # 바디(몸체) 수
@@ -169,7 +169,7 @@ print("\nList of all geom names:", [model.geom(i).name for i in range(model.ngeo
 
 `mjvCamera` 클래스를 인스턴스화하여 카메라의 내부 파라미터(Intrinsic) 및 외부 파라미터(Extrinsic)를 프레임 단위로 갱신합니다.
 
-```
+```python
 duration = 5         # 시뮬레이션 지속 시간 (초)
 framerate = 60       # 초당 프레임 수 (FPS)
 num_frames = duration * framerate
@@ -206,7 +206,7 @@ print("Total frames generated:", len(frames))
 
 수집된 프레임 데이터를 영상으로 변환하여 시각적으로 검증합니다.
 
-```
+```python
 media.show_video(frames, fps=framerate)
 ```
 

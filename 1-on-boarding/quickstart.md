@@ -40,7 +40,7 @@ metaLinks:
 
 기본 터미널보다 화면 분할이 자유로워 ROS 및 시뮬레이션 실행 시 필수적인 도구
 
-```
+```bash
 sudo apt update
 sudo apt install terminator -y
 ```
@@ -49,7 +49,7 @@ sudo apt install terminator -y
 
 #### 🌐 구글 크롬 (Chrome)
 
-```
+```bash
 # wget이 없을 경우 설치
 sudo apt install -y wget
 
@@ -64,7 +64,7 @@ sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
 **1. 패키지 설치**
 
-```
+```bash
 sudo apt install fcitx5 fcitx5-hangul -y
 ```
 
@@ -77,13 +77,13 @@ sudo apt install fcitx5 fcitx5-hangul -y
 
 **3. 재부팅 (Reboot)** : 설정 적용을 위해 반드시 시스템을 재부팅 합니다.
 
-```
+```shellscript
 reboot
 ```
 
 **4. 한글 키 추가 및 Gnome Tweaks** : 재부팅 후 터미널을 열고 다음 과정을 수행합니다.
 
-```
+```shellscript
 # Gnome Tweaks 설치 (UI 상세 설정 도구)
 sudo apt install gnome-tweaks -y
 ```
@@ -108,7 +108,7 @@ sudo apt install gnome-tweaks -y
 
 가장 대중적인 코드 에디터인 VS Code를 설치합니다.
 
-```
+```shellscript
 # 1. 패키지 리스트 업데이트 및 필수 의존성 설치
 sudo apt update
 sudo apt upgrade -y

@@ -20,7 +20,7 @@ metaLinks:
       https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/getting-started/publish-your-docs
 ---
 
-# 🐧 1주 차: Miniconda & VSCODE 세팅
+# 🐧 \[2] Miniconda & VSCODE 세팅
 
 ### 1. 가상환경(Virtual Environment)의 필요성
 
@@ -149,7 +149,7 @@ VS Code 좌측의 **테트리스 블록 모양 아이콘(Extensions, `Ctrl+Shift
 
 VS Code에서 `test_env.py`라는 파일을 만들고 딱 두 줄만 적으세요.
 
-```
+```shellscript
 import numpy as np
 print("✅ 성공! 현재 Numpy 버전:", np.__version__)
 ```
@@ -158,7 +158,7 @@ print("✅ 성공! 현재 Numpy 버전:", np.__version__)
 
 VS Code 아래쪽 터미널(\`Ctrl + \`\`)을 열고, 먼저 가상환경을 끕니다.
 
-```
+```shellscript
 conda deactivate
 python test_env.py
 ```
@@ -169,7 +169,7 @@ python test_env.py
 
 이제 우리가 만든 방으로 들어가서 다시 실행해봅시다.
 
-```
+```shellscript
 conda activate mujoco
 python test_env.py
 ```

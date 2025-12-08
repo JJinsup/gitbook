@@ -45,7 +45,7 @@ metaLinks:
 
 #### 1.2 환경 설정 및 라이브러리
 
-```
+```python
 import os
 os.environ['MUJOCO_GL'] = 'egl'   # mujoco import 전에!
  
@@ -63,7 +63,7 @@ MuJoCo에서는 이 물리 시스템을 다음과 같이 정의합니다.
 * **Hinge Joint:** 막대가 카트 위에서 회전운동을 하도록 구속합니다.
 * **Actuator (Motor):** 슬라이드 조인트(카트)에만 힘(Force)을 가할 수 있습니다.
 
-```
+```python
 xml = """
 <mujoco model="inverted pendulum">
     <compiler inertiafromgeom="true"/>
@@ -122,7 +122,7 @@ $$
 
 MuJoCo는 `data.qpos`(위치)와 `data.qvel`(속도)를 통해 이 값을 실시간으로 제공합니다.
 
-```
+```python
 def create_env():
     """MuJoCo 모델/데이터/렌더러 생성."""
     model = mujoco.MjModel.from_xml_string(xml)
@@ -282,7 +282,7 @@ def plot_states(times, states, controls=None, title="Cart-Pole States"):
 
 먼저 제어기 없이 막대를 살짝 기울였을 때 어떤 일이 일어나는지 관찰해 봅시다. 당연히 막대는 중력에 의해 쓰러지고, 멈춰 있던 카트도 반작용으로 약간 움직이게 됩니다.
 
-```
+```python
 model, data, renderer = create_env()
 
 # 초기 상태: 폴을 살짝(0.1 rad) 기울인 상태에서 시작
@@ -327,7 +327,7 @@ plot_states(times, states, controls=None, title="Free Cart-Pole Dynamics")
 
 $$\text{Cost} = w_1 \theta^2 + w_2 p^2 + w_3 \dot{p}^2 + w_4 \dot{\theta}^2 + w_5 u^2$$
 
-```
+```python
 import gymnasium as gym
 from gymnasium import spaces
 from stable_baselines3 import PPO
@@ -431,7 +431,7 @@ $$
 
 #### 4.1 학습 진행 (Training)
 
-```
+```python
 # Gymnasium env 인스턴스 생성
 env = CartPoleMuJoCoEnv()
 
@@ -462,7 +462,7 @@ model.save("ppo_cartpole_mujoco")
   * **Cart Position 그래프:** 중앙(0) 근처에 머물러야 합니다.
   * **Action 그래프:** 막대가 쓰러지려 할 때마다 적절한 힘이 가해지는지 확인합니다.
 
-```
+```python
 eval_env = CartPoleMuJoCoEnv()
 obs, info = eval_env.reset()
 
@@ -506,7 +506,7 @@ print("Evaluation finished. Plotting states...")
 plot_states(times, states, controls=controls, title="PPO-Controlled Cart-Pole")
 ```
 
-```
+```python
 print("Rendering PPO policy video with mediapy...")
 media.show_video(frames, fps=framerate)
 ```

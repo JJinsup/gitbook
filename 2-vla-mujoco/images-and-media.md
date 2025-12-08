@@ -36,7 +36,7 @@ Simple Pendulum 모델을 통해 MuJoCo의 **Dynamics** 계산 원리를 이해�
 
 기본적인 설정은 이전과 동일합니다.
 
-```
+```python
 import os
 # 렌더링을 GPU 없이 headless로 하기 위한 설정 (주피터/리눅스 서버에서 필수)
 os.environ['MUJOCO_GL'] = 'egl'
@@ -61,7 +61,7 @@ simple_pendulum 모델 구조:
 * **`damping`**: 관절의 마찰(저항)을 의미합니다. 이 값이 없으면 진자는 영원히 멈추지 않습니다.
 * **`timestep="0.01"`**: 시뮬레이션의 시간 간격(dt)입니다. 0.01초 단위로 물리 계산을 수행합니다.
 
-```
+```xml
 xml = """
 <mujoco model="simple_pendulum">
     <option gravity="0 0 -9.81" timestep="0.01" integrator="RK4"/>
@@ -107,7 +107,7 @@ xml = """
 * **`mj_forward(model, data)`**: 시간을 흐르게 하지 **않습니다**. 현재 상태에서 힘과 가속도만 계산합니다. (사진 촬영용)
 * **`mj_step(model, data)`**: 물리 법칙에 따라 시간을 `timestep`만큼 **전진시킵니다**. 위치와 속도가 변합니다. (동영상용)
 
-```
+```python
 def record_frame_and_data(renderer, data, frames_list, times_list, positions_list,
                           velocities_list, camera_name="track"):
     """
@@ -159,7 +159,7 @@ def simulate_pendulum(xml, duration=10.0, framerate=60, theta0=0.5):
 
 수집된 데이터를 통해 진자의 운동을 그래프로 확인해 봅니다. 위치(각도)와 속도가 주기적으로 변하는 것을 볼 수 있습니다.
 
-```
+```python
 def plot_results(times, positions, velocities):
     """펜듈럼 상태를 시각화 (단진자라 상태가 2개)"""
     fig, axs = plt.subplots(1, 2, figsize=(10, 4))
@@ -185,7 +185,7 @@ def plot_results(times, positions, velocities):
 
 이제 모든 코드를 조립하여 실행해 봅시다!
 
-```
+```python
 duration = 10   # 10초 동안 시뮬레이션
 framerate = 60  # 60 FPS로 영상 저장
 
@@ -201,7 +201,7 @@ plot_results(times, positions, velocities)
 
 * **감쇠 진동(Damped Oscillation):** XML에서 `damping="0.1"`로 설정했기 때문에, 시간이 지날수록 진폭이 점점 줄어드는 것을 확인할 수 있습니다. (마찰이 없다면 영원히 같은 높이로 움직였을 것입니다.)
 
-```
+```python
 print("Rendering video...")
 media.show_video(frames, fps=framerate)
 ```
