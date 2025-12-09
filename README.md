@@ -60,22 +60,33 @@ metaLinks:
 | **Option B (추천)** | **Native Dual Booting**                | 로컬 하드웨어 성능       |
 | **환경 설정**         | 실습 환경 세팅                               |                  |
 
-#### \[2주 차] VLA 모델 기초 및 MuJoCo 시뮬레이션
+### **\[2주 차] MuJoCo 시뮬레이션 & LLM 실습**
 
-**"가벼운 모델로 시작하는 로봇 제어와 물리 엔진"**
+_"가벼운 모델로 시작하는 로봇 제어와 물리 엔진"_
 
-* **일정:** 12.29(월) \~ 12.30(화)
-* **학습 목표:** 경량화 VLA 모델(SmolVLA) 구동 및 MuJoCo 물리 엔진 이해
+**일정:** 12.29(월) \~ 12.30(화)\
+**핵심 목표:**
 
-**12.29 (월): 물리 엔진 기초**
+* MuJoCo 물리 엔진을 활용한 로봇 시뮬레이션 이해
+* Python 기반 제어 및 강화학습 기초
+* GEMINI / Ollama / On-Device LLM을 활용한 로봇 제어 실습
+* 데이터 생성 및 경량 LLM 파인튜닝 기초
 
-* **MuJoCo 기초:** 로봇 시뮬레이션의 기본이 되는 물리 엔진 실습
-* **LLM API 활용:** 자연어 명령을 통한 로봇 제어 맛보기 (Prompt Engineering)
+#### **12.29 (월) — MuJoCo 실습 중심**
 
-**12.30 (화): On-Device VLA 실습**
+* MuJoCo 설치 및 로봇 불러오기
+* Python API로 시뮬레이션 조작
+* Pendulum, CartPole 등 기본 제어
+* MJCF 기반 커스텀 로봇 구성
+* 강화학습(RL) 개념과의 연결
 
-* **모델:** 최신 경량 모델 **\[SmolVLA (0.45B)]** 활용
-* **실습:** 개인 PC/노트북 로컬 GPU를 활용한 Inference(추론) 및 Fine-tuning 기초
+#### **12.30 (화) — LLM 실습 중심**
+
+* LLM Overview 및 VLA 개념
+* GEMINI API로 Prompt Engineering
+* YOLO + LLM 실습
+* Ollama 로컬 모델 설치 및 RAG 구축
+* 데이터 생성(datagen) → Unsloth LoRA 파인튜닝
 
 #### \[3주 차] 강화학습(RL)과 NVIDIA Isaac Sim
 
@@ -116,12 +127,12 @@ metaLinks:
 
 ### :computer: 문서 작성 하드웨어 스펙
 
-_**로컬 PC**_
+_**로컬 PC ( Ubuntu 22.04)**_
 
 * CPU : 13th Gen Intel(R) Core(TM) i7-13700
 * GPU : NVIDIA GeForce GTX 1650 4GB
 
-_**서버**_
+_**서버 ( Ubuntu 22.04)**_
 
 * GPU : 3090 24GB 1개만 사용
 
