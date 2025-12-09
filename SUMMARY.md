@@ -20,6 +20,7 @@
 * [\[8\] LLM Overview](2-llm-and-vla/08-llm_overview.md)
 * [\[9\] GEMINI API 프롬프트 엔지니어링 실습](2-llm-and-vla/09-gemini_api.md)
 * [\[10\] YOLO & GEMINI](2-llm/10-yolo_llm.md)
+* [\[11\] Ollama & RAG 실습](2-llm/11-ollama_rag.md)
 * [\[12\] 데이터셋 생성 + 증강](2-llm/12_datagen.md)
 
 ## \[2주 차] VLA+Mujoco
