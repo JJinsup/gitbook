@@ -19,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/
 ---
 
-# 2025 동계 방학 VLA 로봇 특강
+# 2026 동계 방학 VLA 특강
 
 **"From Simulation to Reality: VLA 모델로 제어하는 로봇 팔"**
 
@@ -30,10 +30,10 @@ metaLinks:
 * **책임 강사:** 주민철 교수님
 * **실습 조교(TA):** 임진섭 (석사 과정), 김예찬 (학부 연구생)
 * **문의:** `limsk519@kookmin.ac.kr`
-* **최종 수정일 : 2025.12.04**
+* **최종 수정일 : 2025.12.10**
 {% endhint %}
 
-본 GitBook은 2025년 동계 방학 동안 진행되는 학부생 대상 로봇 제어 특강의 강의 자료 및 가이드라인을 담고 있습니다.&#x20;
+본 GitBook은 2025-26 동계 방학 동안 진행되는 학부생 대상 로봇 제어 특강의 강의 자료 및 가이드라인을 담고 있습니다.&#x20;
 
 ### 📅 Overview
 
@@ -113,6 +113,17 @@ metaLinks:
 * **모델 학습:** 수집된 데이터(Sim & Real)를 활용하여 **SmolVLA** 모델 \
   LoRA(Low-Rank Adaptation) 학습
 * **Sim-to-Real:** 학습된 모델을 로컬 PC에 배포하여 실물 로봇 제어 미션 수행 및 시연
+
+### :computer: 문서 작성 하드웨어 스펙
+
+_**로컬 PC**_
+
+* CPU : 13th Gen Intel(R) Core(TM) i7-13700
+* GPU : NVIDIA GeForce GTX 1650 4GB
+
+_**서버**_
+
+* GPU : 3090 24GB 1개만 사용
 
 ### 🛠️ 준비물 및 선수 지식
 
