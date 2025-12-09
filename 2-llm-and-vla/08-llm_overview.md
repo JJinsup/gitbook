@@ -20,6 +20,8 @@ description: From "Attention Is All You Need" to GPT
 
 #### 1.2 트랜스포머의 해결책: "Attention Is All You Need"
 
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-09 17-05-40.png" alt=""><figcaption></figcaption></figure>
+
 2017년 발표된 트랜스포머 논문은 이러한 순차적 처리 방식의 한계를 극복하기 위해, **'Recurrence(순환)'를 완전히 배제한** 새로운 아키텍처를 제안했습니다.
 
 * **Recurrence 제거 및 완전 병렬화(Parallelization)**: 트랜스포머는 입력된 문장 전체를 행렬(Matrix)로 변환하여 **한 번에** 처리합니다. 순서대로 기다릴 필요가 없으므로 GPU 자원을 100% 활용하여 학습 속도를 비약적으로 향상시켰습니다.
@@ -91,4 +93,57 @@ $$
 
 논문의 트랜스포머는 기계 번역을 위해 인코더-디코더 구조를 채택했습니다.
 
-####
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+#### 5.1 인코더 (Encoder)
+
+* 입력 시퀀스의 정보를 압축하여 문맥 벡터로 변환하는 역할을 합니다.
+* **Bidirectional Attention**: 문장의 앞뒤 문맥을 모두 참조할 수 있어, 문장 이해(NLU) 태스크(예: BERT)에 적합합니다.
+
+#### 5.2 디코더 (Decoder)
+
+* 인코더의 정보를 바탕으로 타겟 시퀀스를 생성하는 역할을 합니다.
+* **Masked Self-Attention**: 생성 모델의 특성상(Auto-regressive), 현재 시점보다 미래의 정보를 참조해서는 안 됩니다. 따라서 미래 시점의 토큰에 대한 Attention Score를 $$\infty$$로 마스킹하여 정보 접근을 차단합니다. 이는 GPT 계열 모델의 핵심 메커니즘입니다.
+
+### 6. GPT로의 진화 (Evolution to GPT)
+
+GPT는 초기 버전(GPT-1\~3)에서 Transformer의 디코더 블록만을 사용한 언어모델로 시작했지만, 최신 GPT 모델들은 순수 디코더 구조를 넘어서는 확장된 아키텍처를 사용합니다.
+
+#### 6.1 Decoder-only Architecture
+
+* **목적**: GPT는 번역이 아닌 "다음 토큰 예측(Next Token Prediction)"을 목표로 합니다.
+* **원리**: 대규모 텍스트 데이터(Corpus)를 비지도 학습(Unsupervised Learning)하여, 주어진 문맥 뒤에 올 가장 확률 높은 단어를 예측하는 능력을 갖추게 됩니다.
+
+#### 6.2 모델의 발전 양상
+
+* 초기 모델(n-gram 등)은 문맥 파악 능력이 현저히 떨어졌으나, 트랜스포머 기반의 GPT는 Multi-Head Attention과 깊은 레이어를 통해 긴 문맥과 복잡한 언어적 뉘앙스를 완벽하게 학습할 수 있게 되었습니다.
+
+### 7. 인간 피드백 기반 강화학습 (RLHF)
+
+{% embed url="https://openai.com/ko-KR/index/instruction-following/#guide" %}
+
+GPT-3와 같은 초기 LLM은 유창한 텍스트 생성 능력은 갖추었으나, 사용자의 의도에 부합하거나 안전한 답변을 생성하는 데에는 한계가 있었습니다. 이를 보완하기 위해 RLHF(Reinforcement Learning from Human Feedback)가 도입되었습니다.
+
+RLHF는 크게 3단계 프로세스로 진행됩니다.
+
+#### 7.1 Step 1: Supervised Fine-Tuning (SFT)
+
+<p align="center"><img src="../.gitbook/assets/image (10).png" alt=""></p>
+
+* **지도 미세 조정**: 인간 라벨러가 작성한 양질의 '질문-답변' 쌍 데이터를 모델에 학습시킵니다. 이를 통해 모델은 인간이 선호하는 답변의 형식과 톤을 모방하게 됩니다.
+
+#### 7.2 Step 2: Reward Model Training (RM)
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+* **보상 모델 학습**: 모델이 생성한 여러 답변 후보에 대해 인간이 선호도 순위(Ranking)를 매깁니다. 이 데이터를 바탕으로, 어떤 답변이 더 우수한지 점수를 예측하는 별도의 '보상 모델'을 학습시킵니다.
+
+#### 7.3 Step 3: Proximal Policy Optimization (PPO)
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+* **강화학습 적용**: 생성 모델(Policy)이 답변을 생성하면 보상 모델이 점수(Reward)를 부여하고, 이 점수를 최대화하는 방향으로 생성 모델을 업데이트합니다. PPO 알고리즘은 학습 과정에서 정책이 급격하게 변하는 것을 방지하여 안정적인 최적화를 돕습니다.
+
+### 8. Conclusion
+
+트랜스포머 아키텍처는 **병렬 처리**와 **Attention 메커니즘**을 통해 NLP 분야의 기술적 난제를 해결하였으며, 이는 현대 AI 모델의 표준이 되었습니다. 나아가 **RLHF**와 같은 정렬(Alignment) 기술의 도입으로, 단순한 언어 모델을 넘어 인간의 의도를 이해하고 상호작용하는 인공지능으로 진화하고 있습니다.
