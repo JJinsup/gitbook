@@ -1,10 +1,14 @@
-# \[11] Ollama & RAG 실습
+---
+description: 이 문서는 LLM이 추가 데이터를 사용하여 더 나은 답변을 제공하는 방법과 Ollama를 이용한 로컬 LLM 다운로드 방법을 설명합니다.
+---
+
+# \[11] Ollama 설치
 
 {% embed url="https://learn.microsoft.com/ko-kr/azure/developer/ai/augment-llm-rag-fine-tuning" %}
 
 ## 0. 대형 언어 모델(LLM) 향상하기
 
-이 문서는 LLM(대규모 언어 모델)이 추가 데이터를 사용하여 더 나은 답변을 제공하는 방법을 설명합니다. 기본적으로 LLM은 학습 중에 배운 내용만 알고 있습니다. 실시간 또는 개인 데이터를 추가하여 더 유용하게 만들 수 있습니다.
+기본적으로 LLM은 학습 중에 배운 내용만 알고 있습니다. 실시간 또는 개인 데이터를 추가하여 더 유용하게 만들 수 있습니다.
 
 데이터를 추가하여 모델을 향상시키는 두 가지 주요 방법은 다음과 같습니다.
 
@@ -17,6 +21,8 @@ RAG는 **"내 데이터를 통해 채팅"** 시나리오를 가능하게 합니�
 
 #### 작동 방식
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
 RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니다.
 
 1. **데이터 저장**: 데이터베이스에 문서(또는 **청크**라고 함)를 저장합니다.
@@ -25,6 +31,8 @@ RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니�
 4. **답변 생성**: 질문과 함께 찾아낸 관련 청크를 LLM에 보내 답변을 생성합니다.
 
 #### 벡터화와 임베딩 (Embeddings)
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 임베딩은 단어, 문장 또는 문서의 **의미**를 컴퓨터가 이해할 수 있는 숫자로 변환하는 과정입니다. 예를 들어 Azure OpenAI Embeddings API 등을 사용하면 텍스트의 주제, 의미, 문법, 스타일 등을 다차원 공간의 좌표로 변환할 수 있습니다.
 
@@ -85,15 +93,15 @@ RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니�
 * **근거 제시**: 답변이 어디서 왔는지 출처를 명시해야 하는 경우 (팩트 체크가 중요할 때).
 * **리소스 효율**: 모델을 재학습시킬 리소스가 부족하고, 기존 모델의 추론 능력만으로 충분할 때.
 
-## 1. Ollama 설치 및 RAG 구현
+## 1. Ollama 설치
 
-이 섹션에서는 로컬 환경에서 LLM을 구동할 수 있는 **Ollama**를 설치하고, Python을 이용해 간단한 RAG 프로세스를 실습하는 방법을 안내합니다.
+이 섹션에서는 로컬 환경에서 LLM을 구동할 수 있는 **Ollama**를 설치하고 테스트해봅시다.
 
 ### 1.1 Ollama 설치 및 모델 다운로드
 
 #### Download Ollama
 
-```
+```shellscript
 sudo apt install curl -y
 curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
 ```
@@ -104,33 +112,33 @@ curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
 
 **1. 폴더 생성**
 
-```
+```shellscript
 mkdir -p /data/ollama_models
 ```
 
 **2. 권한 설정 (중요!)** Ollama 서비스가 해당 폴더에 접근하고 쓸 수 있도록 권한을 부여해야 합니다. 일반적으로 `ollama:ollama` 소유권을 설정합니다.
 
-```
+```shellscript
 sudo chown -R ollama:ollama /data/ollama_models
 sudo chmod -R 775 /data/ollama_models
 ```
 
 **3. 서비스 설정 수정 (systemd)**
 
-```
+```shellscript
 sudo systemctl edit ollama.service
 ```
 
 에디터가 열리면 아래 내용을 복사해서 붙여넣으세요. `[Service]` 섹션 아래에 환경변수를 추가하는 방식입니다.
 
-```
+```shellscript
 [Service]
 Environment="OLLAMA_MODELS=/data/ollama_models"
 ```
 
 **4. 서비스 재시작** 설정 파일을 다시 읽어오고 서비스를 재시작합니다.
 
-```
+```shellscript
 # 설정 파일 다시 읽기
 sudo systemctl daemon-reload
 
@@ -140,13 +148,15 @@ sudo systemctl restart ollama
 
 **5. 확인 및 모델 다운로드** 설정이 제대로 적용되었는지 확인하고 모델을 다운로드합니다.
 
-```
+```shellscript
 # 변경된 경로 확인 (Environment 항목에 경로가 보여야 함)
 systemctl show ollama.service | grep Environment
 
 # 모델 다운로드 시도 (이제 /data 쪽에 저장됨)
 ollama pull qwen3:0.6b
 ```
+
+**💡 팁**: 모델명 뒤의 `0.6b`에서 **`b`는 Billion(10억)**&#xC744; 의미합니다. 즉, 이 모델은 약 6억 개의 파라미터(매개변수)를 가지고 있다는 뜻입니다. 숫자가 클수록 모델이 똑똑해지지만, 용량이 커지고 실행 속도가 느려지며 더 좋은 컴퓨터 사양이 필요합니다. (예: `7b` = 70억 개 파라미터)
 
 #### 📝 Ollama 기본 명령어 모음
 
@@ -157,20 +167,48 @@ ollama pull qwen3:0.6b
 | `ollama list`              | 모델 리스트 확인    | 현재 내 PC에 설치된 모델 목록 보기     |
 | `ollama rm <model_name>`   | 모델 삭제        | 설치된 모델을 지울 때 사용           |
 
-### 1.2 Ollama Python (RAG) 실습
+## 2 Ollama 터미널 실습 (CLI)
 
-Python 라이브러리를 활용하여 문서를 처리하고 Ollama 모델과 연동하는 RAG 워크플로우 예시입니다.
+Python 코드를 짜기 전에, 터미널에서 모델과 직접 대화하며 성능을 확인해 봅니다. `qwen3:0.6b` 모델은 매우 가볍기 때문에 복잡한 논리보다는 **빠른 응답**과 **포맷 준수** 능력을 테스트하는 것이 좋습니다.
 
-**사전 준비**
-
-```
-pip install langchain-ollama pypdf
+```shellscript
+ollama run qwen3:0.6b
 ```
 
-#### 전체 순서 (Workflow)
+프롬프트가 `>>>` 모양으로 바뀌면 아래 실습들을 진행해 보세요.
 
-1. **PDF 텍스트 추출**: PDF 파일에서 텍스트 데이터를 읽어옵니다. (Python 라이브러리 `pypdf` 사용)
-2. **청킹 (Chunking)**: 긴 텍스트를 적당한 크기(예: 문단 단위)로 자릅니다. 이는 검색 정확도와 임베딩 효율을 높이기 위함입니다.
-3. **문서 임베딩 (Indexing)**: 잘린 텍스트 조각들을 임베딩 모델(예: `text-embedding-004`)을 통해 벡터로 변환하여 벡터 저장소에 저장합니다.
-4. **질문 임베딩 (Retrieval)**: 사용자의 질문(예: "이 문서 요약해줘")도 벡터로 변환하여, 저장된 문서 벡터 중 가장 유사도가 높은 내용을 찾습니다.
-5. **답변 생성 (Generation)**: 찾아낸 관련 내용(Context)과 사용자의 질문을 합쳐 LLM(예: `gemini-2.5-flash-lite`)에게 보내 최종 답변을 생성합니다.
+#### 실습 1: 한국어 대화 및 번역
+
+모델이 한국어를 인식하고 적절히 답변하는지 확인합니다.
+
+```shellscript
+>>> 안녕, 너는 누구니?
+>>> "Large Language Models are transforming the world." 이 문장을 한국어로 번역해줘.
+```
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+#### 실습 2: 구조화된 데이터 추출 (JSON)
+
+RAG나 앱 개발 시 가장 중요한 능력 중 하나인 **JSON 포맷 출력**을 테스트합니다.
+
+```shellscript
+>>> 다음 문장에서 사람 이름과 나이를 JSON 형식으로 추출해줘: "철수는 25살이고, 영희는 30살입니다."
+```
+
+_결과:_
+
+&#x20;![](<../.gitbook/assets/image (16).png>)
+
+#### 실습 3: 역할 부여 (Role Playing)
+
+시스템 프롬프트의 효과를 간단히 테스트합니다.
+
+```shellscript
+너는 조선 시대의 왕이다. 근엄한 말투를 사용하고, 자신을 '짐'이라고 칭해라. 백성들에게 하고 싶은 말이 있느냐?
+```
+
+**💡 참고**: `qwen` 모델은 알리바바(Alibaba)에서 개발한 **중국 모델**입니다. 한국어 지시를 따르긴 하지만, '조선 시대 왕'과 같은 한국 고유의 문화적 뉘앙스나 사극 말투를 완벽하게 구사하지 못할 수 있습니다. 다소 어색한 답변이 나오더라도 모델의 학습 데이터 특성을 이해하는 데 도움이 됩니다.
+
+_대화를 종료하려면 `/bye`를 입력하거나 `Ctrl + d`를 누르세요._
+

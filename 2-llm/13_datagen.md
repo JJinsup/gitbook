@@ -4,7 +4,7 @@ description: >-
   증강(Augmentation)하는 파이프라인을 구축하는 방법을 다룹니다.
 ---
 
-# \[12] 데이터셋 생성 + 증강
+# \[13] 데이터셋 생성 + 증강
 
 {% embed url="https://www.ibm.com/kr-ko/think/topics/data-augmentation" %}
 
@@ -145,7 +145,7 @@ generate_dataset_gemini(chunks, "6g_ai_dataset.jsonl")
 
 `저장 완료: 6g_ai_dataset.jsonl (총 18개 데이터 쌍)`
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### 3.4 데이터 증강 (Augmentation)
 
@@ -171,7 +171,7 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 `증강 완료! 총 36개 데이터가 '6g_ai_dataset_augmented.jsonl'에 저장됨.`
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 결과 확인
 
