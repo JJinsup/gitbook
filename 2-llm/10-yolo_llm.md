@@ -51,47 +51,39 @@ YOLO는 다음과 같은 이유로 수많은 엔지니어들에게 사랑받고 
 
 이미지 처리와 AI 모델 구동을 위해 다음 패키지들을 설치합니다.
 
-```
+```shellscript
 pip install opencv-python ultralytics google-genai python-dotenv pyyaml ipython pillow
-
-
 ```
 
 #### 2.2 프로젝트 구조
 
 다음과 같은 폴더 구조를 권장합니다.
 
-```
+```shellscript
 my-project/
 ├── .env                # API 키 저장
 └── learn_LLM           # 메인 코드 폴더
     └── src/
         ├── prompt.yaml # AI 성격/지침 설정 파일
         └── dogman.jpg  # 테스트용 이미지
-
-
 ```
 
 #### 2.3 설정 파일 준비
 
 **1) `.env` 파일**
 
-```
+```shellscript
 GEMINI_API_KEY=AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-
 ```
 
 **2) `src/prompt.yaml` 파일** AI의 행동 지침(System Instruction)을 별도 파일로 관리하면 유지보수가 쉽습니다.
 
-```
+```yaml
 template: |
   당신은 CCTV 관제 시스템의 AI 분석관입니다.
   제공된 JSON 데이터는 화면에 감지된 객체들의 목록과 좌표입니다.
   이 정보를 바탕으로 현재 상황을 묘사하고, 보안상 특이점이 있는지 분석하세요.
   답변은 간결하고 전문적인 톤으로 작성하세요.
-
-
 ```
 
 ### 3. 핵심 코드 구현
@@ -100,7 +92,7 @@ template: |
 
 환경 변수와 YAML 프롬프트를 불러옵니다.
 
-```
+```python
 import cv2
 import json
 import os
@@ -117,7 +109,7 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 YAML 파일에서 시스템 프롬프트 불러오기
 
-```
+```python
 yaml_path = "src/prompt.yaml"
 
 try:
@@ -139,7 +131,7 @@ except FileNotFoundError:
 
 가장 먼저 분석할 이미지를 불러옵니다. 파일 경로가 잘못되었거나 이미지가 없을 경우를 대비해 명확한 에러 메시지를 띄웁니다.
 
-```
+```python
 img_path = "src/dogman.jpg" # 다운로드 받은 이미지 파일명
 
 if not os.path.exists(img_path):
@@ -156,7 +148,7 @@ frame = cv2.resize(frame, (1600, 900))
 
 YOLOv11 모델(`yolo11n.pt`)을 로드하고 이미지를 넣어 추론(Inference)을 시작합니다. `conf=0.3`은 "30% 이상 확신하는 것만 찾아라"라는 의미입니다.
 
-```
+```python
 # YOLO 실행 (최신 v11 모델 사용)
 model = YOLO("yolo11n.pt") 
 results = model(source=frame, conf=0.3, verbose=False)
@@ -166,7 +158,7 @@ results = model(source=frame, conf=0.3, verbose=False)
 
 감지된 객체들의 정보를 담을 빈 딕셔너리(`info`)와, 박스를 그려 넣을 이미지 사본(`annot_frame`)을 준비합니다.
 
-```
+```python
 # 감지된 정보 추출 및 시각화 준비
 # 정보 추출
 info = {}
@@ -180,7 +172,7 @@ detected_labels = []
 
 YOLO는 한 번에 여러 객체를 찾기 때문에 반복문을 돕니다. 여기서 각 객체의 **클래스(이름)**, **신뢰도(점수)**, **위치(좌표)**&#xB97C; 추출합니다.
 
-```
+```python
 # 감지 결과 반복문 처리
 for res in results:
     for b in res.boxes:
@@ -207,7 +199,7 @@ for res in results:
 * **추가**: 반환된 리스트(비었거나 이미 데이터가 있는 리스트)에 `.append()`를 사용하여 현재 감지된 객체의 정보를 추가합니다.
 * **결과**: `{'dog': [{'bbox':...}, {'bbox':...}], 'person': [...]}` 형태로 데이터가 예쁘게 정리됩니다.
 
-```
+```python
         # (4) 정보 저장
         info.setdefault(label, []).append({
             "location": [x, y],
@@ -221,7 +213,7 @@ for res in results:
 
 분석이 끝난 객체 위에 초록색 박스와 글씨를 쓰고, Gemini에게 전달하기 위해 파이썬 딕셔너리를 문자열(JSON) 형태로 변환합니다.
 
-```
+```python
         # (5) 시각화 (이미지에 박스와 글자 그리기)
         cv2.rectangle(annot_frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
         cv2.putText(annot_frame, f"{label} {conf}", (x1, y1-10), 
@@ -233,7 +225,7 @@ detected_info_json = json.dumps(info, ensure_ascii=False, indent=2)
 
 **3.2.7. YOLO가 감지한 물체 목록 확인**
 
-```
+```python
 print(f"YOLO가 감지한 물체 목록: {list(set(detected_labels))}")
 display(Image.fromarray(cv2.cvtColor(annot_frame, cv2.COLOR_BGR2RGB))) 
 ```
@@ -246,7 +238,7 @@ display(Image.fromarray(cv2.cvtColor(annot_frame, cv2.COLOR_BGR2RGB)))
 
 YOLO가 추출한 `detected_info_json`을 프롬프트에 포함시켜 Gemini에게 질문합니다.
 
-```
+```python
 def ask_gemini(question, detected_info):
     # 프롬프트 엔지니어링: 객체 정보 + 사용자 질문 결합
     user_content = f"""
@@ -278,7 +270,7 @@ print(f"🤖 AI 분석: {answer}")
 
 **3.3.1. GEMINI 호출 함수**
 
-```
+```python
 def ask_gemini(question, detected_info):
     # 사용자 질문 구성
     user_content = f"""
@@ -306,7 +298,7 @@ def ask_gemini(question, detected_info):
 
 **3.3.2. 테스트 실행**
 
-```
+```python
 # 테스트 실행
 print("\n[Gemini 분석 결과]")
 print(f"Q: 지금 보이는 상황을 설명해줘")

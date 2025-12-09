@@ -39,7 +39,7 @@ API를 사용하기 전에, 우리가 다루는 대규모 언어 모델(Large La
 
 이 튜토리얼을 진행하기 위해서는 Google GenAI 라이브러리와 환경 변수 관리를 위한 `python-dotenv`가 필요합니다.
 
-```
+```shellscript
 pip install google-genai python-dotenv
 ```
 
@@ -78,7 +78,7 @@ API 키를 코드에 직접 적는 것은 보안상 매우 위험합니다. `.en
 
 **파일: `.env`**
 
-```
+```shellscript
 GEMINI_API_KEY=AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
@@ -88,7 +88,7 @@ Git을 사용하여 버전을 관리한다면, `.env` 파일이 GitHub 등에 �
 
 **파일: `.gitignore`**
 
-```
+```shellscript
 # 환경 변수 파일 무시
 .env
 
@@ -101,7 +101,7 @@ __pycache__/
 
 이제 Python 코드에서 안전하게 키를 불러와 클라이언트를 초기화합니다.
 
-```
+```python
 import os
 from dotenv import load_dotenv
 from google import genai
@@ -120,7 +120,7 @@ client = genai.Client(api_key=api_key)
 
 가장 기본적인 텍스트 생성 요청을 보내봅니다.
 
-```
+```python
 try:
     response = client.models.generate_content(
         model="gemini-2.5-flash-lite",
@@ -139,7 +139,7 @@ except Exception as e:
 
 AI에게 "지침이 있으면 목록으로 만들고, 없으면 없다고 하라"는 규칙을 부여합니다.
 
-```
+```python
 sys_instruction = """
 당신은 주어진 텍스트를 바탕으로 튜토리얼을 생성하는 AI 어시스턴트입니다.
 텍스트에 어떤 절차를 진행하는 방법에 대한 지침이 포함되어 있다면, 
@@ -173,7 +173,7 @@ print(response.text)
 
 AI에게 "생각하는 과정"을 출력하게 하면, 복잡한 요약이나 추론 문제에서 더 나은 결과를 얻을 수 있습니다.
 
-```
+```python
 sys_instruction = """
 당신은 글을 요약하는 AI 어시스턴트입니다.
 이 작업을 완료하려면 다음 하위 작업을 수행하십시오:
@@ -197,7 +197,7 @@ response = client.models.generate_content(
 
 AI의 말투와 성격을 지정하여 재미있는 챗봇을 만들 수 있습니다.
 
-```
+```python
 sys_instruction = """
 당신은 '아재개그'와 '넌센스 퀴즈'의 달인입니다.
 사용자가 내는 문제의 숨겨진 말장난(Wordplay)을 파악하여 재치 있게 답변하세요.
@@ -226,7 +226,7 @@ response = client.models.generate_content(
 
 **예시 1: Python 클린 코드 생성기**
 
-```
+```python
 sys_instruction = """
 당신은 파이썬 클린 코드(Clean Code) 전문가입니다.
 사용자의 요청에 따라 PEP 8 스타일 가이드를 준수하는 고품질 파이썬 코드를 작성하세요.
@@ -240,7 +240,7 @@ sys_instruction = """
 
 **예시 2: 자소서 업그레이드 (STAR 기법)**
 
-```
+```python
 sys_instruction = """
 당신은 대기업 인사팀장 및 명문대 입학사정관 출신의 '자기소개서 전문 컨설턴트'입니다.
 사용자가 자신의 경험이나 활동 내용을 거칠게 입력하면, 이를 평가자가 주목할 만한 '구체적인 역량'과 '성과' 중심의 문장으로 업그레이드해야 합니다.
