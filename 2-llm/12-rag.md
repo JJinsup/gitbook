@@ -120,8 +120,6 @@ print(response)
 
 이 실습에서는 PDF 문서를 읽어 벡터화(Embedding)하고, 이를 검색하여 답변하는 전체 RAG 파이프라인을 구축합니다. 단계별로 코드를 나누어 진행합니다.
 
-###
-
 ### 4.1 라이브러리 임포트 및 기본 설정
 
 #### 4.1.1 라이브러리 임포트
@@ -267,7 +265,7 @@ except FileNotFoundError:
 1. 일반 LLM만 썼을 때
 2. RAG를 적용했을 때
 
-#### 4.6.1 테스트 질문 정의
+#### 4.5.1 테스트 질문 정의
 
 ```python
 test_question = "이번 VLA 특강의 실습 조교(TA) 이름과 문의 이메일 주소를 알려줘."
@@ -275,7 +273,7 @@ test_question = "이번 VLA 특강의 실습 조교(TA) 이름과 문의 이메�
 
 ***
 
-#### 4.6.2 Case 1: RAG 미적용 (일반 LLM)
+#### 4.5.2 Case 1: RAG 미적용 (일반 LLM)
 
 ```python
 print(f"--- [❌ Case 1: RAG 미적용 (일반 LLM)] ---")
@@ -292,9 +290,9 @@ print(f"답변:\n{response_before}\n")
 
 ***
 
-#### 4.6.3 Case 2: RAG 적용 (검색 + LLM)
+#### 4.5.3 Case 2: RAG 적용 (검색 + LLM)
 
-**4.6.3.1 문서 검색 (Retrieval)**
+**4.5.3.1 문서 검색 (Retrieval)**
 
 ```python
 print(f"--- [⭕ Case 2: RAG 적용 (문서 검색 + LLM)] ---")
@@ -305,7 +303,7 @@ found_context = search_pdf(test_question, chunks, chunk_embeddings)
 print(f"🔍 [검색된 근거 자료(Context)]:\n...{found_context[:150]}...\n")
 ```
 
-**4.6.3.2 프롬프트 구성 (Augmentation)**
+**4.5.3.2 프롬프트 구성 (Augmentation)**
 
 ```python
 rag_template = """
@@ -323,7 +321,7 @@ Answer:
 rag_prompt = ChatPromptTemplate.from_template(rag_template)
 ```
 
-**4.6.3.3 최종 생성 (Generation)**
+**4.5.3.3 최종 생성 (Generation)**
 
 ```python
 # 3. 생성 (Generation): 정확한 답변 생성
@@ -335,3 +333,25 @@ response_after = rag_chain.invoke({
 
 print(f"최종 답변:\n{response_after}")
 ```
+
+### 5. 정리
+
+본 실습을 통해 **RAG(Retrieval-Augmented Generation)** 시스템의 핵심 파이프라인을 처음부터 끝까지 직접 구현해 보았습니다. 각 단계별로 우리가 수행한 핵심 내용은 다음과 같습니다.
+
+#### 5.1. 구현 단계별 핵심 요약
+
+<table data-header-hidden><thead><tr><th width="185"></th><th></th></tr></thead><tbody><tr><td>제목</td><td>핵심 구현 내용</td></tr><tr><td><strong>임베딩(Embedding)</strong></td><td>문서와 사용자의 질문을 컴퓨터가 이해할 수 있는 수치(벡터)로 변환하는 함수를 구현했습니다.</td></tr><tr><td><strong>검색기(Retriever)</strong></td><td>변환된 벡터 간의 코사인 유사도(Cosine Similarity)를 계산하여, 질문과 가장 연관성 높은 문서를 찾는 검색기를 만들었습니다.</td></tr><tr><td><strong>벡터 DB 구축</strong></td><td>실제 <strong>PDF 파일</strong>을 읽어 텍스트를 추출하고, 이를 벡터화하여 메모리 상의 리스트(Vector DB)로 저장하는 구조를 완성했습니다.</td></tr><tr><td><strong>성능 비교</strong></td><td>동일한 질문에 대해 <strong>일반 LLM</strong>과 <strong>RAG가 적용된 LLM</strong>이 어떻게 다르게 답변하는지 비교하여 RAG의 효용성을 확인했습니다.</td></tr></tbody></table>
+
+#### 5.2. 향후 확장 및 고도화
+
+현재 구축된 기본 RAG 구조를 바탕으로, 실제 서비스 레벨로 발전시키기 위해 다음과 같은 기능들을 추가로 확장할 수 있습니다.
+
+> **🚀 Level Up Point**
+>
+> 1. **📚 여러 PDF 지원 (Multi-Document Support)**
+>    * 현재 단일 파일 처리를 넘어, 폴더 내의 수십/수백 개의 PDF를 한 번에 로드하고 검색할 수 있도록 확장합니다.
+> 2. **✂️ 정교한 청크 단위 자르기 (Advanced Chunking)**
+>    * 단순 길이 기준이 아닌, 문맥(Context)이나 문단 의미 단위로 텍스트를 잘라 검색 정확도를 높입니다. (예: `RecursiveCharacterTextSplitter` 활용)
+> 3. **🔍 검색 품질 최적화 (Top-k & Hybrid Search)**
+>    * 가장 유사한 문서 1개뿐만 아니라 상위 N개(**Top-k**)를 가져와 답변 생성에 활용합니다.
+>    * 키워드 검색과 벡터 검색을 결합하여 검색 성능을 보강합니다.
