@@ -16,7 +16,7 @@ description: From "Attention Is All You Need" to GPT
 * **장기 의존성(Long-term Dependency) 및 기울기 소실(Vanishing Gradient)**:
   * RNN은 역전파(Backpropagation) 과정에서 시간을 거슬러 올라가며 가중치를 업데이트하는 **BPTT(Backpropagation Through Time)** 방식을 사용합니다.
   * 시퀀스가 길어질수록, 역전파되는 기울기(Gradient)가 계속해서 곱해지며 0에 수렴해버리는 '기울기 소실' 문제가 발생합니다.
-  * 이로 인해 모델은 먼 과거의 정보(초반부 입력)를 잊어버리게 되며, 긴 문맥을 파악해야 하는 번역이나 요약 태스크에서 성능이 급격히 저하되는 한계를 보였습니다. $$f(x) = x * e^{2 pi i \xi x}$$
+  * 이로 인해 모델은 먼 과거의 정보(초반부 입력)를 잊어버리게 되며, 긴 문맥을 파악해야 하는 번역이나 요약 태스크에서 성능이 급격히 저하되는 한계를 보였습니다.&#x20;
 
 #### 1.2 트랜스포머의 해결책: "Attention Is All You Need"
 
@@ -126,19 +126,19 @@ GPT-3와 같은 초기 LLM은 유창한 텍스트 생성 능력은 갖추었으�
 
 RLHF는 크게 3단계 프로세스로 진행됩니다.
 
-#### 7.1 Step 1: Supervised Fine-Tuning (SFT)
+#### Step 1: Supervised Fine-Tuning (SFT)
 
 <p align="center"><img src="../.gitbook/assets/image (10).png" alt=""></p>
 
 * **지도 미세 조정**: 인간 라벨러가 작성한 양질의 '질문-답변' 쌍 데이터를 모델에 학습시킵니다. 이를 통해 모델은 인간이 선호하는 답변의 형식과 톤을 모방하게 됩니다.
 
-#### 7.2 Step 2: Reward Model Training (RM)
+#### Step 2: Reward Model Training (RM)
 
 <figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 * **보상 모델 학습**: 모델이 생성한 여러 답변 후보에 대해 인간이 선호도 순위(Ranking)를 매깁니다. 이 데이터를 바탕으로, 어떤 답변이 더 우수한지 점수를 예측하는 별도의 '보상 모델'을 학습시킵니다.
 
-#### 7.3 Step 3: Proximal Policy Optimization (PPO)
+#### Step 3: Proximal Policy Optimization (PPO)
 
 <figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
