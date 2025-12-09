@@ -1,8 +1,8 @@
 ---
-description: 이 문서는 LLM이 추가 데이터를 사용하여 더 나은 답변을 제공하는 방법과 Ollama를 이용한 로컬 LLM 다운로드 방법을 설명합니다.
+description: LLM이 추가 데이터를 사용하여 더 나은 답변을 제공하는 방법과 Ollama를 이용한 로컬 LLM 다운로드 방법을 설명합니다.
 ---
 
-# \[11] Ollama 설치
+# 📚 \[11] Ollama 설치
 
 {% embed url="https://learn.microsoft.com/ko-kr/azure/developer/ai/augment-llm-rag-fine-tuning" %}
 

@@ -2,7 +2,7 @@
 description: Python 라이브러리를 활용하여 문서를 처리하고 Ollama 모델과 연동하는 RAG 워크플로우 예시입니다.
 ---
 
-# \[12] Ollama RAG 실습
+# 📚 \[12] Ollama RAG 실습
 
 ## 1. Ollama Python (RAG) 실습
 

@@ -9,20 +9,21 @@
 
 ## \[2주 차] MuJoCo 시뮬레이션
 
-* [\[3\] MuJoCo 설치 및 로봇 불러오기](2-mujoco/03-mujoco_install.md)
-* [\[4\] Python으로 MuJoCo 다루기](2-mujoco/04-mujoco_python.md)
-* [\[5\] MuJoCo: Pendulum 시뮬레이션](2-mujoco/05-mujoco_pendulum.md)
-* [\[6\] MuJoCo: Cart-Pole 제어와 강화학습](2-mujoco/06-cartpole.md)
-* [\[7\] MuJoCO MJCF로 커스텀 로봇 만들기](2-mujoco/integrations.md)
+* [🤖 \[3\] MuJoCo 설치 및 로봇 불러오기](2-mujoco/03-mujoco_install.md)
+* [🤖 \[4\] Python으로 MuJoCo 다루기](2-mujoco/04-mujoco_python.md)
+* [🤖 \[5\] MuJoCo: Pendulum 시뮬레이션](2-mujoco/05-mujoco_pendulum.md)
+* [🤖 \[6\] MuJoCo: Cart-Pole 제어와 강화학습](2-mujoco/06-cartpole.md)
+* [🤖 \[7\] MuJoCO MJCF로 커스텀 로봇 만들기](2-mujoco/integrations.md)
 
 ## \[2주 차] LLM 실습
 
-* [\[8\] LLM Overview](2-llm-and-vla/08-llm_overview.md)
-* [\[9\] GEMINI API 프롬프트 엔지니어링 실습](2-llm-and-vla/09-gemini_api.md)
-* [\[10\] YOLO & GEMINI](2-llm/10-yolo_llm.md)
-* [\[11\] Ollama 설치](2-llm/11-ollama_rag.md)
-* [\[12\] Ollama RAG 실습](2-llm/12-rag.md)
-* [\[13\] 데이터셋 생성 + 증강](2-llm/12_datagen.md)
+* [📚 \[8\] LLM Overview](2-llm-and-vla/08-llm_overview.md)
+* [📚 \[9\] GEMINI API 프롬프트 엔지니어링 실습](2-llm-and-vla/09-gemini_api.md)
+* [📚 \[10\] YOLO & GEMINI](2-llm/10-yolo_llm.md)
+* [📚 \[11\] Ollama 설치](2-llm/11-ollama_rag.md)
+* [📚 \[12\] Ollama RAG 실습](2-llm/12-rag.md)
+* [📚 \[13\] 데이터셋 생성 + 증강](2-llm/12_datagen.md)
+* [📚 \[14\] 로컬 LLM 파인튜닝 ](2-llm/14-finetuning.md)
 
 ## \[2주 차] VLA+Mujoco
 

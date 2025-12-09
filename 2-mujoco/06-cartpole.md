@@ -1,8 +1,7 @@
 ---
 description: >-
-  본 챕터에서는 로봇 제어 이론의 가장 고전적이고 중요한 예제인 Cart-Pole (Inverted Pendulum, 역진자) 시스템을
+  로봇 제어 이론의 가장 고전적이고 중요한 예제인 Cart-Pole (Inverted Pendulum, 역진자) 시스템을 강화학습으로
   다룹니다.
-icon: hand-pointer
 layout:
   width: default
   title:
@@ -22,7 +21,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/interactive-blocks
 ---
 
-# \[6] MuJoCo: Cart-Pole 제어와 강화학습
+# 🤖 \[6] MuJoCo: Cart-Pole 제어와 강화학습
 
 ### 🎯 실습 목표
 

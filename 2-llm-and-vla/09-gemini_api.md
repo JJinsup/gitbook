@@ -1,10 +1,8 @@
 ---
-description: >-
-  이 문서는 Google의 최신 google-genai 라이브러리를 사용하여 Python 환경에서 Gemini API를 활용하는 방법을
-  다룹니다.
+description: Google의 최신 google-genai 라이브러리를 사용하여 Python 환경에서 Gemini API를 활용하는 방법을 다룹니다.
 ---
 
-# \[9] GEMINI API 프롬프트 엔지니어링 실습
+# 📚 \[9] GEMINI API 프롬프트 엔지니어링 실습
 
 ### 0. 대규모 언어 모델(LLM)이란?
 

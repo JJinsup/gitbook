@@ -1,10 +1,8 @@
 ---
-description: >-
-  이 문서는 YOLO모델로 이미지 속 객체를 탐지하고, 그 정보를 Gemini API에 전달하여 복합적인 상황 추론을 수행하는 애플리케이션을
-  다룹니다.
+description: YOLO모델로 이미지 속 객체를 탐지하고, 그 정보를 Gemini API에 전달하여 복합적인 상황 추론을 수행하는 애플리케이션을 다룹니다.
 ---
 
-# \[10] YOLO & GEMINI
+# 📚 \[10] YOLO & GEMINI
 
 ### 0. YOLO(You Only Look Once)란?
 

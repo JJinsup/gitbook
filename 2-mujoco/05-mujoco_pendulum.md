@@ -1,6 +1,5 @@
 ---
 description: 정지된 화면이 아닌, 시간에 따라 움직이는 물리 시뮬레이션을 구현합니다.
-icon: image-landscape
 layout:
   width: default
   title:
@@ -20,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/images-and-media
 ---
 
-# \[5] MuJoCo: Pendulum 시뮬레이션
+# 🤖 \[5] MuJoCo: Pendulum 시뮬레이션
 
 ### 🎯 실습 목표
 

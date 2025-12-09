@@ -2,7 +2,7 @@
 description: From "Attention Is All You Need" to GPT
 ---
 
-# \[8] LLM Overview
+# 📚 \[8] LLM Overview
 
 ### 1. 패러다임의 전환 (Paradigm Shift)
 

@@ -1,6 +1,5 @@
 ---
-description: 물리 엔진 MuJoCo를 설치하고, 딥마인드에서 제공하는 Menagerie에서 실제 로봇 모델들을 불러와 화면에 띄워보겠습니다.
-icon: pen-to-square
+description: 물리 엔진 MuJoCo를 설치하고, 딥마인드에서 제공한 Menagerie에서 실제 로봇 모델들을 불러와 화면에 띄워보겠습니다.
 layout:
   width: default
   title:
@@ -20,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/editor
 ---
 
-# \[3] MuJoCo 설치 및 로봇 불러오기
+# 🤖 \[3] MuJoCo 설치 및 로봇 불러오기
 
 ### 1. MuJoCo 라이브러리 설치
 

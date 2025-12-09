@@ -1,8 +1,5 @@
 ---
-description: >-
-  본 챕터에서는 기존의 터미널 기반 뷰어 실행 방식에서 벗어나, Python 바인딩을 활용하여 시뮬레이션 환경을 직접 제어하는 방법을
-  학습합니다.
-icon: markdown
+description: 기존의 터미널 기반 뷰어 실행 방식에서 벗어나, Python 바인딩을 활용하여 시뮬레이션 환경을 직접 제어하는 방법을 학습합니다.
 layout:
   width: default
   title:
@@ -22,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/markdown
 ---
 
-# \[4] Python으로 MuJoCo 다루기
+# 🤖 \[4] Python으로 MuJoCo 다루기
 
 ### 🎯 실습 목표
 
