@@ -135,7 +135,7 @@ except FileNotFoundError:
 
 이미지를 불러와 YOLO 모델로 분석하고, 감지된 객체 정보를 JSON으로 변환하는 과정을 단계별로 살펴봅니다.
 
-**1. 이미지 로드 및 ㅇ**
+**3.2.1. 이미지 로드 및 리사이즈**
 
 가장 먼저 분석할 이미지를 불러옵니다. 파일 경로가 잘못되었거나 이미지가 없을 경우를 대비해 명확한 에러 메시지를 띄웁니다.
 
@@ -152,7 +152,7 @@ else:
 frame = cv2.resize(frame, (1600, 900))
 ```
 
-**2. YOLO 모델 실행**
+**3.2.2. YOLO 모델 실행**
 
 YOLOv11 모델(`yolo11n.pt`)을 로드하고 이미지를 넣어 추론(Inference)을 시작합니다. `conf=0.3`은 "30% 이상 확신하는 것만 찾아라"라는 의미입니다.
 
@@ -160,25 +160,25 @@ YOLOv11 모델(`yolo11n.pt`)을 로드하고 이미지를 넣어 추론(Inferenc
 # YOLO 실행 (최신 v11 모델 사용)
 model = YOLO("yolo11n.pt") 
 results = model(source=frame, conf=0.3, verbose=False)
-
-
 ```
 
-**3. 데이터 추출 준비**
+**3.2.3. 데이터 추출 준비**
 
 감지된 객체들의 정보를 담을 빈 딕셔너리(`info`)와, 박스를 그려 넣을 이미지 사본(`annot_frame`)을 준비합니다.
 
 ```
 # 감지된 정보 추출 및 시각화 준비
+# 정보 추출
 info = {}
 annot_frame = frame.copy()
 
-
+# 감지된 목록 확인용 리스트
+detected_labels = []
 ```
 
-**4. 감지 결과 반복 처리 (핵심)**
+**3.2.4. 감지 결과 반복 처리 (핵심)**
 
-YOLO는 한 번에 여러 객체를 찾기 때문에 반복문을 돕니다. 여기서 각 객체의 **클래스(이름)**, **신뢰도(점수)**, \*\*위치(좌표)\*\*를 추출합니다.
+YOLO는 한 번에 여러 객체를 찾기 때문에 반복문을 돕니다. 여기서 각 객체의 **클래스(이름)**, **신뢰도(점수)**, **위치(좌표)**&#xB97C; 추출합니다.
 
 ```
 # 감지 결과 반복문 처리
@@ -193,26 +193,31 @@ for res in results:
         
         # (3) 바운딩 박스 좌표 추출 (좌상단 x1,y1 / 우하단 x2,y2)
         x1, y1, x2, y2 = map(int, b.xyxy[0]) 
-
-
+        x, y, w, h = map(int, b.xywh[0])
+        
+        # 감지된 것 기록
+        detected_labels.append(label)
 ```
 
-**5. 정보 구조화 (setdefault 활용)**
+**3.2.5. 정보 구조화 (setdefault 활용)**
 
-이 부분이 가장 중요합니다. 같은 종류의 객체가 여러 개일 수 있습니다(예: 강아지 2마리). `info.setdefault(label, [])`는 딕셔너리에 해당 라벨(키)이 없으면 빈 리스트를 만들고, 있으면 그 리스트를 가져옵니다. 그 후 `append`로 정보를 추가합니다.
+같은 종류의 객체가 여러 개일 수 있습니다(예: 강아지 2마리). 이때 `setdefault`를 사용하면 코드를 간결하게 짤 수 있습니다.
+
+* **설명**: `info` 딕셔너리에 `label`(예: 'dog')이라는 키가 **없으면**, 빈 리스트 `[]`를 값으로 넣어줍니다. 그리고 그 리스트를 반환합니다.
+* **추가**: 반환된 리스트(비었거나 이미 데이터가 있는 리스트)에 `.append()`를 사용하여 현재 감지된 객체의 정보를 추가합니다.
+* **결과**: `{'dog': [{'bbox':...}, {'bbox':...}], 'person': [...]}` 형태로 데이터가 예쁘게 정리됩니다.
 
 ```
         # (4) 정보 저장
-        # 같은 라벨(예: 'person')이 여러 번 나와도 리스트에 차곡차곡 쌓이게 됩니다.
         info.setdefault(label, []).append({
-            "bbox": [x1, y1, x2, y2], # 박스 위치
-            "confidence": conf        # 정확도
+            "location": [x, y],
+            "size": w * h,
+            "bbox": [x1, y1, x2, y2],
+            "confidence": conf
         })
-
-
 ```
 
-**6. 시각화 및 JSON 변환**
+**3.2.6. 시각화 및 JSON 변환**
 
 분석이 끝난 객체 위에 초록색 박스와 글씨를 쓰고, Gemini에게 전달하기 위해 파이썬 딕셔너리를 문자열(JSON) 형태로 변환합니다.
 
@@ -224,9 +229,18 @@ for res in results:
 
 # 4. JSON 문자열로 변환 (Gemini에게 줄 데이터)
 detected_info_json = json.dumps(info, ensure_ascii=False, indent=2)
+```
 
+**3.2.7. YOLO가 감지한 물체 목록 확인**
 
 ```
+print(f"YOLO가 감지한 물체 목록: {list(set(detected_labels))}")
+display(Image.fromarray(cv2.cvtColor(annot_frame, cv2.COLOR_BGR2RGB))) 
+```
+
+`YOLO가 감지한 물체 목록: ['person', 'car', 'dog']`
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 #### 3.3 Gemini에게 물어보기 (The Brain)
 
@@ -260,28 +274,55 @@ def ask_gemini(question, detected_info):
 question = "지금 보이는 상황을 요약해줘."
 answer = ask_gemini(question, detected_info_json)
 print(f"🤖 AI 분석: {answer}")
-
-
 ```
 
-### 🔍 4. 결과 예시
-
-**입력 이미지**: 강아지와 산책하는 사람 **YOLO 감지 결과 (JSON)**:
+**3.3.1. GEMINI 호출 함수**
 
 ```
-{
-  "person": [{"bbox": [100, 50, 300, 600], "confidence": 0.92}],
-  "dog": [{"bbox": [320, 400, 500, 550], "confidence": 0.88}]
-}
+def ask_gemini(question, detected_info):
+    # 사용자 질문 구성
+    user_content = f"""
+    # 감지된 객체 정보 (JSON):
+    {detected_info}
 
+    # 질문:
+    {question}
+    """
 
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash-lite", 
+            config=types.GenerateContentConfig(
+                # 여기서 YAML에서 불러온 시스템 지침을 적용합니다!
+                system_instruction=SYSTEM_INSTRUCTION, 
+                temperature=0.1,
+            ),
+            contents=user_content
+        )
+        return response.text
+    except Exception as e:
+        return f"에러 발생: {e}"
 ```
 
-**사용자 질문**: "지금 상황이 어때?" **Gemini 답변**:
+**3.3.2. 테스트 실행**
 
-> "현재 화면에는 사람 1명과 강아지 1마리가 감지되었습니다. 두 객체가 근접해 있는 것으로 보아 반려견과 산책 중인 상황으로 추정됩니다. 특이한 위험 요소는 감지되지 않았습니다."
+```
+# 테스트 실행
+print("\n[Gemini 분석 결과]")
+print(f"Q: 지금 보이는 상황을 설명해줘")
+print(f"A: {ask_gemini('지금 보이는 상황을 설명해줘', info_str)}")
+```
 
-### 💡 5. 응용 팁
+`[Gemini 분석 결과] Q: 지금 보이는 상황을 설명해줘 A: 이미지 중앙에서 약간 오른쪽 아래에 사람이 한 명 있습니다. 이 사람은 이미지의 상당 부분을 차지하고 있으며, 신뢰도는 0.9입니다.`
+
+`이미지 중앙 부분에는 총 네 대의 자동차가 감지되었습니다.`
+
+* `가장 왼쪽에 있는 두 대의 자동차는 중앙에서 약간 왼쪽으로 치우쳐 있으며, 서로 가까이 붙어 있습니다.`
+* `그 오른쪽으로 두 대의 자동차가 더 있으며, 이 중 한 대는 중앙에, 다른 한 대는 중앙에서 약간 오른쪽으로 치우쳐 있습니다.`
+
+`이미지 왼쪽 하단에는 개 한 마리가 있습니다.`
+
+### 💡 4. 응용 팁
 
 1. **멀티모달 확장**: 위 예제는 JSON 텍스트만 넘겼지만, `contents`에 실제 이미지(`frame`)를 함께 넘기면 Gemini가 시각 정보까지 더해 더욱 정교한 답변을 할 수 있습니다.
 2. **YAML 프롬프트 튜닝**: `src/prompt.yaml`의 내용을 바꿔보세요. "시인처럼 묘사해줘"라고 적으면 감성적인 글을 써줍니다.
