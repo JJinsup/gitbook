@@ -19,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/integrations
 ---
 
-# Integrations
+# \[7] MuJoCO MJCF로 커스텀 로봇 만들기
 
 GitBook integrations allow you to connect your GitBook spaces to some of your favorite platforms and services. You can install integrations into your GitBook page from the _Integrations_ menu in the top left.
 

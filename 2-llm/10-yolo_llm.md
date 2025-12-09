@@ -232,7 +232,7 @@ display(Image.fromarray(cv2.cvtColor(annot_frame, cv2.COLOR_BGR2RGB)))
 
 `YOLO가 감지한 물체 목록: ['person', 'car', 'dog']`
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### 3.3 Gemini에게 물어보기 (The Brain)
 

@@ -13,14 +13,14 @@
 * [\[4\] Python으로 MuJoCo 다루기](2-mujoco/04-mujoco_python.md)
 * [\[5\] MuJoCo: Pendulum 시뮬레이션](2-mujoco/05-mujoco_pendulum.md)
 * [\[6\] MuJoCo: Cart-Pole 제어와 강화학습](2-mujoco/06-cartpole.md)
-* [\[7\] MuJoCO MJCF로 커스텀 로봇 만들기](2-mujoco/07-mujoco_mjcf.md)
+* [\[7\] MuJoCO MJCF로 커스텀 로봇 만들기](2-mujoco/integrations.md)
 
 ## \[2주 차] LLM 실습
 
-* [\[8\] LLM Overview](2-llm/08-llm_overview.md)
-* [\[9\] GEMINI API 프롬프트 엔지니어링 실습](2-llm/09-gemini_api.md)
+* [\[8\] LLM Overview](2-llm-and-vla/08-llm_overview.md)
+* [\[9\] GEMINI API 프롬프트 엔지니어링 실습](2-llm-and-vla/09-gemini_api.md)
 * [\[10\] YOLO & GEMINI](2-llm/10-yolo_llm.md)
-* [\[11\] 데이터셋 생성 + 증강](2-llm/11_datagen.md)
+* [\[12\] 데이터셋 생성 + 증강](2-llm/12_datagen.md)
 
 ## \[2주 차] VLA+Mujoco
 
@@ -28,7 +28,7 @@
 
 ## \[3주 차] NVIDIA Isaac Sim
 
-* [Page 1](3-nvidia-isaac-sim/page-1.md)
+* [Page 1](3-rl-nvidia-isaac-sim/page-1.md)
 
 ## \[4주 차] Sim-to-Real 프로젝트
 
