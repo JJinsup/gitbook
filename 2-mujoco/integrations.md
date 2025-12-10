@@ -98,4 +98,100 @@ git clone [https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git](https://
 
 * **`tb3_tutorial.py`**: `asset`에서 로봇을 가져오고, `utils`의 도구를 사용해서 시뮬레이션을 돌리는 **메인 코드**입니다. 우리는 이 파일을 수정하고 실행합니다.
 
-###
+### 4. 파이썬으로 동적 환경 구성하기
+
+이제 `tb3_factory.xml`로 만든 터틀봇3와 공장 환경을 파이썬 코드로 직접 불러와서 시뮬레이션을 돌리는 단계입니다.
+
+여기서는 복잡한 조립 과정 없이, **완성된 MJCF(scene)를 그대로 로드해서 실행하는 구조**를 사용합니다.
+
+#### 4.1 흐름 이해하기
+
+이번 파트의 핵심 아이디어는 딱 세 가지입니다.
+
+1. **MJCF(scene) 분리 설계:**
+   * `factory.xml`: 공장, 바닥, 벽, 조명 등 "배경"
+   * `tb3_burger_sensor.xml`: 센서가 장착된 터틀봇3 버거
+   * `tb3_factory.xml`: 위 둘을 `<include>`로 합친 **"최종 Scene"**
+2. **파이썬에서는 최종 Scene만 로드:**
+   * 더 이상 파이썬 코드 내에서 XML을 합치지 않습니다.
+   * `mj.MjModel.from_xml_path("tb3_factory.xml")` 한 줄로 전체 환경을 불러옵니다.
+3. **MuJoCoViewer 재사용:**
+   * `utils/mujoco_renderer.py` 안의 `MuJoCoViewer`를 그대로 재사용합니다.
+   * 이 뷰어는 **메인 뷰(Observer View)**, **로봇 카메라 뷰(Camera View)**, **키보드 제어**, **마우스 시점 조작**을 한 번에 처리해 줍니다.
+
+#### 4.2 코드 상세 분석
+
+**1) 모듈 Import 및 경로 설정**
+
+```
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
+from utils.mujoco_renderer import MuJoCoViewer
+```
+
+* `sys.path.append(...)`: 현재 스크립트(`scripts/`)의 상위 폴더(`PROJECT_ROOT`)를 파이썬에게 알려줍니다. 덕분에 형제 폴더인 `utils`에 있는 `MuJoCoViewer`를 불러올 수 있습니다.
+
+**2) 경로 계산 (Path Calculation)**
+
+```
+factory_scene_path = os.path.join(PROJECT_ROOT, "asset", "robotis_tb3", "tb3_factory.xml")
+```
+
+* 하드코딩된 절대 경로(예: `C:\Users\...`) 대신 `os.path`를 사용하여 경로를 계산합니다. 이렇게 하면 어떤 컴퓨터나 운영체제에서 실행해도 `tb3_factory.xml` 파일을 안전하게 찾을 수 있습니다.
+
+**3) MuJoCo 모델 로드**
+
+```
+model = mj.MjModel.from_xml_path(factory_scene_path)
+self.data = mj.MjData(model)
+```
+
+* `MjModel.from_xml_path`: `tb3_factory.xml`을 읽어서 로봇, 공장, 센서 등 모든 물리 정보를 담은 모델(불변)을 만듭니다.
+* `MjData`: 시뮬레이션 중 계속 변하는 위치, 속도 등의 상태 데이터(가변)를 담는 그릇을 만듭니다.
+
+**4) MuJoCoViewer 및 렌더링**
+
+```
+self.simulator = MuJoCoViewer(model, self.data)
+...
+self.simulator.render_main(overlay_type="imu")
+self.simulator.render_robot()
+```
+
+* `MuJoCoViewer`는 내부적으로 두 개의 창을 띄웁니다.
+  * **Main View:** 전체 상황을 보는 전지적 시점. `overlay_type="imu"` 옵션으로 IMU 센서값(가속도, 자이로)을 화면에 띄웁니다.
+  * **Robot View:** 로봇에 달린 카메라(`render_robot`)가 보는 1인칭 시점입니다.
+
+### 5. 동작 확인하기
+
+이제 코드를 실행하여 터틀봇을 직접 조종해보고, 센서가 제대로 작동하는지 확인해 봅시다.
+
+#### 🎮 조작 방법 (Controls)
+
+터미널에서 스크립트를 실행한 후, **Main View** 창을 클릭하여 포커스를 맞추고 아래 키들을 눌러보세요.
+
+| 키 (Key) | 동작 (Action)            | 설명                       |
+| ------- | ---------------------- | ------------------------ |
+| **`W`** | **전진 (Forward)**       | 로봇이 앞으로 이동합니다.           |
+| **`S`** | **후진 (Backward)**      | 로봇이 뒤로 이동합니다.            |
+| **`A`** | **좌회전 (Turn Left)**    | 로봇이 왼쪽으로 제자리 회전합니다.      |
+| **`D`** | **우회전 (Turn Right)**   | 로봇이 오른쪽으로 제자리 회전합니다.     |
+| **`L`** | **LiDAR 시각화 (On/Off)** | **파란색 라이다 레이저**를 켜고 끕니다. |
+| `Space` | 일시정지 (Pause)           | 시뮬레이션을 멈추거나 다시 시작합니다.    |
+
+#### 📸 실행 결과 (Result)
+
+코드가 정상적으로 실행되면 아래와 같이 **두 개의 창**이 동시에 떠야 합니다.
+
+**1) Observer View (메인 뷰) & LiDAR 시각화**
+
+전체 공장 환경을 보여주는 메인 뷰입니다. **`L` 키를 누르면** 로봇 주변으로 퍼져나가는 파란색 LiDAR 센서 레이저를 볼 수 있습니다. 오른쪽 상단에는 로봇의 IMU 데이터(자세, 각속도, 가속도)가 실시간으로 표시됩니다.
+
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-10 15-53-21.png" alt=""><figcaption></figcaption></figure>
+
+**2) Camera View (로봇 시점)**
+
+터틀봇에 장착된 카메라가 보는 세상입니다. 로봇을 회전시키면 이 화면도 같이 회전하며, 바닥의 글씨나 주변 장애물을 확인할 수 있습니다. LiDAR 레이저도 카메라에 잡혀 보입니다.
+
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-10 15-53-29 (1).png" alt=""><figcaption></figcaption></figure>
+
+> **🎉 축하합니다!** 이제 터틀봇이 공장 안을 자유롭게 돌아다니며 세상을 인식하는 환경이 완성되었습니다. 다음 챕터에서는 이 센서 데이터에 YOLO를 적용시켜 보겠습니다.
