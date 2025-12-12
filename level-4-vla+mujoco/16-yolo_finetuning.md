@@ -20,7 +20,7 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 * **위치:** 터틀봇 위치를 움직이며 촬영
 * **상황:** 카드가 일부 가려지거나(Occlusion) 겹쳐진(Overlapping) 상황 포함
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### 1.2 실행 흐름 (권장)
 
@@ -29,7 +29,7 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 3. 시뮬레이션 스텝을 진행하며 일정 주기마다 화면 캡처
 4. 지정된 로컬 폴더에 이미지 자동 저장
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1.3 저장 폴더 규칙
 
@@ -137,7 +137,7 @@ if __name__ == "__main__":
 4. **Annotation type:** Traditional
 5. 프로젝트 생성 완료
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
@@ -216,4 +216,114 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 
 <figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 21-00-20.png" alt=""><figcaption></figcaption></figure>
 
-###
+### 4. Google Colab에서 YOLOv11 학습시키기
+
+#### 4.1 환경 설정
+
+1. **Google Colab** 접속 후 `새 노트북` 생성
+2. 상단 메뉴: **런타임** → **런타임 유형 변경**
+3. **하드웨어 가속기:** `T4 GPU` 선택
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### 4.2 데이터셋 업로드 및 마운트
+
+1. Roboflow에서 다운로드한 zip 파일 압축해제하여 구글 드라이브(`MyDrive/img_dataset/`)에 업로드합니다.
+2. Colab에서 드라이브를 마운트합니다.
+3.  ultralytics 라이브러리를 설치합니
+
+    ```python
+    /content/drive/MyDrive/YOLO_Result
+    ```
+
+    .
+
+    ```python
+    /content/drive/MyDrive/YOLO_Result
+    ```
+
+```
+# 1. 설치 및 드라이브 연결
+!pip install ultralytics -U
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+#### 4.3 데이터셋 폴더로 이동
+
+```
+# 2. 데이터셋 폴더로 이동
+%cd /content/drive/MyDrive/img_dataset
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+#### 4.4 학습 실행 (Training)
+
+`data.yaml` 파일의 경로를 지정하고 학습을 시작합니다.
+
+```
+# 3. 학습 시작
+from ultralytics import YOLO
+
+model = YOLO('yolo11n.pt')
+
+results = model.train(
+    data='data.yaml',      
+    epochs=50,
+    imgsz=640,
+    batch=16,
+    name='yolo11_cards',
+    project='/content/drive/MyDrive/YOLO_Result' # 결과 저장
+)
+```
+
+#### 4.6 결과 확인 및 추론 테스트
+
+학습이 완료되면 `/` 경로에 가중치와 결과 그래프가 저장됩니다.
+
+* `weights/best.pt`: 최고 성능 모델 가중치 **(다운로드 필수)**
+* `results.png`: 손실(Loss) 및 성능(mAP) 그래프
+* `confusion_matrix.png`: 혼동 행렬
+
+**추론 테스트 코드:**
+
+```
+# 학습된 최고 모델 로드
+best_pt = "runs/detect/cards_yolo11/weights/best.pt"
+model = YOLO(best_pt)
+
+# 테스트할 이미지 경로
+test_img = "/content/dataset/test/images/sample_card.jpg" 
+
+# 예측 실행
+pred = model.predict(test_img, conf=0.25, save=True)
+```
+
+> \$$이미지\$$
+>
+> **예측 결과 이미지** (박스가 그려진 카드 이미지)
+
+### 5. 다음 단계 (Next Steps)
+
+학습이 성공적으로 완료되었다면, 이제 실시간 환경에 적용할 차례입니다.
+
+1. Colab에서 `best.pt` 파일을 로컬 PC로 다운로드합니다.
+2. 로컬(또는 로봇 컨트롤러)의 파이썬 환경에서 MuJoCo 스크립트를 실행합니다.
+3. MuJoCo 카메라 프레임을 YOLO 모델에 입력하여 \*\*실시간 탐지(Inference)\*\*를 수행합니다.
+
+> \$$이미지\$$
+>
+> **최종 결과 예시** (MuJoCo 시뮬레이션 화면 위에 YOLO 박스가 오버레이 된 모습)
+
+### ✅ 트러블슈팅 체크리스트
+
+실전에서 자주 막히는 포인트들을 점검하세요.
+
+* **클래스 이름 일치:** Roboflow 설정 이름(`club`, `heart`...)과 코드 내 이름이 동일한가?
+* **검수(Approved):** Auto Label 결과 중 엉뚱한 박스는 제거했는가?
+* **경로 확인:** Colab에서 `data.yaml`의 경로가 실제 파일 위치와 일치하는가?
+* **성능 문제:** 학습은 되는데 탐지율이 낮다면?
+  * Roboflow에서 **증강(Augmentation)** 강도를 높여 다시 버전 생성
+  * 학습 시 **Epochs**를 100 이상으로 증가
+  * MuJoCo 캡처 단계에서 더 다양한 각도와 조명 데이터를 추가

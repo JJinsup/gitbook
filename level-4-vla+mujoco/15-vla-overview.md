@@ -65,7 +65,7 @@ VLA 모델(Vision-Language-Action Model)은 텍스트, 이미지·비디오, 시
 
 VLA는 이 중 상당 부분을 대규모 신경망 기반 모델이 통합적으로 담당한다는 점에서 근본적인 차이를 가집니다.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:red;">**The general architecture of vision-language-action models**</mark> [<mark style="color:red;">**`출처`**</mark>](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
 
