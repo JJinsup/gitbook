@@ -19,7 +19,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/markdown
 ---
 
-# 🤖 \[4] Python으로 MuJoCo 다루기
+# 🤖 \[4] MuJoCo: Python으로 시뮬레이션 다루기
 
 ### 🎯 실습 목표
 
@@ -124,7 +124,7 @@ plt.axis("off")
 plt.show()
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 모델 구조 분석 (Introspection)
 
