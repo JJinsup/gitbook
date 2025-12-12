@@ -40,8 +40,8 @@ description: From “Sim2Real” to Physical AI
 
 LLM은 텍스트 기반 작업에서는 훌륭한 성능을 보이지만, 로봇이 작동하는 물리적 환경의 제약 조건을 이해하는 데에는 한계가 있습니다. 또한 텍스트만으로는 최종 목표를 완전히 설명할 수 없고, LLM이 섬세한 하위 수준의 행동을 항상 묘사할 수 없기 때문에 실행 불가능한 하위 목표를 생성하기도 합니다. 반면 이미지나 비디오는 세밀한(fine-grained) 정책과 행동을 생성할 수 있습니다.
 
-> "사진 한 장은 천 마디 말보다 낫다 \
-> (An image is worth 1000 words)" – Fred R. Barnard
+> **"사진 한 장은 천 마디 말보다 낫다** \
+> **(An image is worth 1000 words)" – Fred R. Barnard**
 
 비전 언어 모델(VLM)은 대규모 이미지 및 비디오 멀티모달 데이터셋으로 훈련되었기 때문에 뛰어난 일반화 능력을 가집니다. 하지만 효과적인 로봇 제어와 조작을 위해서는 VLM 표현만으로는 충분하지 않으며, **액션 데이터**가 중요합니다. **VLA**는 VLM에 추가적인 **액션** 및 **관찰 상태** 토큰을 확장한 개념입니다.
 
@@ -67,7 +67,7 @@ VLA는 이 중 상당 부분을 대규모 신경망 기반 모델이 통합적�
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-The general architecture of vision-language-action models [`출처`](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
+<mark style="color:red;">**The general architecture of vision-language-action models**</mark> [<mark style="color:red;">**`출처`**</mark>](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
 
 * **Vision Encoder**: 카메라 이미지나 비디오를 **비전 토큰**으로 변환해 로봇이 처리할 수 있는 표현을 만든다.
 * **Language Encoder**: 사람의 자연어 명령을 **언어 토큰**으로 변환해 의미를 표현한다.
@@ -108,25 +108,35 @@ VLA는 로봇 파운데이션 모델(Robot Foundation Model)의 **부분집합**
 
 이로 인해 **하드웨어 제조**와 **모델·시뮬레이션 플랫폼 개발** 사이의 분업화가 빠르게 진행되고 있습니다.
 
-> **\[이미지 삽입 구간]**
->
-> **NVIDIA / Google 중심 생태계 구조도** (로봇 제조사–플랫폼 분업 관계 그림)
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 협력과 경쟁: MuJoCo, Newton, Warp
 
-VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야는 구조적 한계를 공유하고 있습니다.
+VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야는 **데이터 부족**과 **시뮬레이션 인프라 부족**이라는 구조적 한계를 공유하고 있습니다. 이로 인해 엔비디아와 구글은 경쟁 관계이면서도 기초 인프라 영역에서는 필수적인 협력을 이어가고 있습니다.
 
-* **데이터 부족**
-* **시뮬레이션 인프라 부족**
+<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
-이로 인해 엔비디아와 구글은 경쟁 관계이면서도 다음과 같은 협력을 이어가고 있습니다.
+<p align="center">이미지 출처 : <a href="https://developer.nvidia.com/isaac/gr00t"><code>NVIDIA</code></a></p>
 
-* **Newton 물리 엔진 공동 개발**
-* **MuJoCo Warp 공개 (GTC 2025):** MuJoCo를 NVIDIA GPU에 최적화
+#### 4.1 차세대 물리 엔진: Newton
 
-> **\[이미지 삽입 구간]**
->
-> **MuJoCo → MuJoCo Warp 구조** (CPU 기반 vs GPU 가속 시뮬레이션 비교)
+**Newton**은 엔비디아(NVIDIA), 구글 딥마인드(Google DeepMind), 디즈니 리서치(Disney Research)가 로봇 개발을 가속화하기 위해 공동 개발한 오픈소스 물리 엔진입니다.
+
+* **압도적인 성능:** GPU 가속 시뮬레이션과 미분 가능한 물리(Differentiable Physics) 기술을 결합하여, 기존 솔루션 대비 **약 70배 빠른 로봇 학습 속도**를 제공합니다. 이를 통해 객체 조작이나 동적인 움직임과 같은 복잡한 작업을 전례 없는 정밀도로 마스터할 수 있게 합니다.
+* **핵심 기술 혁신:**
+  * **NVIDIA Warp 기반 가속:** Warp 프레임워크를 통해 접촉 역학(Contact Dynamics)을 가속화합니다.
+  * **Differentiable physics :** Gradient-based Policy Optimization를 지원하여 학습 효율을 극대화합니다.
+  * **다중 물리 커플링:** 고체뿐만 아니라 유체, 직물(Fabric) 등 다양한 물성 간의 상호작용을 통합적으로 시뮬레이션합니다.
+  * **호환성:** MuJoCo 및 Isaac Lab과 호환되며, OpenUSD 통합을 통해 표준화된 워크플로우를 보장합니다.
+* **디즈니의 활용 (Next-Gen Robotics):** 디즈니는 Newton을 BDX 드로이드와 같은 차세대 로봇에 적용하여, 테마파크 내에서 사람과 안전하게 공존하고 표현력 있는 캐릭터 움직임을 구현할 계획입니다.
+
+#### 4.2 MuJoCo Warp
+
+* **GTC 2025 공개:** 기존의 CPU 기반 MuJoCo 엔진을 NVIDIA GPU에 최적화하여 대규모 병렬 시뮬레이션이 가능해졌습니다.
+
+이러한 협력은 로봇 AI 학습 인프라가 아직 성숙 단계에 도달하지 못했음을 보여주는 동시에, 로봇 파운데이션 모델의 발전을 위해 시뮬레이션 기술의 혁신이 필수적임을 시사합니다.
 
 ### 5. 주요 개념 정리
 
@@ -181,7 +191,7 @@ VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야�
 
 <figure><img src="../.gitbook/assets/10.1088-1674-4926-25020034-Figure1.jpg" alt=""><figcaption></figcaption></figure>
 
-The evolution timeline of robotics and embodied AI : [`출처`](https://www.jos.ac.cn/en/article/doi/10.1088/1674-4926/25020034?viewType=HTML)
+<mark style="color:red;">**The evolution timeline of robotics and embodied AI :**</mark> [<mark style="color:red;">**`출처`**</mark>](https://www.jos.ac.cn/en/article/doi/10.1088/1674-4926/25020034?viewType=HTML)
 
 #### 8.1 π₀ / π₀.₅ (Physical Intelligence)
 
@@ -209,9 +219,9 @@ The evolution timeline of robotics and embodied AI : [`출처`](https://www.jos.
   * **주요 협력사:** Figure AI, Unitree Robotics, Apptronik, Sanctuary AI, 1X Technologies, Fourier Intelligence, XPENG Robotics 등.
   * **N1 얼리 액세스:** Agility Robotics, Boston Dynamics, Mentee Robotics, NEURA Robotics.
 
-> \$$이미지 삽입 구간\$$
->
-> **Isaac GR00T 전체 구성도**
+<figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+
+<p align="center">이미지 출처 : <a href="https://developer.nvidia.com/isaac/gr00t"><code>NVIDIA</code></a></p>
 
 #### 8.4 기타 주요 모델 및 스타트업
 
