@@ -27,7 +27,7 @@
 
 ## \[Level 4] VLA+Mujoco
 
-* [\[15\]](level-4-vla+mujoco/15.md)
+* [\[15\] VLA Overview](level-4-vla+mujoco/15-vla-overview.md)
 
 ## \[3주 차] NVIDIA Isaac Sim
 

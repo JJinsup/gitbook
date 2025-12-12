@@ -4,6 +4,14 @@ description: From "Attention Is All You Need" to GPT
 
 # 📚 \[8] LLM Overview
 
+### 0. LLM Time line
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+**Timeline of major LLM releases (2023 - Early 2025)** [**`출처`**](https://www.researchgate.net/figure/Timeline-of-major-LLM-releases-2023-Early-2025-showing-the-rapid-evolution-of-LLMs_fig3_393983430/actions#reference)
+
+주요 AI 기업이 발표한 LLM의 계보와 발전 흐름을 시간순으로 정리
+
 ### 1. 패러다임의 전환 (Paradigm Shift)
 
 #### 1.1 기존의 한계: RNN의 구조적 문제점
