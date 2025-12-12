@@ -196,7 +196,7 @@ print("Simulation finished. Plotting results...")
 plot_results(times, positions, velocities)
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **감쇠 진동(Damped Oscillation):** XML에서 `damping="0.1"`로 설정했기 때문에, 시간이 지날수록 진폭이 점점 줄어드는 것을 확인할 수 있습니다. (마찰이 없다면 영원히 같은 높이로 움직였을 것입니다.)
 

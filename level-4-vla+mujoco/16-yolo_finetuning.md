@@ -20,7 +20,7 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 * **위치:** 터틀봇 위치를 움직이며 촬영
 * **상황:** 카드가 일부 가려지거나(Occlusion) 겹쳐진(Overlapping) 상황 포함
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 #### 1.2 실행 흐름 (권장)
 
@@ -224,7 +224,7 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 2. 상단 메뉴: **런타임** → **런타임 유형 변경**
 3. **하드웨어 가속기:** `T4 GPU` 선택
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 4.2 데이터셋 업로드 및 마운트
 
@@ -256,7 +256,7 @@ drive.mount('/content/drive')
 %cd /content/drive/MyDrive/img_dataset
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### 4.4 학습 실행 (Training)
 
@@ -278,7 +278,7 @@ results = model.train(
 )
 ```
 
-#### 4.6 결과 확인 및 추론 테스트
+#### 4.6 결과 확인
 
 학습이 완료되면 `/` 경로에 가중치와 결과 그래프가 저장됩니다.
 
@@ -286,35 +286,12 @@ results = model.train(
 * `results.png`: 손실(Loss) 및 성능(mAP) 그래프
 * `confusion_matrix.png`: 혼동 행렬
 
-**추론 테스트 코드:**
-
-```
-# 학습된 최고 모델 로드
-best_pt = "runs/detect/cards_yolo11/weights/best.pt"
-model = YOLO(best_pt)
-
-# 테스트할 이미지 경로
-test_img = "/content/dataset/test/images/sample_card.jpg" 
-
-# 예측 실행
-pred = model.predict(test_img, conf=0.25, save=True)
-```
-
-> \$$이미지\$$
->
-> **예측 결과 이미지** (박스가 그려진 카드 이미지)
-
-### 5. 다음 단계 (Next Steps)
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 학습이 성공적으로 완료되었다면, 이제 실시간 환경에 적용할 차례입니다.
 
-1. Colab에서 `best.pt` 파일을 로컬 PC로 다운로드합니다.
-2. 로컬(또는 로봇 컨트롤러)의 파이썬 환경에서 MuJoCo 스크립트를 실행합니다.
-3. MuJoCo 카메라 프레임을 YOLO 모델에 입력하여 \*\*실시간 탐지(Inference)\*\*를 수행합니다.
-
-> \$$이미지\$$
->
-> **최종 결과 예시** (MuJoCo 시뮬레이션 화면 위에 YOLO 박스가 오버레이 된 모습)
+1. 구글드라이브에서 `best.pt` 파일을 scripts폴더로 다운로드합니다.
+2. `YOLO_Result`폴더에서 결과물도 확인해보세요.
 
 ### ✅ 트러블슈팅 체크리스트
 
