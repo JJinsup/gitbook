@@ -65,7 +65,7 @@ VLA 모델(Vision-Language-Action Model)은 텍스트, 이미지·비디오, 시
 
 VLA는 이 중 상당 부분을 대규모 신경망 기반 모델이 통합적으로 담당한다는 점에서 근본적인 차이를 가집니다.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:red;">**The general architecture of vision-language-action models**</mark> [<mark style="color:red;">**`출처`**</mark>](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
 
@@ -156,9 +156,9 @@ VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야�
 
 텍스트, 이미지, 비디오, 오디오, 촉각, 관절 상태 등 여러 데이터 양식을 동시에 입력받아 통합적으로 학습하는 방식입니다. VLA 모델은 본질적으로 멀티모달 학습이 불가능하면 성립할 수 없습니다.
 
-> **\[이미지 삽입 구간]**
->
-> **멀티모달 입력 통합 구조**
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+{% embed url="https://arxiv.org/abs/2506.20494" %}
 
 #### 5.4 Cross-embodiment
 
@@ -228,8 +228,6 @@ VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야�
 * **Figure AI:** OpenAI와의 협력을 통해 상당한 수준의 멀티모달 협력(Multi-modal collaboration) 능력을 시연했습니다. **Whole Upper Body Control**을 지원합니다.
 * **1X Technologies:** 독자적인 VLA 모델을 통해 **Whole Body Control**을 구현하는 것으로 알려져 있습니다.
 * **Generalist AI:** 구글 딥마인드 수석과학자 출신 피트 플로렌스(Pete Florence)가 창업한 기업의 모델로, **100Hz**의 높은 제어 주파수(Control Frequency)를 바탕으로 민첩한 테이블탑 조작 능력을 보여줍니다.
-
-
 
 ### 9. 학습, 시뮬레이터, 월드 모델
 
