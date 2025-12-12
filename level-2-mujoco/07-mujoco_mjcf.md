@@ -21,7 +21,7 @@ metaLinks:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/integrations
 ---
 
-# 🤖 \[7] MuJoCO MJCF로 커스텀 로봇 만들기
+# 🤖 \[7] MuJoCo: MJCF로 커스텀 로봇 만들기
 
 ### 🎯 학습 목표
 
@@ -66,7 +66,8 @@ git clone [https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git](https://
 │   └── robotis_tb3
 │       ├── assets         # STL 메쉬 파일 (로봇 껍데기)
 │       ├── turtlebot3_burger.xml  # 터틀봇 MJCF 모델 파일
-│       └── scene_turtlebot3_burger.xml # 로봇 + 환경 통합 파일
+│       ├── factory.xml  # 환경 파일
+│       └── tb3_factory.xml # 환경 + 터틀봇 통합 파일
 │
 ├── scripts                # 메인 실행 코드
 │   └── tb3_tutorial.py    # 우리가 실행할 메인 파일
@@ -119,48 +120,6 @@ git clone [https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git](https://
    * `utils/mujoco_renderer.py` 안의 `MuJoCoViewer`를 그대로 재사용합니다.
    * 이 뷰어는 **메인 뷰(Observer View)**, **로봇 카메라 뷰(Camera View)**, **키보드 제어**, **마우스 시점 조작**을 한 번에 처리해 줍니다.
 
-#### 4.2 코드 상세 분석
-
-**1) 모듈 Import 및 경로 설정**
-
-```
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), "..")))
-from utils.mujoco_renderer import MuJoCoViewer
-```
-
-* `sys.path.append(...)`: 현재 스크립트(`scripts/`)의 상위 폴더(`PROJECT_ROOT`)를 파이썬에게 알려줍니다. 덕분에 형제 폴더인 `utils`에 있는 `MuJoCoViewer`를 불러올 수 있습니다.
-
-**2) 경로 계산 (Path Calculation)**
-
-```
-factory_scene_path = os.path.join(PROJECT_ROOT, "asset", "robotis_tb3", "tb3_factory.xml")
-```
-
-* 하드코딩된 절대 경로(예: `C:\Users\...`) 대신 `os.path`를 사용하여 경로를 계산합니다. 이렇게 하면 어떤 컴퓨터나 운영체제에서 실행해도 `tb3_factory.xml` 파일을 안전하게 찾을 수 있습니다.
-
-**3) MuJoCo 모델 로드**
-
-```
-model = mj.MjModel.from_xml_path(factory_scene_path)
-self.data = mj.MjData(model)
-```
-
-* `MjModel.from_xml_path`: `tb3_factory.xml`을 읽어서 로봇, 공장, 센서 등 모든 물리 정보를 담은 모델(불변)을 만듭니다.
-* `MjData`: 시뮬레이션 중 계속 변하는 위치, 속도 등의 상태 데이터(가변)를 담는 그릇을 만듭니다.
-
-**4) MuJoCoViewer 및 렌더링**
-
-```
-self.simulator = MuJoCoViewer(model, self.data)
-...
-self.simulator.render_main(overlay_type="imu")
-self.simulator.render_robot()
-```
-
-* `MuJoCoViewer`는 내부적으로 두 개의 창을 띄웁니다.
-  * **Main View:** 전체 상황을 보는 전지적 시점. `overlay_type="imu"` 옵션으로 IMU 센서값(가속도, 자이로)을 화면에 띄웁니다.
-  * **Robot View:** 로봇에 달린 카메라(`render_robot`)가 보는 1인칭 시점입니다.
-
 ### 5. 동작 확인하기
 
 이제 코드를 실행하여 터틀봇을 직접 조종해보고, 센서가 제대로 작동하는지 확인해 봅시다.
@@ -194,4 +153,4 @@ self.simulator.render_robot()
 
 <figure><img src="../.gitbook/assets/Screenshot from 2025-12-10 15-53-29 (1).png" alt=""><figcaption></figcaption></figure>
 
-> **🎉 축하합니다!** 이제 터틀봇이 공장 안을 자유롭게 돌아다니며 세상을 인식하는 환경이 완성되었습니다. 다음 챕터에서는 이 센서 데이터에 YOLO를 적용시켜 보겠습니다.
+> **🎉 축하합니다!** 이제 터틀봇이 공장 안을 자유롭게 돌아다니며 세상을 인식하는 환경이 완성되었습니다. 다음 챕터부터는 LLM 실습을 진행하겠습니다.
