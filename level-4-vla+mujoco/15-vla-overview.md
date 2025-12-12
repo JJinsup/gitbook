@@ -4,11 +4,51 @@ description: From “Sim2Real” to Physical AI
 
 # \[15] VLA Overview
 
-### 0. LLM vs VLM vs VLA
+### 0. 배경 지식
 
-### LLM · VLM · VLA 비교
+#### 0.1 LLM · VLM · VLA 비교 테이블
 
 <table><thead><tr><th width="117">구분</th><th width="199">LLM (Large Language Model)</th><th width="205">VLM (Vision-Language Model)</th><th>VLA (Vision-Language-Action Model)</th></tr></thead><tbody><tr><td>정의</td><td>언어를 이해하고 생성하는 모델</td><td>보고(vision) + 언어를 이해하는 모델</td><td>보고 + 이해하고 실제로 행동하는 로봇 모델</td></tr><tr><td>주요 입력</td><td>텍스트</td><td>이미지, 비디오, 텍스트</td><td>이미지, 비디오, 텍스트, 로봇 상태</td></tr><tr><td>주요 출력</td><td>텍스트</td><td>텍스트, 캡션, 임베딩</td><td>로봇 액션, 제어 명령, 궤적</td></tr><tr><td>다루는 세계</td><td>언어 세계</td><td>시각적 세계</td><td>물리 세계</td></tr><tr><td>물리적 행동</td><td>불가능</td><td>불가능</td><td>가능 (액추에이터 제어)</td></tr><tr><td>핵심 토큰</td><td>텍스트 토큰</td><td>텍스트 + 비전 토큰</td><td>텍스트 + 비전 + 액션 토큰</td></tr><tr><td>대표 예시</td><td>GPT, Claude, LLaMA</td><td>CLIP, BLIP, Flamingo, Gemini</td><td>RT-2, OpenVLA, Octo, GR00T</td></tr><tr><td>주 활용 분야</td><td>챗봇, 문서 생성, 코딩</td><td>이미지 이해, 로봇 인식</td><td>로봇 조작, 내비게이션, 제어</td></tr></tbody></table>
+
+#### 0.2 로봇 정책(Policy)이란?
+
+로봇 공학에서 정책(Policy)은 주어진 환경의 현재 상태(State)를 기반으로 목표를 달성하기 위해 로봇이 취해야 할 행동(Action)을 결정하는 일련의 규칙을 의미합니다. 주요하게 두 가지 유형이 있습니다.
+
+* **결정론적(Deterministic):** 각 상태에 대해 특정 행동을 매핑합니다.
+* **확률론적(Stochastic):** 각 상태에 대해 가능한 모든 행동의 확률 분포를 제공합니다.
+
+로봇은 최종 목표 달성 여부에 따라 단일 에피소드 또는 여러 에피소드를 거칠 수 있습니다. 에피소드(Episode)는 초기 상태에서 종료 상태까지 로봇 에이전트와 주변 환경 간의 일련의 상호작용 과정을 의미하며, 다음과 같은 단계들을 포함합니다.
+
+* 상태 (State, _s_)
+* 행동 (Action, _a_)
+* 보상 (Reward, _r_)
+* 다음 상태 (Next State, _s'_)
+
+이러한 에이전트들은 보통 시작점과 끝점이 주어졌을 때, 에피소드 내에서 시간 경과에 따른 누적 보상을 최대화하는 **강화학습** 방법으로 훈련됩니다. 이를 통해 모델은 시행착오(Trial and Error)를 거쳐 최적의 행동을 학습합니다. 또한, 이러한 로봇 정책은 관찰(observation)과 행동(action) 쌍의 궤적(trajectory)이 주어졌을 때 올바른 행동을 예측하도록 모델을 훈련시키는 **행동 복제(Behavioral Cloning)** 또는 모방 학습(Imitation Learning)을 수행하기도 합니다.
+
+전통적으로는 각 하위 수준 작업(low-level tasks)이나 특정 로봇 하드웨어 구성에 맞춰 개별 정책이나 복잡한 휴리스틱을 생성했습니다. 하지만 현실 세계의 데이터는 복잡하고, 수많은 정책을 훈련시키는 것은 비용과 시간이 많이 소요되며 방대한 데이터가 필요합니다.&#x20;
+
+만약 LLM을 활용하여 동적인 시나리오 전반에 걸쳐 일반화할 수 있는 시스템을 만들 수 있다면 어떨까요? 이는 로봇이 주변을 보고, 말하거나 쓰인 지시를 이해하며, 일반화 능력을 발휘해 실제 작업을 독립적으로 수행할 수 있음을 의미합니다.
+
+#### 0.3 일반 목적 로봇 정책 (Generalist Robot Policies, GRP)
+
+로봇 공학에서 일반 목적 정책(Generalist Policy)은 작업별 미세 조정(fine-tuning) 없이도 여러 다운스트림 작업을 해결하거나 새로운 작업에 적응할 수 있는 단일 통합 모델을 의미합니다. 여러 하위 작업이나 특정 플랫폼/하드웨어를 위해 훈련되어야 했던 전통적인 정책과 달리, 일반 목적 정책은 이름에서 알 수 있듯이 보지 못한 작업, 새로운 시나리오, 심지어 다양한 하드웨어 설정 전반에 걸쳐 일반화할 수 있는 창발적 행동(Emergent Behaviors)을 발현합니다.
+
+대표적인 예로 **RT-2**, **π0 (Pi-Zero)**, **Isaac GR00T N1** 등이 있습니다. 이러한 GRP는 미리 프로그래밍되거나 하드 코딩된 지침에 얽매이지 않고, "관찰하고 이해하며 행동하는(Observe, Understand and Action)" 본성을 통해 중간 목표를 설정하며 과제나 문제를 스스로 탐색하고 해결해 나갑니다.
+
+#### 0.4 왜 VLA가 필요한가?
+
+LLM은 텍스트 기반 작업에서는 훌륭한 성능을 보이지만, 로봇이 작동하는 물리적 환경의 제약 조건을 이해하는 데에는 한계가 있습니다. 또한 텍스트만으로는 최종 목표를 완전히 설명할 수 없고, LLM이 섬세한 하위 수준의 행동을 항상 묘사할 수 없기 때문에 실행 불가능한 하위 목표를 생성하기도 합니다. 반면 이미지나 비디오는 세밀한(fine-grained) 정책과 행동을 생성할 수 있습니다.
+
+> "사진 한 장은 천 마디 말보다 낫다 \
+> (An image is worth 1000 words)" – Fred R. Barnard
+
+비전 언어 모델(VLM)은 대규모 이미지 및 비디오 멀티모달 데이터셋으로 훈련되었기 때문에 뛰어난 일반화 능력을 가집니다. 하지만 효과적인 로봇 제어와 조작을 위해서는 VLM 표현만으로는 충분하지 않으며, **액션 데이터**가 중요합니다. **VLA**는 VLM에 추가적인 **액션** 및 **관찰 상태** 토큰을 확장한 개념입니다.
+
+* **상태(State):** 단일 토큰으로, 센서 값, 그리퍼 위치 및 각도 등 로봇의 관찰 정보를 나타냅니다.
+* **행동(Action):** 정밀한 제어를 통해 궤적을 따라 수행해야 할 모터 명령 시퀀스를 나타내는 토큰입니다.
+
+VLA라는 용어는 **Google RT-2** 논문에서 처음 만들어졌으며, PaLI-X와 PaLM-E를 백본으로 사용하여 "픽셀에서 행동으로(Pixels to Actions)" 변환을 수행합니다.
 
 ### 1. 개요
 
@@ -25,9 +65,15 @@ VLA 모델(Vision-Language-Action Model)은 텍스트, 이미지·비디오, 시
 
 VLA는 이 중 상당 부분을 대규모 신경망 기반 모델이 통합적으로 담당한다는 점에서 근본적인 차이를 가집니다.
 
-> **\[이미지 삽입 구간]**
->
-> **Vision–Language–Action 파이프라인 개념도** (입력(이미지·텍스트) → 추론 → 로봇 행동 흐름 다이어그램)
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+The general architecture of vision-language-action models [`출처`](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
+
+* **Vision Encoder**: 카메라 이미지나 비디오를 **비전 토큰**으로 변환해 로봇이 처리할 수 있는 표현을 만든다.
+* **Language Encoder**: 사람의 자연어 명령을 **언어 토큰**으로 변환해 의미를 표현한다.
+* **Action Decoder**: 비전 토큰과 언어 토큰을 입력으로 받아 **액션 토큰**을 생성하고, 이를 실제 로봇 행동으로 변환한다.
+* **World Model**: 액션 토큰이 환경에 적용되었을 때의 결과를 예측하는 **환경 토큰/상태 전이 모델** 역할을 한다.
+* **Reasoning**: 현재 상태 토큰과 목표 토큰을 바탕으로 어떤 액션 토큰 시퀀스가 적절한지 판단한다.
 
 ### 2. VLA와 로봇 파운데이션 모델의 관계
 
@@ -131,21 +177,49 @@ VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야�
 
 ### 8. 대표 모델 및 플랫폼
 
+[참고 자료 : learn\_opencv](https://learnopencv.com/vision-language-action-models-lerobot-policy/)
+
 <figure><img src="../.gitbook/assets/10.1088-1674-4926-25020034-Figure1.jpg" alt=""><figcaption></figcaption></figure>
 
 The evolution timeline of robotics and embodied AI : [`출처`](https://www.jos.ac.cn/en/article/doi/10.1088/1674-4926/25020034?viewType=HTML)
 
-* **π₀ / π₀.₅**
-  * Flow Matching 기반 VLA의 시초적 모델
-* **Gemini Robotics**
-  * Gemini 멀티모달 추론과 결합된 로봇 파운데이션 모델
-* **Isaac GR00T**
-  * 엔비디아의 로봇 AI 풀스택
-  * 구성: Foundation Model (GR00T N1), Omniverse, Cosmos, Jetson Thor
+#### 8.1 π₀ / π₀.₅ (Physical Intelligence)
 
-> **\[이미지 삽입 구간]**
+* **개요:** 2024년 등장한 모델로, VLM 기반 **플로우 매칭(Flow Matching)** 아키텍처를 채택한 최초의 VLA입니다.
+* **영향:** 후술할 엔비디아 GR00T N1 모델 개발에도 상당한 영향을 주었습니다.
+* **현황:** 2025년에는 성능이 개선된 후속 모델 **π₀.₅**가 출시된 상태입니다.
+
+#### 8.2 Gemini Robotics (Google DeepMind)
+
+* **개요:** 구글 딥마인드의 RT-X, OpenVLA 등을 계승하며, **Gemini**의 강력한 멀티모달 추론 능력과 결합하여 성능을 대폭 향상시킨 모델입니다.
+* **에코시스템:**
+  * **Trusted Tester:** Agile Robots, Agility Robotics, Boston Dynamics, Enchanted Tools가 얼리 액세스를 확보했습니다.
+  * **핵심 협력사:** **Apptronik**이 유일한 공식 협력사로서 여타 기업들보다 광범위한 협력 체제를 구축하고 있습니다.
+
+#### 8.3 Isaac GR00T (NVIDIA)
+
+2025년 3월 18일 발표된 엔비디아의 로봇 AI 풀스택 솔루션입니다. 'Project GR00T'의 일환으로, 인간의 행동을 관찰하고 자연어 명령을 이해하여 움직임을 모방·학습하는 로봇 플랫폼 개발을 목표로 합니다.
+
+* **구성 요소:**
+  * **Foundation Model:** Isaac GR00T N1
+  * **Simulation:** NVIDIA Omniverse
+  * **Data Pipeline:** Cosmos (합성 데이터 생성)
+  * **Computer:** Jetson Thor (휴머노이드 전용)
+* **생태계:**
+  * **주요 협력사:** Figure AI, Unitree Robotics, Apptronik, Sanctuary AI, 1X Technologies, Fourier Intelligence, XPENG Robotics 등.
+  * **N1 얼리 액세스:** Agility Robotics, Boston Dynamics, Mentee Robotics, NEURA Robotics.
+
+> \$$이미지 삽입 구간\$$
 >
 > **Isaac GR00T 전체 구성도**
+
+#### 8.4 기타 주요 모델 및 스타트업
+
+* **Figure AI:** OpenAI와의 협력을 통해 상당한 수준의 멀티모달 협력(Multi-modal collaboration) 능력을 시연했습니다. **Whole Upper Body Control**을 지원합니다.
+* **1X Technologies:** 독자적인 VLA 모델을 통해 **Whole Body Control**을 구현하는 것으로 알려져 있습니다.
+* **Generalist AI:** 구글 딥마인드 수석과학자 출신 피트 플로렌스(Pete Florence)가 창업한 기업의 모델로, **100Hz**의 높은 제어 주파수(Control Frequency)를 바탕으로 민첩한 테이블탑 조작 능력을 보여줍니다.
+
+
 
 ### 9. 학습, 시뮬레이터, 월드 모델
 

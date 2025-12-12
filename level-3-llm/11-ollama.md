@@ -21,7 +21,7 @@ RAG는 **"내 데이터를 통해 채팅"** 시나리오를 가능하게 합니�
 
 #### 작동 방식
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니다.
 
@@ -32,7 +32,7 @@ RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니�
 
 #### 벡터화와 임베딩 (Embeddings)
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 임베딩은 단어, 문장 또는 문서의 **의미**를 컴퓨터가 이해할 수 있는 숫자로 변환하는 과정입니다. 예를 들어 Azure OpenAI Embeddings API 등을 사용하면 텍스트의 주제, 의미, 문법, 스타일 등을 다차원 공간의 좌표로 변환할 수 있습니다.
 
