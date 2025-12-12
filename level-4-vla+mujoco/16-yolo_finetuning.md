@@ -35,8 +35,8 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 
 Roboflow 업로드를 용이하게 하기 위해 단일 폴더에 이미지를 모아두는 것을 권장합니다.
 
-* `img_dataset/raw/000001.png`
-* `img_dataset/raw/000002.png`
+* `img_dataset/images/000001.png`
+* `img_dataset/images/000002.png`
 
 #### 1.4 환경 로드 및 확인 (`tb3_tutorial.py` 활용)
 
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 #### 2.2 이미지 업로드
 
 1. 생성한 프로젝트 내부로 진입
-2. **Upload** 탭에서 앞서 생성한 `img_dataset/raw` 폴더의 이미지들을 업로드
+2. **Upload** 탭에서 앞서 생성한 `img_dataset/images` 폴더의 이미지들을 업로드
 
 #### 2.3 SAM 3 자동 라벨링 설정
 
@@ -188,23 +188,24 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 
 좌측 사이드바의 **Versions** 탭으로 이동하여 **Create New Version**을 클릭합니다.
 
-> \$$이미지\$$
->
-> **Versions 탭 위치**
-
 #### 3.2 전처리 및 증강 설정 (권장값)
 
 기본적인 증강을 적용하여 모델의 강건성을 높입니다.
 
-* **Preprocessing:** Auto-Orient (기본값)
-* **Augmentation:**
-  * **Flip:** Horizontal, Vertical
-  * **Rotation:** ±10도
-* **생성:** `Create` (예: 673 images -> 3x 증강)
+* **Preprocessing:** Auto-Orient (기본값), Resize X
 
-> \$$이미지\$$
->
-> **Version 설정 화면** (Augmentation 옵션)
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-44-55.png" alt=""><figcaption></figcaption></figure>
+
+*   **Augmentation:**
+
+    * **Flip:** Horizontal, Vertical
+    * **Rotation:** ±10도
+
+    <figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-58-34.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-58-39.png" alt=""><figcaption></figcaption></figure>
+
+* **생성:** `Create` (예: 673 images -> 3x 증강)
 
 #### 3.3 데이터셋 다운로드
 
@@ -213,8 +214,6 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 * **Format:** `YOLOv11`
 * 다운로드된 zip 파일을 준비합니다.
 
-> \$$이미지\$$
->
-> **Export Format 선택 화면** (YOLOv11 선택)
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 21-00-20.png" alt=""><figcaption></figcaption></figure>
 
 ###
