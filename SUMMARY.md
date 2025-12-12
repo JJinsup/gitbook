@@ -29,6 +29,9 @@
 
 * [\[15\] VLA Overview](level-4-vla+mujoco/15-vla-overview.md)
 * [\[16\] YOLO 파인튜닝](level-4-vla+mujoco/16-yolo_finetuning.md)
+* [\[17\] MuJoCo: 유틸리티 함수](level-4-vla+mujoco/17-mujoco_utils.md)
+* [\[18\] MuJoCo: YOLO 성능 테스트](level-4-vla+mujoco/18-mujoco-yolo.md)
+* [\[19\] MuJoCo: vla 실습](level-4-vla+mujoco/19-mujoco-vla.md)
 
 ## \[3주 차] NVIDIA Isaac Sim
 
