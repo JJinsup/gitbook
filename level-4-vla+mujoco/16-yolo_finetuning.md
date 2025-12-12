@@ -150,6 +150,8 @@ if __name__ == "__main__":
 
 Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 카드의 심볼을 인식하여 박스를 치도록 클래스와 설명을 등록합니다.
 
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-29-51.png" alt=""><figcaption></figcaption></figure>
+
 **📋 SAM 3 입력용 프롬프트 (4개 클래스)** 아래 내용을 하나씩 입력하고 `+ Add Class`를 눌러 총 4개를 등록합니다.
 
 | 클래스 (Class)  | 이름 (Class name) | 시각적 설명 (Visual description)                |
@@ -159,30 +161,26 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 | **♥️ 하트**    | `heart`         | ace playing card with a red heart symbol   |
 | **♠️ 스페이드**  | `spade`         | ace playing card with a black spade symbol |
 
-> \$$이미지\$$
->
-> **SAM 3 Class 등록 UI 화면** (4개 클래스가 추가된 상태)
-
 #### 2.4 품질 확인 및 적용
 
 1. **Generate Test Results**를 클릭하여 샘플 이미지에 대한 라벨링 결과를 확인합니다.
    * _체크 포인트:_ 심볼에 박스가 정확히 잡히는가? 배경을 오인식하지 않는가?
 2. 결과가 양호하다면 **Auto Label With This Model**을 클릭하여 전체 이미지 라벨링을 수행합니다.
 
-> \$$이미지\$$
->
-> **Test Results 예시** (잘 된 케이스 vs 안 된 케이스)
-
 #### 2.5 검수 및 데이터셋 확정
 
 1. 자동 라벨링 완료 후 검수 화면으로 이동
 2. 오탐(False Positive)이나 미탐(False Negative)을 빠르게 수정
 3. **Approved** 버튼 클릭
-4. **Add Approved to Dataset**을 눌러 학습 가능한 데이터셋(Train/Valid/Test 분할)으로 확정
+4. **Add Approved to Dataset**을 눌러 학습 가능한 데이터셋(Train/Valid/Test 분할)으로 확정 -> _**Train : Valid 7:3 추천**_
 
-> \$$이미지\$$
->
-> **데이터셋 추가 버튼 화면**
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-35-32.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-40-03.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Screenshot from 2025-12-11 20-42-25.png" alt=""><figcaption></figcaption></figure>
+
+<p align="center">ㄷ</p>
 
 ### 3. Roboflow에서 YOLOv11용 버전 생성
 
