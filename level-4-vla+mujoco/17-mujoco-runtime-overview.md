@@ -118,7 +118,43 @@ LLM은 다음과 같은 정보를 입력받아 "무엇을 해야 하는지"를 �
 
 LLM이 결정한 결과는 문자열 명령 형태로 `command_queue`에 삽입됩니다. 런타임은 이 큐를 소비하며 "어떻게 실행할지"를 책임집니다. 즉, **두뇌(LLM)와 신체(Runtime)의 역할이 명확히 분리**되어 있습니다.
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant Runtime as TurtlebotFactorySim
+    participant YOLO as Perception (YOLO)
+    participant LLM as GeminiTb3 (LLM)
+    participant Queue as command_queue
 
+    %% 0) Runtime 초기화
+    User ->> Runtime: 프로그램 실행
+    Runtime ->> Runtime: start()
+
+    %% 1) 자연어 입력이 트리거
+    User ->> LLM: 자연어 목표 / 질문
+    LLM ->> LLM: 이해 + 계획 수립
+
+    %% 2) Runtime은 항상 관측을 생성 중
+    loop while running
+        Runtime ->> Runtime: step_simulation()
+        Runtime ->> Runtime: render() -> latest_frame
+
+        Runtime ->> YOLO: detect(latest_frame)
+        YOLO -->> Runtime: observation (dict)
+
+        %% 3) 관측을 LLM에 제공
+        Runtime -->> LLM: observation
+
+        %% 4) LLM이 명령을 생성
+        LLM ->> Queue: put(cmd)
+
+        %% 5) Runtime이 명령을 소비
+        Runtime ->> Queue: get()
+        Queue -->> Runtime: cmd
+        Runtime ->> Runtime: apply_command(cmd) -> data.ctrl
+    end
+
+```
 
 ### 10. VLA 아키텍처와의 대응
 
