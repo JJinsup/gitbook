@@ -93,7 +93,7 @@ YOLO 모듈이 반환하는 출력은 다음과 같은 **구조화된 정보**�
 
 이는 복잡한 강화학습이나 유한 상태 기계 없이도, **인식과 행동을 실시간으로 연결**한 구조적 구현의 예시입니다.
 
-
+<figure><img src="../.gitbook/assets/Screencast from 2025년 12월 15일 12시 18분 34초.gif" alt=""><figcaption></figcaption></figure>
 
 ### 8. Action: 로봇의 제어 방식
 
