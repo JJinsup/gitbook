@@ -29,7 +29,7 @@
 
 * [\[15\] VLA Overview](level-4-vla+mujoco/15-vla-overview.md)
 * [\[16\] YOLO 파인튜닝](level-4-vla+mujoco/16-yolo_finetuning.md)
-* [\[17\] MuJoCo: API Reference](level-4-vla+mujoco/17-mujoco_utils.md)
+* [\[18\] MuJoCo: API Reference](level-4-vla+mujoco/18-mujoco_api.md)
 * [\[18\] MuJoCo: YOLO 성능 테스트](level-4-vla+mujoco/18-mujoco-yolo.md)
 * [\[19\] MuJoCo: VLA 실습](level-4-vla+mujoco/19-mujoco-vla.md)
 * [\[20\] VLA 오픈소스](level-4-vla+mujoco/20-vla_opensource.md)
