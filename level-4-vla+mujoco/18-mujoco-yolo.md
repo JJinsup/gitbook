@@ -6,6 +6,8 @@ description: >-
 
 # \[18] MuJoCo: YOLO 성능 테스트
 
+<figure><img src="../.gitbook/assets/4 (1).jpg" alt=""><figcaption></figcaption></figure>
+
 ### 1. ObjectDetector 코드 구조 및 설계
 
 `ObjectDetector`는 Ultralytics YOLO를 MuJoCo 시뮬레이션 파이프라인에서 안정적으로 사용하기 위해 설계된 **래퍼(Wrapper) 클래스**입니다.
