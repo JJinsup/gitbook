@@ -60,7 +60,7 @@ python -m mujoco.viewer
 
 구글 딥마인드에서는 유명한 로봇들의 모델 파일(XML/MJCF)을 모아둔 **\[MuJoCo Menagerie]** 라는 오픈소스 프로젝트를 운영합니다.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

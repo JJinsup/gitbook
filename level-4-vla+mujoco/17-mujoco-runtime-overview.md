@@ -27,9 +27,7 @@ description: 이 문서는 MuJoCo 기반 VLA 스타일 TurtleBot3 시뮬레이�
 * **입력 처리:** 키보드 및 LLM 명령 큐
 * **제어 로직:** 액션 수행 및 종료 조건 관리
 
-> **\[그림] 전체 아키텍처 블록 다이어그램**
->
-> _(Input → Runtime Orchestrator → MuJoCo Physics / Renderer → Observation / Action의 구조도)_
+<figure><img src="../.gitbook/assets/4.jpg" alt=""><figcaption></figcaption></figure>
 
 ### 3. Runtime Orchestrator의 역할
 
@@ -120,13 +118,13 @@ LLM은 다음과 같은 정보를 입력받아 "무엇을 해야 하는지"를 �
 
 LLM이 결정한 결과는 문자열 명령 형태로 `command_queue`에 삽입됩니다. 런타임은 이 큐를 소비하며 "어떻게 실행할지"를 책임집니다. 즉, **두뇌(LLM)와 신체(Runtime)의 역할이 명확히 분리**되어 있습니다.
 
-> **\[그림] LLM ↔ Runtime 상호작용**
->
-> _(LLM이 Command Queue로 명령을 보내고, Runtime이 이를 실행하는 구조)_
 
-### 10. 결론: VLA 아키텍처와의 대응
+
+### 10. VLA 아키텍처와의 대응
 
 이 시뮬레이션 구조는 VLA 모델의 핵심 구성 요소들을 모두 포함하고 있습니다.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 * **Vision:** 로봇 카메라 + YOLO Adapter
 * **Language:** 문자열 기반 명령 체계, LLM 연동
@@ -135,10 +133,6 @@ LLM이 결정한 결과는 문자열 명령 형태로 `command_queue`에 삽입�
 * **Policy:** 명시적인 런타임 실행 구조
 
 유일한 차이점은 이 모든 것이 신경망 학습이 아닌, **소프트웨어 아키텍처로 구현**되었다는 점입니다.
-
-> **\[그림] VLA 대응 관계도**
->
-> _(현재 시스템의 각 모듈이 VLA의 Vision, Language, Action 컴포넌트와 어떻게 매핑되는지 보여주는 그림)_
 
 #### 📚 다음으로 읽으면 좋은 문서
 

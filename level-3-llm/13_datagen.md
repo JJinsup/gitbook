@@ -173,7 +173,7 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 `증강 완료! 총 36개 데이터가 '6g_ai_dataset_augmented.jsonl'에 저장됨.`
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 결과 확인
 
