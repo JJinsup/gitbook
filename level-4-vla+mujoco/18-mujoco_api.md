@@ -1,8 +1,9 @@
 ---
 description: 이 문서는 MuJoCo 기반 TurtleBot3 프로젝트에서 사용되는 모든 공통 유틸리티와 런타임 구성 요소를 API 레벨에서 정의합니다.
+icon: head-side-gear
 ---
 
-# \[17] MuJoCo: API Reference
+# \[18] MuJoCo: API Reference
 
 **문서의 목표**
 

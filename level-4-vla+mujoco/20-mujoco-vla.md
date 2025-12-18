@@ -1,5 +1,6 @@
 ---
 description: 이 장에서는 MuJoCo 시뮬레이션 환경에서 Vision–Language–Action(VLA) 루프를 실제로 연결하고 실행해 봅니다.
+icon: head-side-gear
 ---
 
 # \[20] MuJoCo: VLA 실습
@@ -315,7 +316,7 @@ sim.start()
 * LLM이 Observation을 기반으로 상황을 적절히 설명하는지 확인
 * 보이지 않는 객체를 상상해내는 환각(Hallucination) 현상 여부 점검
 
-즉, \*\*“로봇이 실제로 보고 있는 것만 말하는가?”\*\*를 검증합니다.
+즉, “로봇이 실제로 보고 있는 것만 말하는가?”를 검증합니다.
 
 #### 5.2 실습 방법
 

@@ -1,5 +1,6 @@
 ---
 description: 이미지 데이터셋 생성부터 YOLOv11 모델 파인튜닝까지 실습
+icon: head-side-gear
 ---
 
 # \[16] YOLO 파인튜닝

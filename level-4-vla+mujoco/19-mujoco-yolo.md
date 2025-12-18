@@ -2,9 +2,10 @@
 description: >-
   MuJoCo 시뮬레이션 환경에 Ultralytics YOLO를 통합하는 ObjectDetector 클래스를 분석하고, 실제 시뮬레이션에서
   YOLO가 정상적으로 동작하는지 확인하는 테스트 과정을 다룹니다.
+icon: head-side-gear
 ---
 
-# \[18] MuJoCo: YOLO 성능 테스트
+# \[19] MuJoCo: YOLO 성능 테스트
 
 <figure><img src="../.gitbook/assets/4 (1).jpg" alt=""><figcaption></figcaption></figure>
 

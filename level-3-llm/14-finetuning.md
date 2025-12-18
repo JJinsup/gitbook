@@ -71,7 +71,7 @@ sudo apt-get install libcurl4-openssl-dev cmake make -y
 
 ### 2. 모델 로드 및 LoRA 구성
 
-이제 베이스 모델을 불러오고, 효율적인 학습을 위해 \*\*LoRA(Low-Rank Adaptation)\*\*를 적용합니다. 앞서 설명한 **PEFT** 기법의 일종입니다.
+이제 베이스 모델을 불러오고, 효율적인 학습을 위해 LoRA(Low-Rank Adaptation)를 적용합니다. 앞서 설명한 **PEFT** 기법의 일종입니다.
 
 #### 2.1 라이브러리 임포트 및 설정
 

@@ -161,7 +161,7 @@ generate_dataset_gemini(chunks, "6g_ai_dataset.jsonl")
 def augment_dataset_gemini(input_file, output_file):
     aug_prompt = """
     아래 주어진 질문(Instruction)과 답변(Output)을 보고, 
-    **답변은 그대로 유지하되 질문의 표현만 다르게 바꾼 유사 질문 3개**를 생성하세요.
+    답변은 그대로 유지하되 질문의 표현만 다르게 바꾼 유사 질문 3개를 생성하세요.
     ...
     """
     # ... (Gemini API 호출 및 데이터 추가 로직) ...

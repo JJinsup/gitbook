@@ -1,5 +1,6 @@
 ---
 description: From “Sim2Real” to Physical AI
+icon: head-side-gear
 ---
 
 # \[15] VLA Overview

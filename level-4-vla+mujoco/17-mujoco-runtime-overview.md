@@ -1,5 +1,6 @@
 ---
 description: 이 문서는 MuJoCo 기반 VLA 스타일 TurtleBot3 시뮬레이션의 전체 런타임 구조를 다룹니다.
+icon: head-side-gear
 ---
 
 # \[17] MuJoCo: Runtime Overview
