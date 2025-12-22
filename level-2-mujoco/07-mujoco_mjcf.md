@@ -51,7 +51,7 @@ metaLinks:
 
 ```
 # 로보티즈 MuJoCo 저장소 클론
-git clone [https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git)
+git clone https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git
 ```
 
 다운로드가 완료되면 `asset/robotis_tb3` 경로에 우리가 사용할 로봇 파일들이 위치하게 됩니다.
