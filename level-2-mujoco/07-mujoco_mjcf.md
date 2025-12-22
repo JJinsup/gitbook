@@ -58,6 +58,12 @@ git clone https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git
 
 ### 3. 프로젝트 폴더 구조 및 역할 (Structure)
 
+_<mark style="color:red;">**아래 명령어를 입력하여 실습 코드를 다운로드 받습니다.**</mark>_
+
+```
+https://github.com/JJinsup/mujoco_llm.git
+```
+
 성공적인 로봇 시뮬레이션을 위해서는 파일들이 어디에 있는지 정확히 알아야 합니다. 우리가 작업할 폴더 구조는 크게 **Asset(재료), Scripts(요리사), Utils(조리도구)** 세 가지로 나뉩니다.
 
 ```
