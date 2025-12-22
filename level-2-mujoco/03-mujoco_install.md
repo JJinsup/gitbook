@@ -73,7 +73,7 @@ python -m mujoco.viewer
 sudo apt install git -y
 
 # Menagerie 저장소 다운로드
-git clone [https://github.com/google-deepmind/mujoco_menagerie.git](https://github.com/google-deepmind/mujoco_menagerie.git)
+git clone https://github.com/google-deepmind/mujoco_menagerie.git
 ```
 
 #### 2) 유명한 로봇들 소환해보기! 🤖
