@@ -105,6 +105,10 @@ git clone https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie.git
 
 여기서는 복잡한 조립 과정 없이, **완성된 MJCF(scene)를 그대로 로드해서 실행하는 구조**를 사용합니다.
 
+{% hint style="info" %}
+<mark style="color:red;">**mujoco\_llm/asset/robotis\_tb3/.xml 파일들의 경로 문제로 에러가 날 것입니다. 자신의 환경에 맞게 수정해주세요**</mark>
+{% endhint %}
+
 #### 4.1 흐름 이해하기
 
 이번 파트의 핵심 아이디어는 딱 세 가지입니다.
