@@ -46,6 +46,10 @@ import matplotlib.pyplot as plt
 import mediapy as media
 ```
 
+{% hint style="info" %}
+로컬환경에서 진행하는 경우 EGL렌더링 에러가 발생하면 os.environ\['MUJOCO\_GL'] = 'glfw'로 변경해주세요.&#x20;
+{% endhint %}
+
 ### 2. MJCF(XML) 기반 물리 환경 정의
 
 MuJoCo는 **XML(MJCF)** 형식을 통해 물리적 속성을 정의합니다. 별도의 파일을 생성하는 대신, Python 문자열을 파싱하여 모델을 로드하는 방식을 실습합니다.
