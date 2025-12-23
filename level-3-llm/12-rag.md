@@ -12,6 +12,10 @@ description: Python 라이브러리를 활용하여 문서를 처리하고 Ollam
 pip install langchain-ollama pypdf
 ```
 
+> {% file src="../.gitbook/assets/6g_ai.pdf" %}
+>
+> &#x20;위 파일을 다운로드 받아주세요
+
 #### 전체 순서 (Workflow)
 
 _**1단계: PDF 텍스트 추출 (Document Loading)**_
