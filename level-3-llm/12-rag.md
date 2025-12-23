@@ -14,7 +14,11 @@ pip install langchain-ollama pypdf
 
 > {% file src="../.gitbook/assets/6g_ai.pdf" %}
 >
-> &#x20;위 파일을 다운로드 받아주세요
+> &#x20;
+>
+> {% file src="../.gitbook/assets/2025_vla.pdf" %}
+>
+> 위 파일들을 다운로드 받아서 learn\_LLM/src/ 폴더에 넣어주세요.
 
 #### 전체 순서 (Workflow)
 
