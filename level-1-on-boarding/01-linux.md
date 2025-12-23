@@ -24,7 +24,7 @@ metaLinks:
 ### 1. Ubuntu 설치
 
 {% hint style="info" %}
-설치 언어는 English(US), Ubuntu 22.04 LTS인지 확인.&#x20;
+설치 언어는 English(US), Ubuntu 22.04 LTS인지 확인.
 {% endhint %}
 
 1. **ISO 다운로드:** [Ubuntu 22.04 LTS 공식 홈페이지](https://releases.ubuntu.com/jammy/)에서 ISO 파일을 다운로드합니다.
@@ -54,8 +54,7 @@ sudo apt install terminator -y
 sudo apt install -y wget
 
 # 크롬 설치 파일 다운로드
-wget [https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
-
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # 설치 진행
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 ```
