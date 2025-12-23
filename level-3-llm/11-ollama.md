@@ -103,7 +103,7 @@ RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니�
 
 ```shellscript
 sudo apt install curl -y
-curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 #### 모델 저장 위치 설정
