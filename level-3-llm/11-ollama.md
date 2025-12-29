@@ -21,7 +21,7 @@ RAG는 **"내 데이터를 통해 채팅"** 시나리오를 가능하게 합니�
 
 #### 작동 방식
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니다.
 
@@ -32,7 +32,7 @@ RAG를 사용하여 챗봇을 구축하는 기본 흐름은 다음과 같습니�
 
 #### 벡터화와 임베딩 (Embeddings)
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 임베딩은 단어, 문장 또는 문서의 **의미**를 컴퓨터가 이해할 수 있는 숫자로 변환하는 과정입니다. 예를 들어 Azure OpenAI Embeddings API 등을 사용하면 텍스트의 주제, 의미, 문법, 스타일 등을 다차원 공간의 좌표로 변환할 수 있습니다.
 
@@ -197,7 +197,7 @@ ollama run qwen3:0.6b
 >>> "Large Language Models are transforming the world." 이 문장을 한국어로 번역해줘.
 ```
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 실습 2: 구조화된 데이터 추출 (JSON)
 
@@ -209,7 +209,7 @@ RAG나 앱 개발 시 가장 중요한 능력 중 하나인 **JSON 포맷 출력
 
 > _**결과:**_
 >
-> &#x20;![](<../.gitbook/assets/image (16).png>)
+> &#x20;![](<../.gitbook/assets/image (16) (1).png>)
 
 #### 실습 3: 역할 부여 (Role Playing)
 

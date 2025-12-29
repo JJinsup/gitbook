@@ -6,7 +6,7 @@ description: From "Attention Is All You Need" to GPT
 
 ### 0. LLM Time line
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Timeline of major LLM releases (2023 - Early 2025)** [**`출처`**](https://www.researchgate.net/figure/Timeline-of-major-LLM-releases-2023-Early-2025-showing-the-rapid-evolution-of-LLMs_fig3_393983430/actions#reference)
 
@@ -101,7 +101,7 @@ $$
 
 논문의 트랜스포머는 기계 번역을 위해 인코더-디코더 구조를 채택했습니다.
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 5.1 인코더 (Encoder)
 
@@ -136,19 +136,19 @@ RLHF는 크게 3단계 프로세스로 진행됩니다.
 
 #### Step 1: Supervised Fine-Tuning (SFT)
 
-<p align="center"><img src="../.gitbook/assets/image (10).png" alt=""></p>
+<p align="center"><img src="../.gitbook/assets/image (10) (1).png" alt=""></p>
 
 * **지도 미세 조정**: 인간 라벨러가 작성한 양질의 '질문-답변' 쌍 데이터를 모델에 학습시킵니다. 이를 통해 모델은 인간이 선호하는 답변의 형식과 톤을 모방하게 됩니다.
 
 #### Step 2: Reward Model Training (RM)
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **보상 모델 학습**: 모델이 생성한 여러 답변 후보에 대해 인간이 선호도 순위(Ranking)를 매깁니다. 이 데이터를 바탕으로, 어떤 답변이 더 우수한지 점수를 예측하는 별도의 '보상 모델'을 학습시킵니다.
 
 #### Step 3: Proximal Policy Optimization (PPO)
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **강화학습 적용**: 생성 모델(Policy)이 답변을 생성하면 보상 모델이 점수(Reward)를 부여하고, 이 점수를 최대화하는 방향으로 생성 모델을 업데이트합니다. PPO 알고리즘은 학습 과정에서 정책이 급격하게 변하는 것을 방지하여 안정적인 최적화를 돕습니다.
 

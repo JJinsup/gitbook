@@ -43,7 +43,7 @@ metaLinks:
 
 > **🔗 출처:** [ROBOTIS-GIT/robotis\_mujoco\_menagerie](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie?tab=readme-ov-file)
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1) 로봇 모델 다운로드 (Git Clone)
 

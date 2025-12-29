@@ -38,7 +38,7 @@ description: >-
 3. **모델 학습**: 준비된 데이터로 모델을 학습(Train)시키며 하이퍼파라미터를 조정합니다.
 4. **평가 및 배포**: 학습된 모델이 새로운 데이터(Test set)에도 잘 동작하는지 검증하고 실서비스에 배포합니다.
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **⚠️ 주의사항 (Challenges)**
 >

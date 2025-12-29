@@ -27,13 +27,13 @@ _**PDF 출처:**_ [https://www.6gforum.or.kr/html/sub/member/view.php?bo\_table=
 
 * **규칙 기반 (Rule-based)**: 단어의 무작위 삭제/삽입, 동의어 교체(Synonym Replacement), 문장 구조 변경(능동태 ↔ 수동태) 등 비교적 간단한 방법입니다.
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 *   **신경망 기반 (Neural-based)**:
 
     * **역번역 (Back-translation)**: 한글 → 영어 → 한글로 번역하여 의미는 같지만 표현이 다른 문장을 생성합니다.
 
-    <figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
     * **생성 모델 활용**: 이 프로젝트에서 사용하는 방식으로, LLM(Gemini)에게 "의미는 유지하되 표현을 바꿔라"고 지시하여 고품질의 문장을 생성합니다.
 
@@ -147,7 +147,7 @@ generate_dataset_gemini(chunks, "6g_ai_dataset.jsonl")
 
 `저장 완료: 6g_ai_dataset.jsonl (총 18개 데이터 쌍)`
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 3.4 데이터 증강 (Augmentation)
 
@@ -178,7 +178,7 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 `증강 완료! 총 36개 데이터가 '6g_ai_dataset_augmented.jsonl'에 저장됨.`
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 결과 확인
 

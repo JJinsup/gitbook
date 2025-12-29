@@ -66,7 +66,7 @@ VLA 모델(Vision-Language-Action Model)은 텍스트, 이미지·비디오, 시
 
 VLA는 이 중 상당 부분을 대규모 신경망 기반 모델이 통합적으로 담당한다는 점에서 근본적인 차이를 가집니다.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:red;">**The general architecture of vision-language-action models**</mark> [<mark style="color:red;">**`출처`**</mark>](https://medium.com/@uu7470911/vision-language-action-models-for-embodied-ai-a-survey-overview-d26f11af282c)
 
@@ -109,7 +109,7 @@ VLA는 로봇 파운데이션 모델(Robot Foundation Model)의 **부분집합**
 
 이로 인해 **하드웨어 제조**와 **모델·시뮬레이션 플랫폼 개발** 사이의 분업화가 빠르게 진행되고 있습니다.
 
-<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
@@ -157,7 +157,7 @@ VLA 모델 개발은 각자 진행되고 있지만, 로봇 인공지능 분야�
 
 텍스트, 이미지, 비디오, 오디오, 촉각, 관절 상태 등 여러 데이터 양식을 동시에 입력받아 통합적으로 학습하는 방식입니다. VLA 모델은 본질적으로 멀티모달 학습이 불가능하면 성립할 수 없습니다.
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://arxiv.org/abs/2506.20494" %}
 

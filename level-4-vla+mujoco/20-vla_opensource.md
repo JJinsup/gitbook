@@ -35,6 +35,20 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
   * **Semantic Control:** 좌표 `(x, y)` 이동 명령이 아닌, "서랍을 열고 콜라를 집어줘"와 같은 의미적 명령 수행이 가능해졌습니다.
   * **Robot Language:** 로봇 제어 신호가 일종의 언어 체계로 편입되었습니다.
 
+#### RT-1
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+#### RT-2
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
 ### 2. Era of Generalization (2024): 데이터 스케일링과 범용 정책
 
 2024년의 화두는 **"하나의 모델로 모든 로봇을 제어할 수 있는가?"** 였습니다. 개별 로봇마다 데이터를 따로 모으고 학습시키는 비효율을 극복하기 위한 시도들이 이어졌습니다.
@@ -44,12 +58,30 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
 * **Open X-Embodiment:** 전 세계 다기관, 다종 로봇 데이터를 통합하여 거대 데이터셋을 구축했습니다.
 * **Octo:** 수십 종의 로봇, 수백 개의 작업 데이터를 하나의 트랜스포머 모델로 학습하여, 서로 다른 하드웨어(Cross-embodiment)를 하나의 정책으로 제어할 수 있음을 증명했습니다.
 
+**Open X-Embodiment**
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
 #### 2.2 Action Tokenization의 정립 (OpenVLA)
 
 * **OpenVLA:** 연속적인 로봇의 제어 신호를 언어 모델이 처리할 수 있는 이산적 토큰(Discrete Token)으로 변환하는 방식(Quantization)을 정립했습니다.
 * **성과:** RT-2X와 같은 거대 모델보다 훨씬 작은 파라미터로 동급 이상의 성능을 달성하며, 오픈소스 생태계를 통해 VLA 연구를 가속화했습니다.
 
 > 💡 **2024년의 결론:** "로봇 AI도 LLM처럼 파운데이션 모델(Foundation Model) 시대에 진입했다."
+
+**OpenVLA**
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 ### 3. Architecture Innovation (2025): 아키텍처의 진화
 
@@ -108,7 +140,7 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
 * **문제:** 로봇이 생각(추론)하는 동안 멈칫거리거나, 이미 생성된 계획이 실시간 상황 변화와 맞지 않는 문제.
 * **해결:** 실행 중인 행동 청크(Action Chunk)의 뒷부분을 실시간 센서 데이터에 맞춰 동적으로 보정합니다.
 
-### 7. 대표 오픈소스 VLA 프로젝트 정리
+### 6. 대표 오픈소스 VLA 프로젝트 정리
 
 VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용할 수 있는 오픈소스 프로젝트들이 등장하고 있습니다.
 
@@ -121,7 +153,7 @@ VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용�
 | **SmolVLA**        | \~450M 파라미터               | 경량·로컬 실행 지향                         | 모델·코드        |
 | **DreamVLA**       | 독자적 아키텍처                  | 다수 벤치마크 성능 보고 (NeurIPS 2025)        | 코드·체크포인트     |
 
-#### 7.1 OpenVLA
+#### 6.1 OpenVLA
 
 * **모델 구성 (Architecture)**
   * **언어 백본:** LLaMA 2
@@ -138,7 +170,7 @@ VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용�
   * LoRA 및 풀 파인튜닝 지원
   * RLDS 포맷 데이터 믹스 예제, 체크포인트 및 실험 노트북 제공
 
-#### 7.2 VLA-0 (NVLabs)
+#### 6.2 VLA-0 (NVLabs)
 
 * **모델 구성 (Architecture)**
   * **기반 모델:** Qwen2.5-VL-3B 멀티모달 모델 (기존 VLM 구조 유지)
@@ -156,7 +188,7 @@ VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용�
   * “행동을 별도 토큰 설계 없이 텍스트로 직접 표현해도 SOTA 수준이 가능하다”는 점을 실험적으로 증명
   * 단순 아키텍처로도 강력한 성능을 내며, 재현성 높은 벤치마크 레퍼런스로 기능
 
-#### 7.3 SmolVLA
+#### 6.3 SmolVLA
 
 * **모델 구성 (Architecture)**
   * **규모:** 약 450M 파라미터 (초경량 모델)
@@ -169,12 +201,12 @@ VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용�
   * 대형 VLA 대비 약 1/10 수준의 학습량으로도 경쟁력 있는 성공률 달성
 * **오픈소스 범위**
   * 모델 웨이트, 학습/추론 코드, 예제 스크립트 및 데모 전체 공개
-  * 소비자용 GPU 또는 맥북 수준에서 재현 가능한 학습 레시피 제공
+  * 소비자용 GPU 수준에서 재현 가능한 학습 레시피 제공
 * **의의**
   * “VLA는 수십 B 파라미터와 대규모 사설 데이터가 필요하다”는 통념에 대한 반례
   * 교육·연구·프로토타입용 베이스라인으로 활용하기 용이한 실용적 모델
 
-#### 7.4 DreamVLA
+#### 6.4 DreamVLA
 
 * **모델 구성 (Architecture)**
   * **특징:** 독자적 아키텍처 채택
@@ -184,7 +216,7 @@ VLA 연구가 활발해지면서 누구나 쉽게 실험하고 로봇에 적용�
 * **오픈소스 범위**
   * 학습 코드, 체크포인트, 실험 스크립트 제공 (장기 검증 진행 중)
 
-#### 7.5 OpenVLA를 중심으로 본 VLA 구조
+#### 6.5 OpenVLA를 중심으로 본 VLA 구조
 
 **구조 개요**
 
@@ -200,7 +232,7 @@ graph TD
     LLM --> Act[Action / Trajectory Sequence]
 ```
 
-#### 7.6 오픈소스 생태계 & 서빙(Serving)
+#### 6.6 오픈소스 생태계 & 서빙(Serving)
 
 **학습/파인튜닝**
 
@@ -217,7 +249,104 @@ graph TD
 
 VLA는 더 이상 단일 논문 아이디어가 아니라, **대규모 데이터(Open X-Embodiment)**, **공개 구현(OpenVLA, VLA-0 등)**, 서빙 인프라(sglang-vla)가 함께 움직이는 오픈 생태계 단계에 진입했습니다. 특히 **OpenVLA**는 구조, 데이터, 성능, 코드가 모두 공개된 **사실상의 레퍼런스 VLA 구현체** 역할을 하고 있습니다.
 
-### 7. Conclusion
+### 7. SmolVLA란
+
+SmolVLA는 VLA 로봇 정책 모델을 다음 목표로 재설계한 오픈소스 프로젝트입니다. 기존의 대형 VLA(수십억 파라미터)가 가진 고가 장비 의존성, 높은 지연 문제를 해결하기 위해 등장했습니다.
+
+* 규모: 약 4.5억(450M) 파라미터 (초경량)
+* 목표: 소비자용 하드웨어 실행, 저렴한 학습 자원, 커뮤니티 데이터 기반 훈련
+
+#### 🧠 핵심 설계 철학
+
+> "대형 모델 없이도 실용 수준의 VLA가 가능할까?"
+
+* 경량·고효율: 일반 소비자용 GPU(RTX 30/40 시리즈)나 노트북에서도 실행 가능한 수준을 지향합니다.
+* 접근성: 고가의 데이터센터급 GPU 없이도 누구나 VLA를 학습하고 실험할 수 있도록 진입 장벽을 낮췄습니다.
+
+#### 7.1 모델 아키텍처: 6가지 핵심 구성 요소
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 채택했습니다.
+
+1. SmolVLM 기반 백본: Vision + Language + State 입력을 통합 처리하며, 시각 정보를 압축하여 처리 효율을 높였습니다.
+2. 프로젝터 (Projectors): 이미지, 로봇 상태(State), 과거 행동 등 서로 다른 형식의 입력을 VLM이 이해할 수 있는 공통 벡터 공간으로 정규화합니다.
+3. 시각 토큰 축소 (Visual Tokens Reduction): 공간 풀링 등을 통해 이미지 토큰을 약 64개 수준으로 대폭 축소하여 연산량을 줄였습니다.
+4. 레이어 스킵 (Layer Skipping): Vision 인코더(SigLIP 등)의 후반부 고차원 추상 레이어를 건너뛰어 시각 인코딩 속도를 2배 이상 높였습니다. (로봇 조작에는 위치/형태 정보가 더 중요하기 때문)
+5. Flow Matching Action Expert: 노이즈에서 정답 행동 경로를 부드럽게 생성하는 Flow Matching 기법을 적용하여 연속적인 행동(Trajectory)을 효율적으로 예측합니다.
+6. 인터리브 어텐션 (Interleaved Attention): Action Expert 내부에서 Cross-Attention(상황 파악)과 Causal Self-Attention(행동 일관성 유지)을 번갈아 수행하여 의미 이해와 제어 품질을 동시에 확보했습니다.
+
+#### 🔄 비동기 추론 (Asynchronous Inference)
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+전통적인 `관측 → 추론 → 행동`의 순차적 방식은 로봇이 추론하는 동안 멈추는(Freezing) 문제가 있었습니다. SmolVLA는 행동 실행과 추론을 병렬로 처리하여, 로봇이 동작하는 동안 백그라운드에서 다음 행동을 예측합니다.
+
+* 효과: 평균 응답 속도 30% 향상, 작업 처리량 최대 2배 증가
+
+#### 📊 데이터 전략: 커뮤니티 기반
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+대형 기업의 독점 데이터 대신, LeRobot 등 오픈 커뮤니티에서 수집된 공개 데이터를 활용합니다.
+
+* 규모: 약 22.9K 에피소드, 1,060만 프레임 수준
+* 정제: VLM을 활용해 자동 라벨링을 수행하고, 카메라 시점을 정규화하여 데이터 품질을 높였습니다.
+
+#### 7.2 **알고리즘 작동 원리 (Algorithm 1)**
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+**전체 개념:** 로봇 제어를 동영상 스트리밍의 버퍼링처럼 처리하는 **비동기 액션 생성 방식**
+
+* **Action Queue:** 로봇이 실행할 미래 행동(Action Chunk)을 순서대로 저장하는 버퍼
+* **PopFront:** 큐 맨 앞의 액션을 하나씩 꺼내 실제 로봇에 실행
+* **임계값 트리거 (**$g$**):** 큐에 남은 액션 비율이 $g$ 미만이 되면 다음 액션 청크 추론을 요청
+* **Non-blocking Inference:** 새 청크를 계산하는 동안 로봇은 기존 큐를 계속 실행 (멈춤 없음)
+* **Aggregation:** 새로 계산된 액션 청크를 기존 큐의 잔여 액션 뒤에 부드럽게 연결
+* **Fallback:** 추론이 아직 끝나지 않았으면 기존 큐를 그대로 유지해 동작 중단 방지
+
+#### 7.3 Implementation Details (구현 상세)
+
+**1) Similarity Filter (유사도 필터)**
+
+* **목적:** 상황이 변하지 않았을 때 불필요한 추론 호출을 차단하여 리소스 절약
+* **비교 방식:** 무거운 이미지 처리 대신 가벼운 **관절 공간(Joint-space) 거리** 사용
+* **조건:** 현재 관측과 이전 관측 차이가 임계값  $$\epsilon$$ 미만이면 추론 생략
+* **Safety Override:** 큐 고갈 위험 시에는 변화가 없어도 강제 추론 수행
+
+**2) Latency Analysis (지연 시간 분석)**
+
+* **전체 지연 (**$$\ell$$**):** 관측 전송 + 서버 추론 + 액션 반환 시간의 합
+*   **핵심 조건:** 남은 액션 버퍼가 추론 지연보다 길어야 로봇이 멈추지 않음 (Anti-Starvation)
+
+    > &#x20;$$g \ge (\Delta t \cdot n) / E[\ell_s]$$
+* **의미:** 이 조건을 만족하면 큐 고갈(Starvation) 없이 연속 동작 보장
+
+**3) Processing Frequency (처리 빈도)**
+
+* **필터 없음:** 고정 주기로 서버 호출 → 불필요한 계산 다수 발생
+* **필터 적용:** 환경 변화가 없으면 호출 생략 → 추론 빈도 감소 (효율성 증대)
+
+#### 7.4 임계값 g에 따른 동작 시나리오
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+| 설정값                                    | 동작 방식                        | 결과                       | 특징                          |
+| -------------------------------------- | ---------------------------- | ------------------------ | --------------------------- |
+| <p>g = 0</p><p>(Sequential Limit)</p>  | 큐를 전부 소모한 뒤에만 새 추론 요청        | 추론 지연 동안 로봇이 완전히 멈춤      | 계산 효율은 높지만 반응성 최악           |
+| <p>g = 0.7</p><p>(Async Inference)</p> | **큐의 약 70%가 남았을 때 미리 추론 시작** | **큐 겹침으로 안정적인 연속 동작 유지** | **반응성과 계산 비용의 최적 균형점 (권장)** |
+| <p>g = 1</p><p>(Compute Limit)</p>     | 매 타임스텝마다 새 추론 요청             | 반응성은 최고, 계산 비용은 매우 큼     | 하드웨어 여유가 있을 때만 현실적          |
+
+> **로봇이 멈추지 않도록, 미래 행동을 미리 계산해 버퍼링하는 비동기 제어 전략**
+
+#### 7.5 **Evaluation (Simulation, Real-World)**
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+### 8. Conclusion
 
 ```mermaid
 graph TD

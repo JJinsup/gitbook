@@ -161,7 +161,7 @@ sequenceDiagram
 
 이 시뮬레이션 구조는 VLA 모델의 핵심 구성 요소들을 모두 포함하고 있습니다.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 * **Vision:** 로봇 카메라 + YOLO Adapter
 * **Language:** 문자열 기반 명령 체계, LLM 연동
