@@ -185,7 +185,51 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 ```
 
-### 5. 활용 팁
+### 5. Colab 환경에서 생성하기
+
+`mujoco_llm/scripts/datagen_colab.ipynb` 파일을 참고하세요.
+
+먼저 구글 드라이브에 데이터셋 생성에 사용할 pdf를 업로드 합니다.
+
+<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+
+#### 5.1 API 키를 Colab에서 사용하기
+
+<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+
+좌측에서 google AI studio에서 발급받은 API KEY를 입력합니다.
+
+#### 5.2 API 키 설정 및 PDF 경로 지정
+
+코드에서 다음 부분을 자신의 환경에 맞게 변경합니다.
+
+```python
+# 1. API 키 설정
+api_key = userdata.get('vla')
+client = genai.Client(api_key=api_key)
+
+# PDF 경로 지정 (사용자 환경에 맞게 수정)
+pdf_filename = "/content/drive/MyDrive/js_mujoco/learn_LLM/src/6g_ai.pdf"
+```
+
+#### 5.3 저장 경로 지정
+
+코드에서 다음 부분을 자신의 환경에 맞게 변경합니다.
+
+```python
+import shutil
+
+# 4. 결과 파일 Google Drive로 저장
+
+# PDF 파일이 있던 폴더 경로를 구합니다 (예: /content/drive/MyDrive/...)
+save_dir = os.path.dirname(pdf_filename)
+```
+
+<figure><img src="../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
+
+<p align="center"><strong>실행 결과</strong></p>
+
+### 6. 활용 팁
 
 1. **프롬프트 튜닝**: `generate_dataset_gemini` 함수의 프롬프트를 수정하여 "객관식 문제를 만들어줘"나 "OX 퀴즈를 만들어줘"와 같이 다양한 형태의 데이터를 생성할 수 있습니다.
 2. **온도 조절**: `temperature` 값을 높이면(0.8 이상) 더 창의적인 질문이 나오고, 낮추면(0.2 이하) 더 정직하고 딱딱한 질문이 나옵니다.
