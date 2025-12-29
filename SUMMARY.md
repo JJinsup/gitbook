@@ -44,6 +44,10 @@
 * [\[26\] Isaac Lab: Tutorial](level-5-nvidia-isaac-sim/26-isaac-lab-tutorial.md)
 * [\[27\] Isaac Lab: So-arm-101](level-5-nvidia-isaac-sim/27-isaac-lab-so-arm-101.md)
 
+## \[LEVEL 6] SO-ARM-101
+
+* [Page 1](level-6-so-arm-101/page-1.md)
+
 ## \[Appendix] Practical Notes
 
 * [\[A\] 서버 사용법](appendix-practical-notes/a-server.md)
