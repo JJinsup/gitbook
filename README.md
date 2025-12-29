@@ -37,7 +37,7 @@ metaLinks:
 
 ### 📅 Overview
 
-* **기간:** 2025.12.22 (월) \~ 2026.01.13 (화)
+* **기간:** 2025.12.22 (월) \~ 2026.01.20 (화)
 * **대상:** 학부생 (4개 조 운영)
 * **주요 목표:**
   1. **VLA 이해:** Vision-Language-Action 모델의 최신 트렌드 습득
@@ -59,7 +59,7 @@ metaLinks:
 | **Option A**      | **WSL2 (Windows Subsystem for Linux)** | 접근성 및 안정성 중시     |
 | **Option B (추천)** | **Native Dual Booting**                | 로컬 하드웨어 성능       |
 
-### \[WEEK 1] MuJoCo & LLM 기초 (12.22 \~ 12.23)
+#### \[WEEK 1] MuJoCo & LLM 기초 (12.22 \~ 12.23)
 
 **"물리 엔진과 거대언어모델(LLM)의 만남"**
 
@@ -69,7 +69,7 @@ metaLinks:
 **\[LEVEL 2] 오리엔테이션 및 MuJoCo 시뮬레이션 (12.22 월)**
 
 * **Intro:** 전체 특강 계획 설명 및 팀 구성
-* **MuJoCo 기초:** \* MuJoCo 물리 엔진의 원리 이해 (MJCF 모델링)
+* **MuJoCo 기초:** MuJoCo 물리 엔진의 원리 이해 (MJCF 모델링)
   * Viewer 조작 및 기본 시뮬레이션 실습
 
 **\[LEVEL 3] LLM 실습 (12.23 화)**
@@ -95,39 +95,49 @@ metaLinks:
 * **Tech Stack:** **Gemini (Vision-Language) + YOLO (Object Detection)**
 * **Mission:** MuJoCo 환경 내에서 주행 로봇이 자연어 명령을 수행하도록 제어
 
-**\[LEVEL 4] VLA 실습 II : 로봇 팔 (12.30 화)**
+#### \[WEEK 3] VLA 실습 II : 센서 인지 기반 VLA (Team Project) (01.05 \~ 01.09)
+
+* **Target:** Mobile Robot (MuJoCo 기반 주행 로봇)
+* **Tech Stack:** MuJoCo + YOLO + Sensor Data (LiDAR / IMU 등) + SmolVLA (OpenVLA 경량화 모델)
+* **Mission:** MuJoCo 환경에서 로봇의 시각 정보뿐만 아니라 **센서 데이터(LiDAR, IMU 등)를 함께 입력으로 활용**하여, LLM이 더 풍부한 환경 인식을 바탕으로 의사결정을 수행하도록 VLA 구조를 확장한다.
+
+**Key Focus**
+
+* 시각 정보 중심 VLA → **멀티 센서 기반 VLA**로 확장
+* 센서 데이터를 프롬프트 또는 구조화된 입력으로 변환
+* LLM이 센서 상태까지 고려해 행동을 선택하도록 설계
+* 팀 단위로 설계·실험·분석 수행
+
+#### \[WEEK 4] 결과발표, smolVLA, NVIDIA Isaac Sim (01.15 \~ 01.16)
+
+**\[LEVEL 4] 팀 프로젝트 결과 발표 및 시연 (01.15 목)**
+
+**\[LEVEL 4] VLA 실습 III : 로봇 팔 (01.15 목)**
 
 * **Target:** **Robot Arm (Manipulator)**
 * **Tech Stack:** **SmolVLA (OpenVLA 경량화 모델)**
 * **Mission:** SmolVLA 모델을 MuJoCo와 연동하여 로봇 팔 제어 및 Fine-tuning 기초 실습
 
-#### \[WEEK 3] NVIDIA Isaac Sim & Lab (01.05 \~ 01.06)
-
-**"고해상도 시뮬레이션과 강화학습 환경 구축"**
-
-* **일정:** 01.05(월) \~ 01.06(화)
-* **학습 목표:** NVIDIA 생태계(Omniverse)를 활용한 고도화된 시뮬레이션 환경 구축
-
-**\[LEVEL 5] Isaac Sim 기초 및 서버 활용 (01.05 월)**
+**\[LEVEL 5] Isaac Sim 기초 및 서버 활용 (01.16 금)**
 
 * **Isaac Sim 입문:** USD 포맷 이해 및 환경(Stage) 구성
 * **Server Setting:** 연구실 **RTX 3090 서버**에서 Headless/Streaming 모드로 Isaac Sim 구동하는 법
 
-**\[LEVEL 6] Isaac Lab 심화 (01.06 화)**
+**\[LEVEL 5] Isaac Lab  (01.16 금)**
 
 * **Isaac Lab:** Isaac Sim 기반의 로봇 학습 프레임워크 실습
 * **RL Environment:** 강화학습을 위한 로봇 환경 설정 및 학습 예제 실행
 
-#### \[WEEK 4 \~] Sim-to-Real 프로젝트 (01.12 \~)
+#### \[WEEK 5 \~] Sim-to-Real 프로젝트 (01.19 \~)
 
 **"가상을 넘어 현실로: 하드웨어 제어 및 배포"**
 
-* **일정:** 01.12(월) \~ 01.13(화)
+* **일정:** 01.19(월)
 * **학습 목표:** 시뮬레이션 데이터 수집부터 실물 로봇 제어까지의 전체 파이프라인 완성
 
-**\[LEVEL 7] 팀 프로젝트 Kick-off: SO-ARM 101 (01.12 월 \~)**
+**\[LEVEL 6] 팀 프로젝트 Kick-off: SO-ARM 101 (01.19 월 \~)**
 
-* **Team Project:** 4주 차부터는 팀 단위 프로젝트로 진행되며, **LeIsaac**과 **SmolVLA**를 활용한 Sim-to-Real 구현이 최종 목표
+* **Team Project:** 4주 차부터는 팀 단위 프로젝트로 진행되며, **LeIsaac**과 **SmolVLA** 활용
 * **Hardware:** 오픈소스 로봇 팔 **SO-ARM 101** 조립 및 구동
 * **Framework 1:** [**LeIsaac**](https://github.com/LightwheelAI/leisaac) (LightwheelAI)
   * Teleoperation 환경 구축 및 VR/컨트롤러 기반 데이터 수집
