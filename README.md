@@ -84,7 +84,12 @@ metaLinks:
 * **일정:** 12.29(월) \~ 12.30(화)
 * **학습 목표:** 주행 로봇과 로봇 팔 각각에 적합한 VLA 모델을 시뮬레이션과 연동
 
-**\[LEVEL 4] VLA 실습 I : 주행 로봇 (12.29 월)**
+**\[LEVEL 3] LLM 실습 (12.29 월)**
+
+* **LLM 튜닝:** RAG / 데이터셋 생성 및 증강 / Finetuning
+* **Roboflow를 이용한 YOLO 파인튜닝**
+
+**\[LEVEL 4] VLA 실습 I : 주행 로봇 (12.30 화)**
 
 * **Target:** **Mobile Robot (TurtleBot3)**
 * **Tech Stack:** **Gemini (Vision-Language) + YOLO (Object Detection)**
