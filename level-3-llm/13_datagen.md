@@ -192,7 +192,7 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 ### 5. Colab 환경에서 생성하기
 
-`mujoco_llm/scripts/datagen_colab.ipynb` 파일을 참고하세요.
+`mujoco_llm/learn_LLM/datagen_colab.ipynb` 파일을 참고하세요.
 
 먼저 구글 드라이브에 데이터셋 생성에 사용할 pdf를 업로드 합니다.
 
