@@ -289,7 +289,60 @@ print(loaded_tokenizer.decode(output[0], skip_special_tokens=True))
 
 ### 8. Colab에서 파인튜닝하기
 
+`mujoco_llm/learn_LLM/finetuning_colab.ipynb` 파일을 참고하세요.
 
+{% hint style="info" %}
+**Colab을 사용할 때는 항상 런타임 유형이 GPU로 되어있는지 확인하세요!**
+{% endhint %}
+
+\[13] 데이터셋 생성 및 증강에서 생성한 `6g_ai_dataset_augmented.jsonl`파일이 필요합니다.
+
+#### 8.1 데이터셋 경로 지정
+
+자신의 환경에 맞게 경로를 수정합니다.
+
+```python
+# 데이터셋 로드 및 포맷팅
+dataset_file = "/content/drive/MyDrive/js_mujoco/learn_LLM/src/6g_ai_dataset_augmented.jsonl"
+```
+
+#### 8.2 파인튜닝 전-후 답변을 비교합니다.
+
+#### 8.3 파인튜닝된 모델 불러오기
+
+좌측 상단에서 런타임 세션을 다시 시작한 후 모델을 불러와서 테스트합니다.
+
+> ```
+> 📂 모델을 불러오는 중입니다: /content/drive/MyDrive/my_finetuned_qwen
+> ==((====))==  Unsloth 2025.12.9: Fast Qwen3 patching. Transformers: 4.57.3.
+>    \\   /|    Tesla T4. Num GPUs = 1. Max memory: 14.741 GB. Platform: Linux.
+> O^O/ \_/ \    Torch: 2.9.0+cu126. CUDA: 7.5. CUDA Toolkit: 12.6. Triton: 3.5.0
+> \        /    Bfloat16 = FALSE. FA [Xformers = 0.0.33.post2. FA2 = False]
+>  "-____-"     Free license: 
+> Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+> ```
+>
+> ```
+> 🤖 답변 생성 중...
+>
+> <think>
+> Okay, the user is asking about the role of AI in 6G networks. Let me start by recalling what I know. 6G is a future network concept, so it's going to be more advanced than current 5G. AI is a key component here, so I need to explain how AI can be used in 6G.
+>
+> First, I should mention the integration of AI with 6G. AI will play a critical role in processing and analyzing data, which is essential for 6G's capabilities. Then, maybe talk about applications like autonomous vehicles, smart cities, etc. It's important to highlight how AI will improve efficiency and user experience.
+>
+> Wait, I need to make sure the explanation is clear and in Korean. Also, check if there's any technical details I should include, like machine learning models or neural networks. Make sure the answer is concise but covers all aspects the user asked for.
+> </think>
+>
+> 6G 네트워크에서 AI는 기술적 기능과 협력하여 우주형 통신 기술을 구현하고, 이론적 기대치를 현실화하기 위한 핵심 역할을 하며, 다음과 같은 전역적 기능을 통해 이동통신과 인공지능을 결합하여 차이점이 빛납니다.
+>
+> 1. **다양한 데이터 처리 및 분석**: 6G은 수십억 명의 사용자에게 데이터를 손쉽게 제공하기 위한 AI 기반의 인공지능 기술을 통합해, 실시간 데이터 처리 및 예측 모델을 구축합니다.
+>
+> 2. **주체적 인터페이스와 지속적 협업**: AI를 통해 사용자의 행동을 이해하고, 통신 경험을 개선하기 위한 인간-AI 협업을 통해 인터페이스를 최소화합니다.
+>
+> 3. **신뢰성과 안정성 향상**: AI 기반의 고급 모델링 및 자동화 기술을 통해 통신 속도, 신뢰성, 전략적 정책을 효율적으로 관리할 수 있습니다.
+>
+> 4. **신뢰성 있는 데이터 전달**: AI 기반의 보안 및 보안성 기술은 6G의 위성형 통신 기능을 더욱 안전하게 수행합니다.
+> ```
 
 ### 9. 요약 및 활용 (Summary)
 
