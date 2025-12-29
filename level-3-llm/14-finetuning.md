@@ -287,7 +287,11 @@ output = loaded_model.generate(input_ids=inputs, max_new_tokens=256)
 print(loaded_tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 
-### 8. 요약 및 활용 (Summary)
+### 8. Colab에서 파인튜닝하기
+
+
+
+### 9. 요약 및 활용 (Summary)
 
 이 가이드를 통해 우리는 다음 과정을 수행했습니다:
 
