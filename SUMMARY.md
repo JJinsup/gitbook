@@ -34,11 +34,16 @@
 * [\[19\] MuJoCo: YOLO 성능 테스트](level-4-vla+mujoco/19-mujoco-yolo.md)
 * [\[20\] MuJoCo: VLA 실습](level-4-vla+mujoco/20-mujoco-vla.md)
 * [\[21\] VLA 오픈소스](level-4-vla+mujoco/20-vla_opensource.md)
+* [\[22\] MuJoCo: Train & Deploy ACT](level-4-vla+mujoco/22-mujoco-train-and-deploy-act.md)
+* [\[23\] MuJoCo: Train & Deploy smolVLA](level-4-vla+mujoco/23-mujoco-train-and-deploy-smolvla.md)
 
-## \[3주 차] NVIDIA Isaac Sim
+## \[LEVEL 5] NVIDIA Isaac Sim
 
-* [Page 1](3-rl-nvidia-isaac-sim/page-1.md)
+* [\[24\] Isaac sim: Install](level-5-nvidia-isaac-sim/24-isaac-sim-install.md)
+* [\[25\] Isaac sim: Tutorial](level-5-nvidia-isaac-sim/25-isaac-sim-tutorial.md)
+* [\[26\] Isaac Lab: Tutorial](level-5-nvidia-isaac-sim/26-isaac-lab-tutorial.md)
+* [\[27\] Isaac Lab: So-arm-101](level-5-nvidia-isaac-sim/27-isaac-lab-so-arm-101.md)
 
-## \[4주 차] Sim-to-Real 프로젝트
+## \[Appendix] Practical Notes
 
-* [Page 2](4-sim-to-real/page-2.md)
+* [\[A\] 서버 사용법](appendix-practical-notes/a-server.md)

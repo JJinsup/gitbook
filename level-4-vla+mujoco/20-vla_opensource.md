@@ -2,7 +2,7 @@
 description: >-
   이 문서는 2022년 RT-1의 등장부터 2025년 Flow-based 제어와 온디바이스 최적화에 이르기까지, Physical AI와
   VLA(Vision-Language-Action) 모델의 기술적 진화 과정을 정리했습니다.
-icon: head-side-gear
+icon: brain-circuit
 ---
 
 # \[21] VLA 오픈소스
