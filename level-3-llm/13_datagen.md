@@ -194,6 +194,10 @@ augment_dataset_gemini("6g_ai_dataset.jsonl", "6g_ai_dataset_augmented.jsonl")
 
 `mujoco_llm/learn_LLM/datagen_colab.ipynb` 파일을 참고하세요.
 
+{% hint style="info" %}
+**Colab을 사용할 때는 항상 런타임 유형이 GPU로 되어있는지 확인하세요!**
+{% endhint %}
+
 먼저 구글 드라이브에 데이터셋 생성에 사용할 pdf를 업로드 합니다.
 
 <figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
