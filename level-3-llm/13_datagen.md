@@ -157,6 +157,11 @@ generate_dataset_gemini(chunks, "6g_ai_dataset.jsonl")
 * **증강 1**: "6G 통신 기술이 기존 5G와 차별화되는 점을 설명해주세요."
 * **증강 2**: "차세대 이동통신 6G가 가지는 핵심적인 기술적 특성은?"
 
+{% hint style="info" %}
+주의 : API 호출을 너무 자주하면 Error가 발생합니다. time.sleep()함수로 조절 해주세요.\
+(Error occurred: 429 RESOURCE\_EXHAUSTED. {'error': {'code': 429,)
+{% endhint %}
+
 ```python
 def augment_dataset_gemini(input_file, output_file):
     aug_prompt = """
