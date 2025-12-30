@@ -97,7 +97,10 @@ def detect_image(self, frame_bgr: np.ndarray) -> Optional[np.ndarray]:
 
 ### 2. 실습: MuJoCo-YOLO 성능 테스트
 
-이 단계에서는 앞서 설명한 `ObjectDetector`가 MuJoCo 시뮬레이션과 결합되어 정상적으로 동작하는지 확인합니다.
+이 단계에서는 설명한 `ObjectDetector`가 MuJoCo 시뮬레이션과 결합되어 정상적으로 동작하는지 확인합니다.
+
+_**시뮬레이션 실행**_ (`mujoco_llm/scripts/폴더로 이동`)\
+`python tb3_yolo.py`
 
 #### 2.1 테스트 목적
 
