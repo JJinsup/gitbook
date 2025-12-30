@@ -13,6 +13,19 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 
 ### 1. MuJoCo에서 이미지 생성하기
 
+아래 xml 파일들의 meshdir을 자신의 환경에 맞게 수정해주세요.
+
+```xml
+  <compiler angle="radian" meshdir="<자신의경로에맞게수정/assets>" autolimits="true"/>
+```
+
+```
+── robotis_tb3
+    ├── tb3_burger_sensor.xml
+    ├── tb3_factory_cards.xml
+    ├── tb3_factory.xml
+```
+
 #### 1.1 목적
 
 학습에 필요한 카드 이미지 데이터셋(프레임)을 시뮬레이터에서 생성합니다. 이 단계의 핵심 목표는 **"많이, 다양하게"** 데이터를 300장 정도 확보하는 것입니다.&#x20;
@@ -231,17 +244,7 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 
 1. Roboflow에서 다운로드한 zip 파일 압축해제하여 구글 드라이브(`MyDrive/img_dataset/`)에 업로드합니다.
 2. Colab에서 드라이브를 마운트합니다.
-3.  ultralytics 라이브러리를 설치합니
-
-    ```python
-    /content/drive/MyDrive/YOLO_Result
-    ```
-
-    .
-
-    ```python
-    /content/drive/MyDrive/YOLO_Result
-    ```
+3. ultralytics 라이브러리를 설치합니다.
 
 ```
 # 1. 설치 및 드라이브 연결
