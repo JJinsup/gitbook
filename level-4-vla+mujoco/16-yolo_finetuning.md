@@ -253,7 +253,7 @@ from google.colab import drive
 drive.mount('/content/drive')
 ```
 
-#### 4.3 데이터셋 폴더로 이동
+#### 4.3 데이터셋 폴더로 이동 (본인의 데이터셋 경로에 맞게 수정)
 
 ```
 # 2. 데이터셋 폴더로 이동
