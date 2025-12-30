@@ -38,7 +38,8 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 
 #### 1.2 실행 흐름 (권장)
 
-1. 시뮬레이션 실행 ( `tb3_tutorial.py -> capture_cards.py`)
+1. 시뮬레이션 실행 (`mujoco_llm/scripts/폴더로 이동`)\
+   `python capture_cards.py`
 2. 카드가 잘 보이도록 터틀봇을 직접 이동
 3. 시뮬레이션 스텝을 진행하며 일정 주기마다 화면 캡처
 4. 지정된 로컬 폴더에 이미지 자동 저장
