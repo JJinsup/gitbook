@@ -151,9 +151,8 @@ policy.train()
 
 * ACT는 한 스텝의 action이 아니라 “action 묶음(chunk)”을 예측한다.
 * `chunk_size=10` → 현재 상태에서 **앞으로 10스텝의 행동**을 한 번에 학습
-
-- `chunk_size`와 `n_action_steps` 값이 동일한지
-- deploy 단계에서도 동일한 설정을 쓰는지
+* `chunk_size`와 `n_action_steps` 값이 동일한지
+* deploy 단계에서도 동일한 설정을 쓰는지
 
 _TIP_
 
@@ -257,7 +256,7 @@ while step < training_steps:
             break
 ```
 
-* 이 학습은 강화학습이 아니라 **Behavior Cloning(지도학습)** 에 가깝다.
+* 이 학습은 강화학습이 아니라 **Behavior Cloning** 에 가깝다.
 * “사람이 한 action을 그대로 맞추도록” 학습한다.
 
 _CHECK_
