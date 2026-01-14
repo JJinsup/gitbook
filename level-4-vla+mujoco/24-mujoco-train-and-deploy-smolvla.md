@@ -327,6 +327,10 @@ python 8.deploy_smolvla_omy.py
 `Loading weights from local directory`\
 `Creating environment...`
 
+<figure><img src="../.gitbook/assets/Screencast from 2026년 01월 14일 22시 55분 35초 (online-video-cutter.com).gif" alt=""><figcaption></figcaption></figure>
+
+<p align="center"><strong>추론 영상(4배속)</strong></p>
+
 #### 1) 모델 로딩 및 준비 (`load_policy`)
 
 ```
