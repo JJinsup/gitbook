@@ -120,14 +120,8 @@ input_features.pop("observation.wrist_image")
   * 입력(feature)
   * 출력(label)으로 명확히 나눠야 한다.
 * `wrist_image`는 학습을 단순화하기 위해 제외했다.
-
-_CHECK_&#x20;
-
 * `output_features`에 `action`만 들어 있는지
 * `input_features`에서 image, state 등이 정상적으로 남아 있는지
-
-_TIP_
-
 * wrist 카메라도 쓰고 싶다면\
   `input_features.pop(...)` 줄을 제거하고 **데이터 수집 단계 feature와 반드시 일치시켜야 한다.**
 
@@ -153,9 +147,6 @@ policy.train()
 * `chunk_size=10` → 현재 상태에서 **앞으로 10스텝의 행동**을 한 번에 학습
 * `chunk_size`와 `n_action_steps` 값이 동일한지
 * deploy 단계에서도 동일한 설정을 쓰는지
-
-_TIP_
-
 * chunk 크기를 키우면
   * smoother한 행동
   * 하지만 학습은 더 어려워질 수 있다
@@ -182,14 +173,8 @@ transform = transforms.Compose([
 
 * 실제 추론 환경은 데모 데이터와 완전히 같지 않다.
 * 입력 이미지에 약간의 노이즈를 주면 **policy가 작은 시각적 변화에 덜 민감해진다.**
-
-_CHECK_&#x20;
-
 * 이미지 값이 `[0, 1]` 범위를 벗어나지 않는지
 * 학습 초반 loss가 비정상적으로 커지지 않는지
-
-_TIP_
-
 * 학습이 불안정하면 `std=0.01`로 줄여도 된다.
 * 처음 실습에서는 **노이즈 제거 후 비교 실험**도 추천
 
@@ -217,14 +202,8 @@ dataloader = torch.utils.data.DataLoader(
 
 * Offline 학습이므로 **환경을 돌리지 않고 데이터만 반복적으로 읽는다.**
 * `shuffle=True`는 episode 순서 편향을 줄이기 위함이다.
-
-_CHECK_&#x20;
-
 * `demo_data/` 경로가 올바른지
 * `batch_size`가 GPU 메모리에 맞는지
-
-_TIP_
-
 * CUDA OOM(Out of Memory) 나면
   * `batch_size`부터 줄이기
   * 다음으로 `num_workers` 조정
@@ -258,14 +237,8 @@ while step < training_steps:
 
 * 이 학습은 강화학습이 아니라 **Behavior Cloning** 에 가깝다.
 * “사람이 한 action을 그대로 맞추도록” 학습한다.
-
-_CHECK_
-
 * loss가 전반적으로 감소하는지
 * NaN이나 갑자기 폭증하지 않는지
-
-_TIP_
-
 * 3000 step은 “돌아는 가는 수준”
 * 그래프가 엉키면 5000\~10000 step 권장
 
@@ -279,9 +252,6 @@ policy.save_pretrained('./ckpt/act_y')
 
 * 학습과 추론을 분리하기 위함
 * deploy 단계에서 이 ckpt를 불러 사용한다.
-
-_CHECK_
-
 * `ckpt/act_y/` 폴더 생성 여부
 * 파일 크기가 비정상적으로 작지 않은지
 
@@ -299,14 +269,8 @@ gt_action = inp_batch["action"][:, 0, :]
 
 * 학습이 “대충이라도 되었는지” 빠르게 확인
 * 정량 지표 + 시각적 비교
-
-_CHECK_
-
 * pred와 GT가 완전히 무관하지 않은지
 * action 차원별로 편차가 큰 곳은 없는지
-
-_TIP_
-
 * 이 평가는 **정식 성능 평가가 아님**
 * deploy에서 실제 움직임을 꼭 확인해야 한다
 
@@ -318,6 +282,19 @@ _TIP_
 # 추론 스크립트 실행
 python 4.deploy_standalone.py
 ```
+
+`Using device: cuda`
+
+`Loading dataset metadata...`\
+`✓ Dataset metadata loaded`\
+`Setting up policy features...`\
+`✓ Input features: ['observation.image', 'observation.state']`\
+`✓ Output features: ['action']`
+
+`Loading policy from ./ckpt/act_y...`\
+`WARNING:root:Device 'None' is not available. Switching to 'cuda'.`\
+`Loading weights from local directory`\
+`✓ Policy loaded successfully`
 
 <figure><img src="../.gitbook/assets/Screencast from 2026년 01월 14일 22시 03분 25초.gif" alt=""><figcaption></figcaption></figure>
 
