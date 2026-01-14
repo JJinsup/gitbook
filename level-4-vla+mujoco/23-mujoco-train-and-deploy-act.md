@@ -104,7 +104,212 @@ python 2.visualize_data_standalone.py
 
 #### 23.4.3 코드 이해
 
+**1️⃣ 데이터셋 메타데이터 로드 & Feature 분리**
 
+```python
+dataset_metadata = LeRobotDatasetMetadata("omy_pnp", root='./demo_data')
+features = dataset_to_policy_features(dataset_metadata.features)
+
+output_features = {k: ft for k, ft in features.items() if ft.type is FeatureType.ACTION}
+input_features = {k: ft for k, ft in features.items() if k not in output_features}
+input_features.pop("observation.wrist_image")
+```
+
+* 정책은 **입력(observation)** → **출력(action)** 구조로 학습된다.
+* 따라서 데이터셋의 feature를
+  * 입력(feature)
+  * 출력(label)으로 명확히 나눠야 한다.
+* `wrist_image`는 학습을 단순화하기 위해 제외했다.
+
+_CHECK_&#x20;
+
+* `output_features`에 `action`만 들어 있는지
+* `input_features`에서 image, state 등이 정상적으로 남아 있는지
+
+_TIP_
+
+* wrist 카메라도 쓰고 싶다면\
+  `input_features.pop(...)` 줄을 제거하고 **데이터 수집 단계 feature와 반드시 일치시켜야 한다.**
+
+***
+
+**2️⃣ ACT 정책 설정 (Action Chunking)**
+
+```python
+cfg = ACTConfig(
+    input_features=input_features,
+    output_features=output_features,
+    chunk_size=10,
+    n_action_steps=10
+)
+
+delta_timestamps = resolve_delta_timestamps(cfg, dataset_metadata)
+policy = ACTPolicy(cfg, dataset_stats=dataset_metadata.stats)
+policy.to(device)
+policy.train()
+```
+
+* ACT는 한 스텝의 action이 아니라 “action 묶음(chunk)”을 예측한다.
+* `chunk_size=10` → 현재 상태에서 **앞으로 10스텝의 행동**을 한 번에 학습
+
+- `chunk_size`와 `n_action_steps` 값이 동일한지
+- deploy 단계에서도 동일한 설정을 쓰는지
+
+_TIP_
+
+* chunk 크기를 키우면
+  * smoother한 행동
+  * 하지만 학습은 더 어려워질 수 있다
+
+***
+
+**3️⃣ 데이터 증강: 이미지에 노이즈 추가**
+
+```python
+class AddGaussianNoise(object):
+    def __init__(self, mean=0., std=0.02):
+        self.mean = mean
+        self.std = std
+
+    def __call__(self, tensor):
+        noise = torch.randn(tensor.size()) * self.std + self.mean
+        return tensor + noise
+
+transform = transforms.Compose([
+    AddGaussianNoise(mean=0., std=0.02),
+    transforms.Lambda(lambda x: x.clamp(0, 1))
+])
+```
+
+* 실제 추론 환경은 데모 데이터와 완전히 같지 않다.
+* 입력 이미지에 약간의 노이즈를 주면 **policy가 작은 시각적 변화에 덜 민감해진다.**
+
+_CHECK_&#x20;
+
+* 이미지 값이 `[0, 1]` 범위를 벗어나지 않는지
+* 학습 초반 loss가 비정상적으로 커지지 않는지
+
+_TIP_
+
+* 학습이 불안정하면 `std=0.01`로 줄여도 된다.
+* 처음 실습에서는 **노이즈 제거 후 비교 실험**도 추천
+
+***
+
+**4️⃣ Dataset & DataLoader 생성**
+
+```python
+dataset = LeRobotDataset(
+    "omy_pnp",
+    delta_timestamps=delta_timestamps,
+    root='./demo_data',
+    image_transforms=transform
+)
+
+dataloader = torch.utils.data.DataLoader(
+    dataset,
+    batch_size=64,
+    shuffle=True,
+    num_workers=4,
+    drop_last=True,
+    pin_memory=True,
+)
+```
+
+* Offline 학습이므로 **환경을 돌리지 않고 데이터만 반복적으로 읽는다.**
+* `shuffle=True`는 episode 순서 편향을 줄이기 위함이다.
+
+_CHECK_&#x20;
+
+* `demo_data/` 경로가 올바른지
+* `batch_size`가 GPU 메모리에 맞는지
+
+_TIP_
+
+* CUDA OOM(Out of Memory) 나면
+  * `batch_size`부터 줄이기
+  * 다음으로 `num_workers` 조정
+
+***
+
+**5️⃣ 오프라인 학습 루프**
+
+```python
+training_steps = 3000
+optimizer = torch.optim.Adam(policy.parameters(), lr=1e-4)
+
+step = 0
+while step < training_steps:
+    for batch in dataloader:
+        inp_batch = {k: v.to(device) if torch.is_tensor(v) else v
+                     for k, v in batch.items()}
+        loss, _ = policy.forward(inp_batch)
+
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+        if step % 100 == 0:
+            print(f"step {step} | loss {loss.item():.3f}")
+
+        step += 1
+        if step >= training_steps:
+            break
+```
+
+* 이 학습은 강화학습이 아니라 **Behavior Cloning(지도학습)** 에 가깝다.
+* “사람이 한 action을 그대로 맞추도록” 학습한다.
+
+_CHECK_
+
+* loss가 전반적으로 감소하는지
+* NaN이나 갑자기 폭증하지 않는지
+
+_TIP_
+
+* 3000 step은 “돌아는 가는 수준”
+* 그래프가 엉키면 5000\~10000 step 권장
+
+***
+
+### 6️⃣ 체크포인트 저장
+
+```python
+policy.save_pretrained('./ckpt/act_y')
+```
+
+* 학습과 추론을 분리하기 위함
+* deploy 단계에서 이 ckpt를 불러 사용한다.
+
+_CHECK_
+
+* `ckpt/act_y/` 폴더 생성 여부
+* 파일 크기가 비정상적으로 작지 않은지
+
+***
+
+**7️⃣ 간단 평가: pred vs GT action 비교**
+
+```python
+policy.eval()
+policy.reset()
+
+action = policy.select_action(inp_batch)
+gt_action = inp_batch["action"][:, 0, :]
+```
+
+* 학습이 “대충이라도 되었는지” 빠르게 확인
+* 정량 지표 + 시각적 비교
+
+_CHECK_
+
+* pred와 GT가 완전히 무관하지 않은지
+* action 차원별로 편차가 큰 곳은 없는지
+
+_TIP_
+
+* 이 평가는 **정식 성능 평가가 아님**
+* deploy에서 실제 움직임을 꼭 확인해야 한다
 
 ### 23.5 모델 배포 및 추론 (Local)
 
