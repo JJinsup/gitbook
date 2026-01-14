@@ -45,7 +45,7 @@ python 1.collect_data_standalone.py
 
 **1) 주요 설정 (Configuration)**
 
-학생들이 가장 먼저 확인하고 수정해야 할 부분입니다.
+가장 먼저 확인하고 수정해야 할 부분입니다.
 
 * `TASK_NAME`: 데이터셋에 붙는 라벨 (예: 'Put mug cup on the plate')
 * `NUM_DEMO`: **“몇 판 성공할 때까지 모을 거냐”** (최소 30\~50 권장)
@@ -59,8 +59,6 @@ python 1.collect_data_standalone.py
 * **데이터 보강**: `n`으로 설정하여 에피소드를 추가 수집하세요.
 
 **3) 수집 메커니즘 (Mapping)**
-
-학생들에게는 아래와 같이 데이터 구조를 매핑하여 설명하면 이해가 빠릅니다.
 
 * **Observation**: 로봇이 본 것(카메라 이미지)과 현재 상태(관절 위치)
 * **Action**: 사람이 조작한 행동(키보드 입력에 따른 관절 움직임)
@@ -323,16 +321,65 @@ python 4.deploy_standalone.py
 
 <figure><img src="../.gitbook/assets/Screencast from 2026년 01월 14일 22시 03분 25초.gif" alt=""><figcaption></figcaption></figure>
 
+#### 23.5.1 코드 설명 (`4.deploy_standalone.py`)
+
+**1) 핵심 설정 및 경로**
+
+* `POLICY_PATH`: 학습된 모델 가중치가 저장된 경로 (`./ckpt/act_y`)
+* `DATASET_ROOT`: 모델 학습 시 사용했던 데이터셋의 통계량(stats)을 참조하기 위해 동일한 데이터 경로가 필요합니다.
+
+**2) Feature 구성 일치 (중요)**
+
+학습 단계에서 `wrist_image`를 제외했다면, 배포 단계에서도 반드시 동일하게 제외해야 합니다.
+
+```
+input_features.pop("observation.wrist_image", None)
+```
+
+* **Tip**: 학습/배포 시 Feature 구성이 다르면 모델이 로드되더라도 로봇이 엉뚱하게 동작하거나 오류가 발생
+
+**3) 정책 로드 및 Temporal Ensembling**
+
+```
+cfg = ACTConfig(..., temporal_ensemble_coeff=0.9)
+policy = ACTPolicy.from_pretrained(POLICY_PATH, config=cfg, dataset_stats=dataset_metadata.stats)
+```
+
+* **Temporal Ensembling**: 이전 스텝에서 예측한 미래 행동과 현재 예측한 행동을 적절히 섞어(0.9 비중) 로봇의 움직임을 훨씬 더 부드럽게 만들어줍니다.
+
+**4) 환경 초기화 및 물체 위치 맞추기**
+
+ACT와 같은 BC(Behavior Cloning) 모델은 학습 데이터의 분포에 매우 민감합니다.
+
+```
+obj_init_pose = dataset[0]['obj_init'].numpy() # 학습 데이터의 물체 위치 로드
+```
+
+* **성공률 상승 비법**: 학습 데이터에 기록된 물체의 초기 위치를 읽어와 시뮬레이션 환경을 초기화하면, 모델이 학습한 상황과 동일해져 성공률이 비약적으로 상승합니다.
+
+**5) 롤아웃 루프 (Observation → Policy → Action)**
+
+매 타임스텝(20Hz)마다 아래 과정을 반복합니다:
+
+1. **관측**: 현재 로봇 상태와 카메라 이미지를 가져옵니다.
+2. **예측**: `policy.select_action(data)`를 통해 다음 행동을 결정합니다.
+3. **실행**: `PnPEnv.step(action)`으로 로봇을 움직입니다.
+
 {% hint style="info" %}
 **반드시 짚고 넘어가야 할 포인트**
 
 이 추론 결과는 고도의 '지능'이 아닙니다. 이것은 사람이 만든 데이터를 흉내 낸 결과일 뿐입니다.
+
+**추론 문제 해결 (Troubleshooting)**
+
+* **로봇이 멈춰있나요?**: `ckpt` 경로가 맞는지, 데이터셋 `stats`가 학습 시와 동일한지 확인하세요.
+* **동작이 너무 거친가요?**: `temporal_ensemble_coeff` 값을 조정하거나 학습 횟수를 늘려야 합니다.
 {% endhint %}
 
 * 새로운 상황(물체 위치 변경 등)에는 매우 취약합니다.
 * 조건이 조금만 바뀌어도 쉽게 실패합니다.
 * **이 한계를 이해하는 것**이 다음 장인 \[24] smolVLA 실습(언어 조건부 VLA)으로 넘어가는 이유입니다.
 
-### 🏁 정리
+### 🏁 한 줄 요약
 
-> **ACT 실습은 “정책 학습의 전체 파이프라인을 직접 완주해보는 기초 연습”입니다.**
+> **ACT 실습은 “demo\_data의 통계량을 기반으로 정책을 로드하고, 실시간 이미지/상태 입력을 행동으로 변환하여 Pick & Place를 완주하는 과정”입니다.**
