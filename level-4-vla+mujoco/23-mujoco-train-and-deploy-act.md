@@ -9,6 +9,8 @@ icon: brain-circuit
 
 {% embed url="https://huggingface.co/docs/lerobot/act" %}
 
+<figure><img src="../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+
 ### 23.1 실습 목표와 범위
 
 | 구분      | 이번 장에서 수행하는 것               | 이번 장에서 하지 않는 것         |
