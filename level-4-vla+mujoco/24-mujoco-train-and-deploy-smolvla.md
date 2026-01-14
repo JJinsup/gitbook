@@ -2,5 +2,6 @@
 icon: brain-circuit
 ---
 
-# \[23] MuJoCo: Train & Deploy smolVLA
+# \[24] MuJoCo: Train & Deploy smolVLA
 
+[https://huggingface.co/docs/lerobot/smolvla](https://huggingface.co/docs/lerobot/smolvla)
