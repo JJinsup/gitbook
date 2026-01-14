@@ -44,7 +44,7 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 3. 시뮬레이션 스텝을 진행하며 일정 주기마다 화면 캡처
 4. 지정된 로컬 폴더에 이미지 자동 저장
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1.3 저장 폴더 규칙
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 4. **Annotation type:** Traditional
 5. 프로젝트 생성 완료
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
@@ -239,7 +239,7 @@ Roboflow의 **Auto Label (Masks/SAM 3)** 기능을 사용합니다. 모델이 �
 2. 상단 메뉴: **런타임** → **런타임 유형 변경**
 3. **하드웨어 가속기:** `T4 GPU` 선택
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 4.2 데이터셋 업로드 및 마운트
 
@@ -261,7 +261,7 @@ drive.mount('/content/drive')
 %cd /content/drive/MyDrive/img_dataset
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 4.4 학습 실행 (Training)
 
@@ -291,7 +291,7 @@ results = model.train(
 * `results.png`: 손실(Loss) 및 성능(mAP) 그래프
 * `confusion_matrix.png`: 혼동 행렬
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 학습이 성공적으로 완료되었다면, 이제 실시간 환경에 적용할 차례입니다.
 

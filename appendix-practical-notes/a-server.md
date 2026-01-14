@@ -9,7 +9,22 @@ icon: landmark-magnifying-glass
 
 ### 0. 서버 접속 방법
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+1. VSCODE에서 `Remote Explorer > Open SSH Config File`을 클릭한다.
+2. /home/$USERNAME/.ssh/config파일을 클릭한다.
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+3. 아래 예시처럼 입력한다. **(별명, IP주소, 유저 이름, 포트를 자신의 환경에 맞게 변경한다)**
+
+```
+Host [별명]
+    HostName [서버 IP 주소]
+    User [유저이름]
+    Port [접속할 포트]
+    RequestTTY yes
+```
 
 ### 1. 저장소 관리 규칙
 
