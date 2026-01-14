@@ -34,8 +34,9 @@
 * [\[19\] MuJoCo: YOLO 성능 테스트](level-4-vla+mujoco/19-mujoco-yolo.md)
 * [\[20\] MuJoCo: VLA 실습](level-4-vla+mujoco/20-mujoco-vla.md)
 * [\[21\] VLA 오픈소스](level-4-vla+mujoco/20-vla_opensource.md)
-* [\[22\] MuJoCo: Train & Deploy ACT](level-4-vla+mujoco/22-mujoco-train-and-deploy-act.md)
-* [\[23\] MuJoCo: Train & Deploy smolVLA](level-4-vla+mujoco/23-mujoco-train-and-deploy-smolvla.md)
+* [\[22\] MuJoCo:  lerobot-mujoco-tutorial](level-4-vla+mujoco/22-mujoco-lerobot-mujoco-tutorial.md)
+* [\[23\] MuJoCo: Train & Deploy ACT](level-4-vla+mujoco/23-mujoco-train-and-deploy-act.md)
+* [\[24\] MuJoCo: Train & Deploy smolVLA](level-4-vla+mujoco/24-mujoco-train-and-deploy-smolvla.md)
 
 ## \[LEVEL 5] NVIDIA Isaac Sim
 
