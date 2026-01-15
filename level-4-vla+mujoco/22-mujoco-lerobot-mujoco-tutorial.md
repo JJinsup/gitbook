@@ -40,6 +40,8 @@ icon: brain-circuit
 
 ### 22.2 프로젝트 폴더 구조 이해
 
+{% embed url="https://github.com/JJinsup/lerobot-mujoco-tutorial" %}
+
 이 저장소는 코드 자체보다 **구조를 이해하는 것이 실습의 절반**입니다. \
 실습을 진행하며 다음 관점으로 폴더를 구분하세요.
 
