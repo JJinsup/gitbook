@@ -152,11 +152,11 @@ smolVLA는 PaliGemma 기반이므로 **모델 사용 승인**이 필수입니다
 
     ```
     conda activate vla
-    huggingface-cli login
+    hf auth login
     # 발급받은 토큰 붙여넣기 (화면에 표시되지 않음)
 
     # 로그인 확인
-    huggingface-cli whoami
+    hf auth whoami
     ```
 
 #### 📊 Weights & Biases (W\&B) 세팅
