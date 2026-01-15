@@ -35,32 +35,19 @@ Host github.com
 ssh -T git@github.com
 git config --global user.name "JJinsup"
 git config --global user.email "limjs519@gmail.com"
+```
 
+**2️⃣ GitHub 웹사이트에서 저장소(Repository) 만들기**
+
+**3️⃣ HTTPS여서 업로드 안되는 경우 SSH 형식으로 변경**
+
+```bash
 # Remote URL을 SSH로 변경
 # 현재 주소가 HTTPS인지 확인 (출력에 https://... 가 보일 겁니다)
 git remote -v
 
 # 주소를 SSH 형식으로 변경
 git remote set-url origin git@github.com:JJinsup/rfSoC-Book.git
-```
-
-**2️⃣ GitHub 웹사이트에서 저장소(Repository) 만들기**
-
-**3️⃣ 로컬(서버)과 원격(GitHub) 연결하기**
-
-```bash
-# 폴더 만들고 권한 설정 및 확인
-sudo mkdir /data1/js
-sudo chown -R lab602:lab602 /data1/js
-ls -ld /data1/js
-
-# 바로가기(심볼릭 링크) 만들기
-cd
-ln -s /data1/js js
-
-# 깃허브 저장소 불러오기
-git clone git@github.com:JJinsup/tf-learning.git
-cd tf-learning
 ```
 
 #### 이미 존재하는 폴더 Git init해서 연동하는법
@@ -73,5 +60,38 @@ git add .
 git commit -m "Initial commit"
 git remote add origin <https://github.com/ID/REPO.git>
 git branch -M main
+git push -u origin main
+```
+
+**1️⃣ `.git` 지우고, 그냥 “내 저장소”로 가져오기**
+
+```bash
+# 이미 Clone 되어 있는 상황
+cd /data/isaac_so_arm101
+git remote rename origin upstream
+
+rm -rf .git
+
+git init -b main  # git 버전에 따라 안 되면 git init 후 아래에서 branch 이름 바꿔도 됨
+```
+
+**2️⃣ 새 레포 만들기**
+
+**3️⃣ 서버에서 새 origin 연결 + push**
+
+```bash
+# 새 git 저장소 초기화 (main 브랜치로)
+git init -b main  # git 버전에 따라 안 되면 git init 후 아래에서 branch 이름 바꿔도 됨
+
+# 모든 파일 추가
+git add .
+
+# 첫 커밋
+git commit -m "Initial commit based on LycheeAI SO-ARM100/101 (BSD-3-Clause)"
+
+# 네 GitHub 원격 추가
+git remote add origin <https://github.com/jjinsup/so_arm_101_isaac.git>
+
+# 푸시
 git push -u origin main
 ```
