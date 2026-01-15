@@ -52,3 +52,4 @@
 ## \[Appendix] Practical Notes
 
 * [\[A\] 서버 사용법](appendix-practical-notes/a-server.md)
+* [Git](appendix-practical-notes/git.md)
