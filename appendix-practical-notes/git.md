@@ -67,7 +67,6 @@ git push -u origin main
 
 ```bash
 # 이미 Clone 되어 있는 상황
-cd /data/isaac_so_arm101
 git remote rename origin upstream
 
 rm -rf .git
