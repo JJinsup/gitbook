@@ -112,6 +112,10 @@ cd /data/isaac/isaacsim
     ./isaac-sim.streaming.sh --livestream 2
     ```
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<p align="center"><strong>Isaac sim 스트리밍 모드 준비 완료(서버)</strong></p>
+
 ### 6. 클라이언트 설정 (Isaac Sim 서버 접속)
 
 서버에서 livestream 실행이 가능하면, 클라이언트 PC에서 WebRTC Streaming Client를 사용해 접속할 수 있습니다.
@@ -213,7 +217,7 @@ CUDA_VISIBLE_DEVICES=1 ./isaac-sim.streaming.sh --webrtc-port 49101 --webrtc-udp
 
 ### 8. Isaac Sim 온라인 강의 수강 (NVIDIA Developer)
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Isaac Sim 관련 공식 온라인 강의와 튜토리얼은 NVIDIA Developer Program에 가입하면 무료로 이용할 수 있습니다.
 
