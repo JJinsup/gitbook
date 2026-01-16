@@ -64,55 +64,67 @@ Isaac Lab은 다음과 같은 주요 외부 강화 학습(RL) 라이브러리들
 
 > **Isaac Lab 학습의 핵심** Isaac Lab은 단순한 시뮬레이션 툴이 아니라, 로봇의 뇌(Brain)를 만들기 위한 거대한 실험실입니다. `Gym` 인터페이스와 유사한 환경 구성을 통해 기존 RL 연구자들이 쉽게 접근할 수 있도록 설계되어 있습니다.
 
-### 5. Installing Isaac Lab (v2.3)
+### 5. Installing Isaac Lab with uv
 
-리눅스 서버 환경에서 Isaac Lab v2.3을 설치하고 Isaac Sim과 연동하는 절차입니다.
+`uv` 패키지 매니저를 사용하여 가상환경을 구축하고 Isaac Lab을 설치하는 현대적인 방식입니다.
 
-#### 5.1 소스 코드 다운로드 및 버전 체크아웃
+#### 5.1 가상환경 생성 및 활성화
 
 ```
-# 설치 경로 이동 및 클론
-cd /data/isaac
+conda deactivate
+cd /data2/[본인 계정]/isaac
+
+# 가상환경 생성 (Python 3.11)
+uv venv --python 3.11 env_isaaclab
+
+# 가상환경 활성화
+source env_isaaclab/bin/activate
+```
+
+#### 5.2 Isaac Sim Pip 패키지 설치
+
+NVIDIA 전용 PyPI 인덱스를 통해 Isaac Sim 관련 패키지를 설치합니다.
+
+```
+uv pip install "isaacsim==5.1.0" "isaacsim-extscache==5.1.0" --extra-index-url https://pypi.nvidia.com
+```
+
+#### 5.3 Isaac Lab 설치
+
+```
+# Isaac Lab 클론
 git clone https://github.com/isaac-sim/IsaacLab.git
 cd IsaacLab
 
-# 2.3.0 릴리스 버전으로 전환
-git fetch --all --tags
-git checkout release/2.3.0
-```
-
-#### 5.2 Isaac Sim 연동 (Symbolic Link)
-
-Isaac Lab이 설치된 시뮬레이터 위치를 인식할 수 있도록 심볼릭 링크를 생성합니다. (경로는 본인의 설치 환경에 맞게 수정)
-
-```
-# Isaac sim에 맞는 심볼릭 링크 생성
-ln -s /data2/[본인계정]/isaac/isaacsim _isaac_sim
-```
-
-#### 5.3 Conda 환경 구성
-
-Isaac Lab 구동을 위한 전용 파이썬 환경을 생성합니다.
-
-```
-# Conda 환경 생성 (Python 3.11 권장)
-conda create -n isaac python=3.11
-conda activate isaac
-```
-
-#### 5.4 필수 라이브러리 및 Isaac Lab 설치
-
-GPU 가속 학습을 위한 PyTorch 설치와 최종 빌드 스크립트를 실행합니다.
-
-```
-# PyTorch 설치 (CUDA 12.8 인덱스 사용 시)
-pip install -U torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
-pip install --upgrade pip
-
-# Isaac Lab 설치 스크립트 실행
+# 의존성 및 학습 프레임워크(rsl_rl, sb3 등) 한꺼번에 설치
 ./isaaclab.sh --install
 ```
 
-> **설치 확인**&#x20;
->
-> 설치가 완료된 후 `./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task Isaac-Reach-Franka-v0`와 같은 명령어를 실행하여 정상적으로 시뮬레이션 환경이 로드되는지 확인하십시오.
+#### 5.4 설치 확인
+
+정상적으로 설치되었는지 튜토리얼 스크립트와 학습 스크립트를 실행해 봅니다.
+
+```
+# 빈 시뮬레이션 환경 실행 확인 (WebRTC 스트리밍 2번 모드)
+./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py --livestream 2
+
+# 개미 로봇(Ant) 강화학습 실행 확인 (Headless 모드)
+./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task=Isaac-Ant-v0 --headless
+```
+
+### 6. 🛠️ uv 기본 명령어 치트시트
+
+`uv`를 사용할 때 자주 쓰이는 핵심 명령어 모음입니다.
+
+| 분류         | 명령어                          | 설명                          |
+| ---------- | ---------------------------- | --------------------------- |
+| **환경 생성**  | `uv venv [이름] --python [버전]` | 특정 버전 파이썬 가상환경 생성           |
+| **환경 활성화** | `source [이름]/bin/activate`   | 가상환경 활성화 (Linux/macOS)      |
+| **환경 삭제**  | `rm -rf [이름]`                | uv는 별도 삭제 명령 없이 폴더만 삭제 가능   |
+| **패키지 설치** | `uv pip install [패키지명]`      | 현재 가상환경에 패키지 설치             |
+| **패키지 삭제** | `uv pip uninstall [패키지명]`    | 설치된 패키지 삭제                  |
+| **목록 확인**  | `uv pip list`                | 현재 환경 설치 패키지 확인             |
+| **동기화**    | `uv sync`                    | pyproject.toml 기반 의존성 자동 설치 |
+| **캐시 삭제**  | `uv cache clean`             | 용량 확보를 위해 다운로드 캐시 삭제        |
+
+> **성능 최적화**: `uv`는 설치 과정에서 하드 링크를 사용하기 때문에 디스크 공간을 절약하면서도 설치 속도가 매우 빠릅니다. Isaac Lab과 같이 거대한 의존성을 가진 프로젝트에서 매우 유리합니다.
