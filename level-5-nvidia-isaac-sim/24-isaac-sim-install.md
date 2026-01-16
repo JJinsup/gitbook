@@ -83,7 +83,7 @@ sudo mkdir -p /data2/[본인계정]/isaac
 sudo chown -R [본인계정]:[본인계정] /data2/[본인계정]/isaac
 
 # Isaac Sim Standalone 다운로드
-wget "[https://download.isaacsim.omniverse.nvidia.com/isaac-sim-standalone-5.1.0-linux-x86_64.zip](https://download.isaacsim.omniverse.nvidia.com/isaac-sim-standalone-5.1.0-linux-x86_64.zip)"
+wget "https://download.isaacsim.omniverse.nvidia.com/isaac-sim-standalone-5.1.0-linux-x86_64.zip"
 
 # 압축 해제
 unzip "isaac-sim-standalone-5.1.0-linux-x86_64.zip" -d /data2/[본인계정]/isaac/isaacsim
