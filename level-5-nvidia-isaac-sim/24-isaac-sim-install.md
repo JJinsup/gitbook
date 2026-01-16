@@ -7,6 +7,8 @@ icon: user-robot
 
 # \[25] Isaac sim: Install
 
+{% embed url="https://docs.isaacsim.omniverse.nvidia.com/5.1.0/installation/quick-install.html" %}
+
 | 구분         | 내용                                                            |
 | ---------- | ------------------------------------------------------------- |
 | **목적**     | AI 로봇을 가상 환경에서 개발·테스트·검증                                      |
