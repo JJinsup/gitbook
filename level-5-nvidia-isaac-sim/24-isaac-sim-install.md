@@ -146,7 +146,8 @@ sudo netstat -tulpn | grep 49100
 #### 6.2 WebRTC Streaming Client 설치
 
 1. 클라이언트(내 PC)에서 [NVIDIA 공식 다운로드 링크](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/installation/download.html#isaac-sim-latest-release)로 이동하여 **Isaac Sim WebRTC Streaming Client**를 다운로드합니다.
-2. 설치 후 실행하여 서버 주소(예: `SERVER_IP`)를 입력해 접속합니다.
+2. `chmod +x isaacsim-webrtc-streaming-client-1.1.4-linux-x64.AppImage` 실행 권한을 부여합니다
+3. 설치 후 실행하여 서버 주소(예: `SERVER_IP`)를 입력해 접속합니다.
 
 <figure><img src="../.gitbook/assets/스크린샷 2026-01-16 120937.png" alt=""><figcaption></figcaption></figure>
 
