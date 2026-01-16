@@ -109,7 +109,7 @@ cd /data/isaac/isaacsim
 *   **SSH 환경에서 Streaming 모드 실행** (헤드리스 서버에서 주로 사용)
 
     ```
-    ./isaac-sim.streaming.sh --livestream 2
+    ./isaac-sim.streaming.sh
     ```
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
@@ -148,84 +148,19 @@ sudo netstat -tulpn | grep 49100
 1. 클라이언트(내 PC)에서 [NVIDIA 공식 다운로드 링크](https://docs.isaacsim.omniverse.nvidia.com/5.0.0/installation/download.html#isaac-sim-latest-release)로 이동하여 **Isaac Sim WebRTC Streaming Client**를 다운로드합니다.
 2. 설치 후 실행하여 서버 주소(예: `SERVER_IP`)를 입력해 접속합니다.
 
-### 7. 멀티  유저 Isaac Sim 멀티 인스턴스 실행
+<figure><img src="../.gitbook/assets/스크린샷 2026-01-16 120937.png" alt=""><figcaption></figcaption></figure>
 
-Isaac Sim WebRTC 스트리밍은 기본적으로 단일 사용자 전용입니다. 따라서 여러 사용자가 동시에 접속하려면 각 사용자마다 인스턴스를 실행하고 각기 다른 포트를 할당해야 합니다.
-
-#### 7.1 기본 구조
-
-사용자마다 다음 두 종류의 포트를 다르게 할당합니다.
-
-* **TCP 포트**: WebRTC 연결 제어(신호 교환)
-* **UDP 포트**: 영상 스트리밍 데이터 전송
-
-#### 7.2 명령어 형식 (템플릿)
-
-```
-./isaac-sim.streaming.sh \
-    --livestream 2 \
-    --webrtc-port <TCP_PORT> \
-    --webrtc-udp-port <UDP_PORT>
-```
-
-#### 7.3 사용자별 실행 예시 (5명 기준)
-
-* **user1**: `./isaac-sim.streaming.sh --livestream 2 --webrtc-port 49100 --webrtc-udp-port 47998`
-* **user2**: `./isaac-sim.streaming.sh --livestream 2 --webrtc-port 49101 --webrtc-udp-port 48001`
-* **user3**: `./isaac-sim.streaming.sh --livestream 2 --webrtc-port 49102 --webrtc-udp-port 48002`
-* **user4**: `./isaac-sim.streaming.sh --livestream 2 --webrtc-port 49103 --webrtc-udp-port 48003`
-* **user5**: `./isaac-sim.streaming.sh --livestream 2 --webrtc-port 49104 --webrtc-udp-port 48004`
-
-#### 7.4 ufw 방화벽 설정 (포트 추가 허용)
-
-인스턴스 확장에 맞춰 서버 방화벽 범위도 열어줍니다.
-
-```
-# user1~user5 포트 범위 오픈
-sudo ufw allow 49100:49104/tcp
-sudo ufw allow 47998:48004/udp
-sudo ufw reload
-```
-
-#### 7.5 포트 할당 규칙 및 확인
-
-| 사용자       | TCP 포트 | UDP 포트 | 비고    |
-| --------- | ------ | ------ | ----- |
-| **user1** | 49100  | 47998  | 기본 포트 |
-| **user2** | 49101  | 48001  | +1 증가 |
-| **user3** | 49102  | 48002  | +2 증가 |
-| **user4** | 49103  | 48003  | +3 증가 |
-| **user5** | 49104  | 48004  | +4 증가 |
-
-**포트 사용 확인:**
-
-```
-sudo netstat -tulpn | grep isaac
-# 또는 특정 포트 확인
-sudo netstat -tulpn | grep 49102
-```
-
-#### 7.6 CUDA GPU 분할 사용 (선택 사항)
-
-멀티 인스턴스 실행 시 GPU 자원 충돌을 방지하기 위해 사용자별로 사용할 GPU를 고정할 수 있습니다.
-
-```
-# user1은 GPU 0번, user2는 GPU 1번 사용 시
-CUDA_VISIBLE_DEVICES=0 ./isaac-sim.streaming.sh --webrtc-port 49100 --webrtc-udp-port 47998
-CUDA_VISIBLE_DEVICES=1 ./isaac-sim.streaming.sh --webrtc-port 49101 --webrtc-udp-port 48001
-```
-
-### 8. Isaac Sim 온라인 강의 수강 (NVIDIA Developer)
+### 7. Isaac Sim 온라인 강의 수강 (NVIDIA Developer)
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Isaac Sim 관련 공식 온라인 강의와 튜토리얼은 NVIDIA Developer Program에 가입하면 무료로 이용할 수 있습니다.
 
-#### 8.1 NVIDIA Developer 가입
+#### 7.1 NVIDIA Developer 가입
 
 * **가입 링크**: [https://developer.nvidia.com/](https://developer.nvidia.com/)
 
-#### 8.2 주요 학습 자료
+#### 7.2 주요 학습 자료
 
 * **Isaac Sim 공식 튜토리얼**: [링크](https://docs.isaacsim.omniverse.nvidia.com/)
   * Quickstart, Python API 예제, ROS 2 연결, Isaac Lab(RL) 가이드
