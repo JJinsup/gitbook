@@ -47,7 +47,7 @@
 
 ## \[LEVEL 6] SO-ARM-101
 
-* [\[29\] SO-101: Overview](level-6-so-arm-101/29-so-101-overview.md)
+* [\[29\] SO-101: Overview](level-6-so-arm-101/page-1.md)
 
 ## \[Appendix] Practical Notes
 
