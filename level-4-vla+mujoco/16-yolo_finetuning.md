@@ -34,7 +34,7 @@ MuJoCo 시뮬레이터에서 카드 이미지를 생성(Capture)하고, Roboflow
 * **위치:** 터틀봇 위치를 움직이며 촬영
 * **상황:** 카드가 일부 가려지거나(Occlusion) 겹쳐진(Overlapping) 상황 포함
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1.2 실행 흐름 (권장)
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 4. **Annotation type:** Traditional
 5. 프로젝트 생성 완료
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
@@ -261,7 +261,7 @@ drive.mount('/content/drive')
 %cd /content/drive/MyDrive/img_dataset
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 4.4 학습 실행 (Training)
 

@@ -196,7 +196,7 @@ print("Simulation finished. Plotting results...")
 plot_results(times, positions, velocities)
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **감쇠 진동(Damped Oscillation):** XML에서 `damping="0.1"`로 설정했기 때문에, 시간이 지날수록 진폭이 점점 줄어드는 것을 확인할 수 있습니다. (마찰이 없다면 영원히 같은 높이로 움직였을 것입니다.)
 
@@ -205,6 +205,6 @@ print("Rendering video...")
 media.show_video(frames, fps=framerate)
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Summary:** `mj_step`을 통해 물리 법칙이 적용된 세계를 구현했습니다. 이 원리는 복잡한 휴머노이드 로봇이나 로봇 팔을 제어할 때도 똑같이 적용됩니다. 다음 시간에는 드디어 **강화학습(RL)** 환경을 구축해 보겠습니다.

@@ -512,7 +512,7 @@ media.show_video(frames, fps=framerate)
 
 #### 📈 결과 분석
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 그래프를 보면 초기에는 막대가 기울어져 있어($$\theta \neq 0$$) 카트가 강하게 움직이며(u 발생) 중심을 잡으려 노력합니다. 시간이 지나면 막대는 수직 상태로 수렴하고, 카트도 중앙으로 돌아오며 제어 입력(u)이 0에 가까워지는 **안정화(Stabilization)** 상태에 도달하게 됩니다. 이것이 바로 강화학습을 통해 얻은 제어기의 성능입니다.
 

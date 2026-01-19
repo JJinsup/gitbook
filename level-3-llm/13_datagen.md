@@ -147,7 +147,7 @@ generate_dataset_gemini(chunks, "6g_ai_dataset.jsonl")
 
 `저장 완료: 6g_ai_dataset.jsonl (총 18개 데이터 쌍)`
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 3.4 데이터 증강 (Augmentation)
 

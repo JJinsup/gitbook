@@ -18,7 +18,7 @@ description: >-
 
 {% embed url="https://www.youtube.com/watch?v=ElZvzKRt9g8&list=PLX-l0T5_jPsf_wF1RUNGhEl9SVTGGwTUd&index=10" %}
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 ## 키트 부품 설명
 
@@ -38,3 +38,25 @@ description: >-
 | Wrist Flex          |   4   |   1 / 147  |
 | Wrist Roll          |   5   |   1 / 147  |
 | Gripper             |   6   |   1 / 147  |
+
+<figure><img src="../.gitbook/assets/KakaoTalk_20260119_114144061_05.jpg" alt=""><figcaption></figcaption></figure>
+
+### 서보 모터 상자 내부
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### 서보 모터 컨트롤 보드
+
+<figure><img src="../.gitbook/assets/KakaoTalk_20260119_114144061_07.jpg" alt=""><figcaption></figcaption></figure>
+
+### 기타 부품
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+### 팔로워: 3D 프린터 부품
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+### 리더: 3D 프린터 부품
+
+<figure><img src="../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
