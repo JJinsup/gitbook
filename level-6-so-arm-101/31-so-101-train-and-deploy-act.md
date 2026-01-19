@@ -144,6 +144,25 @@ lerobot-train \
   --steps=10000
 ```
 
+**학습 완료 후 파일 구조 확인:**
+
+학습이 정상적으로 완료되면 `outputs/train/act_so101_test` 폴더에 다음과 같은 핵심 파일들이 생성됩니다.
+
+```
+
+outputs/train/act_so101_test
+├── checkpoints
+│   ├── 010000 (설정한 step 수)
+│   │   └── pretrained_model
+│   │       ├── model.safetensors (학습된 가중치)
+│   │       ├── config.json (모델 설정)
+│   │       └── train_config.json (학습 당시 파라미터 정보)
+│   └── last -> 010000 (가장 최신 체크포인트를 가리키는 심볼릭 링크)
+└── wandb (학습 로그 데이터)
+```
+
+* **last/pretrained\_model**: 추론 단계에서 로봇을 움직일 때 참조하게 되는 가장 중요한 폴더입니다.
+
 ### 5. 추론 및 배포
 
 학습된 모델을 사용하여 로봇이 스스로 동작하게 합니다.
@@ -165,3 +184,8 @@ lerobot-record \
 ```
 
 > **중요**: 추론을 실행하기 전, `~.cache/huggingface/lerobot/` 폴더 내에 `dataset.repo_id`로 설정한 이름과 동일한 폴더가 미리 존재하지 않아야 합니다. (충돌 방지)
+
+## 동작 예시 (ACT)
+
+<figure><img src="../.gitbook/assets/IMG_8038.gif" alt=""><figcaption></figcaption></figure>
+
