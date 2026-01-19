@@ -37,32 +37,6 @@ git config --global user.name "JJinsup"
 git config --global user.email "limjs519@gmail.com"
 ```
 
-**2️⃣ GitHub 웹사이트에서 저장소(Repository) 만들기**
-
-**3️⃣ HTTPS여서 업로드 안되는 경우 SSH 형식으로 변경**
-
-```bash
-# Remote URL을 SSH로 변경
-# 현재 주소가 HTTPS인지 확인 (출력에 https://... 가 보일 겁니다)
-git remote -v
-
-# 주소를 SSH 형식으로 변경
-git remote set-url origin git@github.com:JJinsup/rfSoC-Book.git
-```
-
-#### 이미 존재하는 폴더 Git init해서 연동하는법
-
-```jsx
-cd /data/jinsup/js_mujoco
-git init
-nano .gitignore   # (optional but recommended)
-git add .
-git commit -m "Initial commit"
-git remote add origin <https://github.com/ID/REPO.git>
-git branch -M main
-git push -u origin main
-```
-
 **1️⃣ `.git` 지우고, 그냥 “내 저장소”로 가져오기**
 
 ```bash
@@ -74,7 +48,7 @@ rm -rf .git
 git init -b main  # git 버전에 따라 안 되면 git init 후 아래에서 branch 이름 바꿔도 됨
 ```
 
-**2️⃣ 새 레포 만들기**
+**2️⃣ GitHub 웹사이트에서 저장소(Repository) 만들기**
 
 **3️⃣ 서버에서 새 origin 연결 + push**
 
@@ -94,3 +68,10 @@ git remote add origin <https://github.com/jjinsup/so_arm_101_isaac.git>
 # 푸시
 git push -u origin main
 ```
+
+{% hint style="info" %}
+```
+# 주소를 SSH 형식으로 변경 (ssh방식으로 푸시 실패할 경우)
+git remote set-url origin git@github.com:<유저>/레포.git
+```
+{% endhint %}
