@@ -49,6 +49,7 @@
 
 * [\[29\] SO-101: Overview & Assemble](level-6-so-arm-101/29-so-101-overview-and-assemble.md)
 * [\[30\] SO-101: Calibrate & Teleop](level-6-so-arm-101/30-so-101-calibrate-and-teleop.md)
+* [\[31\] SO-101: Train & Deploy ACT](level-6-so-arm-101/31-so-101-train-and-deploy-act.md)
 
 ## \[Appendix] Practical Notes
 
