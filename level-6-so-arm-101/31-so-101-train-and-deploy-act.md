@@ -189,3 +189,12 @@ lerobot-record \
 
 <figure><img src="../.gitbook/assets/IMG_8038.gif" alt=""><figcaption></figcaption></figure>
 
+## NVIDIA Jetson
+
+젯슨 설치 가이드
+
+{% embed url="https://jjinsup.gitbook.io/vla/appendix-practical-notes/jetson-orin-nano-jetpack-6.0" %}
+
+NVIDIA Jetson 플랫폼에서 진행하는 경우 아래 사이트를 참고하세요
+
+{% embed url="https://wiki.seeedstudio.com/lerobot_so100m_new/" %}
