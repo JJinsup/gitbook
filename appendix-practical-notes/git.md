@@ -1,3 +1,7 @@
+---
+icon: landmark-magnifying-glass
+---
+
 # Git
 
 ### Git 환경 설정

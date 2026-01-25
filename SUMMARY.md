@@ -55,4 +55,4 @@
 
 * [\[A\] 서버 사용법](appendix-practical-notes/a-server.md)
 * [Git](appendix-practical-notes/git.md)
-* [🚀 Jetson Orin Nano JetPack 6.0 설치 가이드](appendix-practical-notes/jetson-orin-nano-jetpack-6.0.md)
+* [Jetson Orin Nano JetPack 6.0 설치 가이드](appendix-practical-notes/jetson-orin-nano-jetpack-6.0.md)

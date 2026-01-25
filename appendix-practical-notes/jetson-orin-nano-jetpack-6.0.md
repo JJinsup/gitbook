@@ -2,9 +2,10 @@
 description: >-
   이 문서는 Ubuntu 22.04 기반의 JetPack 6.0 설치 과정을 다룹니다. LeRobot 및 smolVLA 구동을 위해 반드시 이
   버전을 준수해야 합니다.
+icon: landmark-magnifying-glass
 ---
 
-# 🚀 Jetson Orin Nano JetPack 6.0 설치 가이드
+# Jetson Orin Nano JetPack 6.0 설치 가이드
 
 **For Jetson Orin:**
 

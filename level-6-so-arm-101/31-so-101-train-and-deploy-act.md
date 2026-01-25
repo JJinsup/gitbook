@@ -1,5 +1,6 @@
 ---
 description: SO-101 로봇 팔을 이용하여 학습 데이터를 수집하고, ACT 알고리즘을 통해 지능형 동작을 학습 및 추론하는 전체 워크플로우를 다룹니다.
+icon: hand-fist
 ---
 
 # \[31] SO-101: Train & Deploy ACT

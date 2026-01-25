@@ -2,9 +2,10 @@
 description: >-
   SO-101은 Hugging Face의 대표적인 오픈소스 로봇 팔입니다. 이 가이드를 통해 로봇을 조립하고 인공지능 학습을 위한 준비를 할
   수 있습니다.
+icon: hand-fist
 ---
 
-# \[29] SO-101: Overview
+# \[29] SO-101: Overview & Assemble
 
 ## 관련 사이트
 
@@ -177,4 +178,3 @@ lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM_LEADER
 {% embed url="https://huggingface.co/docs/lerobot/so101" %}
 
 **위 사이트의 Clean Parts부분 참고.**
-
