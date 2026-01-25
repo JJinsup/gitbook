@@ -490,5 +490,20 @@ Search 모드는 단순한 회전 동작이 아닙니다.
 
 이 분리 덕분에 LLM 출력이 약간 흔들려도, 로봇이 갑자기 이상한 행동을 하지 않고 실시간 시뮬레이션이 안정적으로 유지될 수 있습니다.
 
+## 8. MuJoCo 토이 프로젝트 결과
 
+**정태현,김경완**
 
+{% embed url="https://github.com/TaeHyun-Jeong/vla_lidar-wheelencoder" %}
+
+**정서현,송다예:** Vision–LiDAR 융합 기반 TurtleBot3 객체 인식 및 추적 제어
+
+{% embed url="https://github.com/SeoHyunJung33/mujoco_tb3_vla" %}
+
+{% file src="../.gitbook/assets/mujoco mini project 발표(정서현).pdf" %}
+
+**선주영,최동석,유혜민,박소영**
+
+{% embed url="https://github.com/juyoungggg/mujoco_toy_team3" %}
+
+{% file src="../.gitbook/assets/[발표자료]_MuJoCo 토이프로젝트 3조.pdf" %}
