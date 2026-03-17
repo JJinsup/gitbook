@@ -2,20 +2,6 @@
 description: >-
   기본 예제(Cart-Pole)이 아닌 실제 상용 로봇(TurtleBot3)을 시뮬레이션 환경에 불러오고, 주변에 물체(Object)를
   배치하여 나만의 실험실을 꾸미는 방법을 배웁니다.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/integrations
@@ -43,7 +29,7 @@ metaLinks:
 
 > **🔗 출처:** [ROBOTIS-GIT/robotis\_mujoco\_menagerie](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie?tab=readme-ov-file)
 
-<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1) 로봇 모델 다운로드 (Git Clone)
 

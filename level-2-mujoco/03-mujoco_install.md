@@ -1,19 +1,5 @@
 ---
 description: 물리 엔진 MuJoCo를 설치하고, 딥마인드에서 제공한 Menagerie에서 실제 로봇 모델들을 불러와 화면에 띄워보겠습니다.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/editor
@@ -60,9 +46,9 @@ python -m mujoco.viewer
 
 구글 딥마인드에서는 유명한 로봇들의 모델 파일(XML/MJCF)을 모아둔 **\[MuJoCo Menagerie]** 라는 오픈소스 프로젝트를 운영합니다.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 1) Git 설치 및 저장소 클론
 

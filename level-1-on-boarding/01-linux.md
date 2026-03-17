@@ -1,19 +1,5 @@
 ---
 description: Ubuntu 22.04 LTS 설치 직후 필수 유틸리티와 개발 도구를 세팅합니다.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/getting-started/quickstart

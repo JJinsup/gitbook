@@ -7,7 +7,7 @@ icon: user-robot
 
 # \[27] Isaac Lab: Tutorial
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% embed url="https://github.com/isaac-sim/IsaacLab" %}
 

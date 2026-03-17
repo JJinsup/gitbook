@@ -28,6 +28,7 @@
 ## \[Level 4] VLA+Mujoco
 
 * [\[15\] VLA Overview](level-4-vla+mujoco/15-vla-overview.md)
+* [\[15-1\] VLA is all you need](level-4-vla+mujoco/15-1-vla-is-all-you-need.md)
 * [\[16\] YOLO 파인튜닝](level-4-vla+mujoco/16-yolo_finetuning.md)
 * [\[17\] MuJoCo: Runtime Overview](level-4-vla+mujoco/17-mujoco-runtime-overview.md)
 * [\[18\] MuJoCo: API Reference](level-4-vla+mujoco/18-mujoco_api.md)

@@ -37,17 +37,17 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
 
 #### RT-1
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### RT-2
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 2. Era of Generalization (2024): 데이터 스케일링과 범용 정책
 
@@ -60,9 +60,9 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
 
 **Open X-Embodiment**
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 2.2 Action Tokenization의 정립 (OpenVLA)
 
@@ -73,15 +73,15 @@ Google DeepMind는 언어 모델이 텍스트 토큰을 예측하듯, "로봇의
 
 **OpenVLA**
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 3. Architecture Innovation (2025): 아키텍처의 진화
 
@@ -265,7 +265,7 @@ SmolVLA는 VLA 로봇 정책 모델을 다음 목표로 재설계한 오픈소�
 
 #### 7.1 모델 아키텍처: 6가지 핵심 구성 요소
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 채택했습니다.
 
@@ -278,7 +278,7 @@ SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 
 
 #### 🔄 비동기 추론 (Asynchronous Inference)
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 전통적인 `관측 → 추론 → 행동`의 순차적 방식은 로봇이 추론하는 동안 멈추는(Freezing) 문제가 있었습니다. SmolVLA는 행동 실행과 추론을 병렬로 처리하여, 로봇이 동작하는 동안 백그라운드에서 다음 행동을 예측합니다.
 
@@ -286,7 +286,7 @@ SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 
 
 #### 📊 데이터 전략: 커뮤니티 기반
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 대형 기업의 독점 데이터 대신, LeRobot 등 오픈 커뮤니티에서 수집된 공개 데이터를 활용합니다.
 
@@ -295,7 +295,7 @@ SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 
 
 #### 7.2 **알고리즘 작동 원리 (Algorithm 1)**
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 **전체 개념:** 로봇 제어를 동영상 스트리밍의 버퍼링처럼 처리하는 **비동기 액션 생성 방식**
 
@@ -330,7 +330,7 @@ SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 
 
 #### 7.4 임계값 g에 따른 동작 시나리오
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 | 설정값                                    | 동작 방식                        | 결과                       | 특징                          |
 | -------------------------------------- | ---------------------------- | ------------------------ | --------------------------- |
@@ -342,7 +342,7 @@ SmolVLA는 효율성을 극대화하기 위해 다음과 같은 아키텍처를 
 
 #### 7.5 **Evaluation (Simulation, Real-World)**
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 

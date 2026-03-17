@@ -1,19 +1,5 @@
 ---
 description: 로봇/AI 개발을 시작하기 전, 가장 중요한 기초 공사 단계입니다.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - >-
@@ -54,7 +40,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-💡 **Tip:** 만약 설치 도중 `Proceed with initialization? [yes|no]` 질문이 나오면 `yes`를 입력하고 엔터를 누르세요. \
+💡 **Tip:** 만약 설치 도중 `Proceed with initialization? [yes|no]` 질문이 나오면 `yes`를 입력하고 엔터를 누르세요.\
 터미널을 켤 때마다 자동으로 `conda` 환경을 잡아주어 편리합니다.
 
 **3) 터미널 초기화** : 설치가 끝난 후, 터미널을 껐다 켜거나 아래 명령어를 입력해야 `conda` 명령어가 인식됩니다.
@@ -124,7 +110,7 @@ VS Code 좌측의 **테트리스 블록 모양 아이콘(Extensions, `Ctrl+Shift
 
 | _<mark style="color:$primary;">**Extension**</mark>_ | _**설명**_                          |
 | ---------------------------------------------------- | --------------------------------- |
-| **Python** (Microsoft)                               |  파이썬 개발을 위한 **필수** 플러그인입니다.       |
+| **Python** (Microsoft)                               | 파이썬 개발을 위한 **필수** 플러그인입니다.        |
 | **Jupyter** (Microsoft)                              | `.ipynb` 파일(주피터 노트북) 실행을 지원합니다.   |
 | **Remote - SSH** (Microsoft)                         | 연구실 서버 등 원격 리눅스 환경에 접속할 때 필수입니다.  |
 | **Error Lens**                                       | (선택) 에러가 발생한 줄에 즉시 내용을 보여줍니다.     |
@@ -132,7 +118,7 @@ VS Code 좌측의 **테트리스 블록 모양 아이콘(Extensions, `Ctrl+Shift
 
 #### 2) 가상환경 인터프리터(Interpreter) 연결
 
-확장 프로그램을 설치했다면, 이제 VS Code가 우리가 방금 만든 가상환경을 쓰도록  알려줘야 합니다.
+확장 프로그램을 설치했다면, 이제 VS Code가 우리가 방금 만든 가상환경을 쓰도록 알려줘야 합니다.
 
 1. VS Code에서 `F1` 키 또는 `Ctrl + Shift + P`를 눌러 검색창(Command Palette)을 엽니다.
 2. 입력창에 `Python: Select Interpreter`를 검색하고 클릭합니다.
@@ -142,7 +128,7 @@ VS Code 좌측의 **테트리스 블록 모양 아이콘(Extensions, `Ctrl+Shift
 
 ### 6. 가상환경 ON/OFF 차이 체험하기
 
-"정말 가상환경이 필요한가?"를 눈으로 직접 확인해봅시다. \
+"정말 가상환경이 필요한가?"를 눈으로 직접 확인해봅시다.\
 우리가 방금 설치한 `mujoco` 환경에는 `numpy`를 설치했지만, 기본 `base` 환경에는 아직 없습니다.
 
 #### 1단계: 테스트 파일 만들기
@@ -163,7 +149,7 @@ conda deactivate
 python test_env.py
 ```
 
-> **결과:** `ModuleNotFoundError: No module named 'numpy'`&#x20;
+> **결과:** `ModuleNotFoundError: No module named 'numpy'`
 
 #### 3단계: 가상환경 켜고 실행해보기 (Success ✅)
 
@@ -174,4 +160,4 @@ conda activate mujoco
 python test_env.py
 ```
 
-> **결과:** `✅ 성공! 현재 Numpy 버전: 2.x.x` 메시지가 뜨나요? 이것이 바로 가상환경을 쓰는 이유입니다!&#x20;
+> **결과:** `✅ 성공! 현재 Numpy 버전: 2.x.x` 메시지가 뜨나요? 이것이 바로 가상환경을 쓰는 이유입니다!

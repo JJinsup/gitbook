@@ -1,19 +1,5 @@
 ---
 description: 기존의 터미널 기반 뷰어 실행 방식에서 벗어나, Python 바인딩을 활용하여 시뮬레이션 환경을 직접 제어하는 방법을 학습합니다.
-layout:
-  width: default
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
-  metadata:
-    visible: true
 metaLinks:
   alternates:
     - https://app.gitbook.com/s/yE16Xb3IemPxJWydtPOj/basics/markdown
@@ -128,7 +114,7 @@ plt.axis("off")
 plt.show()
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 모델 구조 분석 (Introspection)
 
