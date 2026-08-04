@@ -13,8 +13,8 @@ metaLinks:
 #### Instructor & TA
 
 * **주관:** 국민대학교 Wireless intelligent Technology LAB
-* **책임 강사:** 주민철 교수님
-* **실습 조교(TA):** 임진섭 (석사 과정), 김예찬 (학부 연구생)
+* **책임 강사:** 임진섭 (석사 과정)
+* **실습 조교(TA):** 김예찬 (학부 연구생)
 * **문의:** `limsk519@kookmin.ac.kr`
 * **최종 수정일 : 2026.01.15**
 {% endhint %}
